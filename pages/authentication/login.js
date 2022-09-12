@@ -44,7 +44,7 @@ const Login = () => {
 
     axios({
       method: 'post',
-      url: 'localhost:8080/v1/auth/login',
+      url: 'http://localhost:5000/v1/auth/login',
       data:{
         phone_number: phone_number,
         password: password
