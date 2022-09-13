@@ -31,7 +31,7 @@ function MyApp(props) {
     return (
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>EaziFlex - Easily Get Airtime and Data</title>
+          <title>rightNet - Easily Get Airtime and Data</title>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={Gettheme}>
@@ -47,7 +47,7 @@ function MyApp(props) {
   } else {
     return (<CacheProvider value={emotionCache}>
       <Head>
-        <title>EaziFlex - Easily Get Airtime and Data</title>
+        <title>rightNet - Easily Get Airtime and Data</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={Gettheme}>

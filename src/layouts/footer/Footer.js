@@ -7,7 +7,7 @@ const Footer = () => {
       <Typography>
         © 2022 All rights reserved by{" "}
         <Link href="#">
-          <a>EaziFlex</a>
+          <a>rightNet</a>
         </Link>{" "}
       </Typography>
     </Box>

@@ -10,7 +10,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 
-import img1 from "../../assets/images/backgrounds/login-bg.svg";
+import img1 from "../../assets/images/backgrounds/login2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
 
 const Register = () => (
@@ -101,10 +101,20 @@ const Register = () => (
                 mt: 4,
               }}
             >
-              <CustomFormLabel htmlFor="name">Name</CustomFormLabel>
-              <CustomTextField id="name" variant="outlined" fullWidth />
-              <CustomFormLabel htmlFor="email">Email Adddress</CustomFormLabel>
+              <CustomFormLabel htmlFor="firstname">FirstName</CustomFormLabel>
+              <CustomTextField id="firstname" placeholder="Enter Firstname" variant="outlined" fullWidth />
+              <CustomFormLabel htmlFor="lastname">LastName</CustomFormLabel>
+              <CustomTextField id="lastname" variant="outlined" fullWidth />
+              <CustomFormLabel htmlFor="phone_number">Phone number</CustomFormLabel>
+              <CustomTextField id="phone_number" variant="outlined" fullWidth />
+              <CustomFormLabel htmlFor="phone_number">Phone number</CustomFormLabel>
+              <CustomTextField id="phone_number" variant="outlined" fullWidth />
+              <CustomFormLabel htmlFor="email">Email Address</CustomFormLabel>
               <CustomTextField id="email" variant="outlined" fullWidth />
+              <CustomFormLabel htmlFor="dob">DOB</CustomFormLabel>
+              <CustomTextField id="dob" variant="outlined" fullWidth />
+              <CustomFormLabel htmlFor="referral_code">Referral Code</CustomFormLabel>
+              <CustomTextField id="referral_code" variant="outlined" fullWidth />
               <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
               <CustomTextField
                 id="password"

@@ -19,8 +19,8 @@ import CustomCheckbox from "../../src/components/forms/custom-elements/CustomChe
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 
-import img1 from "../../assets/images/backgrounds/login-bg.svg";
-import img3 from "../../assets/images/backgrounds/login.png";
+import img2 from "../../assets/images/backgrounds/login-bg.svg";
+import img1 from "../../assets/images/backgrounds/login2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
 import axios from "axios";
 
@@ -122,7 +122,7 @@ const Login = () => {
               }}
             >
               <Typography fontWeight="700" variant="h2">
-                Welcome to Flexy
+                Welcome to rightNet
               </Typography>
               <Box display="flex" alignItems="center">
                 <Typography
@@ -133,7 +133,7 @@ const Login = () => {
                     mr: 1,
                   }}
                 >
-                  New to Flexy?
+                  New to rightNet?
                 </Typography>
                 <NextLink href="/authentication/register">
                   <Typography
