@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router"
 import {
   Grid,
   Box,
@@ -19,6 +20,7 @@ import CustomTextField from "../../src/components/forms/custom-elements/CustomTe
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 
 import img1 from "../../assets/images/backgrounds/login-bg.svg";
+import img3 from "../../assets/images/backgrounds/login.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
 import axios from "axios";
 
@@ -36,8 +38,12 @@ import axios from "axios";
 
 const Login = () => {
 
+  const router = useRouter();
+
   const [ phone_number, setPhonenumber ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ response, setResponse ] = useState('');
+  const [ errorResponse, setErrorResponse ] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
     console.log("this are the data -->", phone_number, password);
@@ -51,11 +57,15 @@ const Login = () => {
       }
     }).then(function(response){
         console.log("this is the response data -->", response.data);
+        if(response.data.statusCode === "000"){
+          router.push('/dashboards/dashboard1');
+          setResponse(response.data.statusMessage);
+        } else {
+          console.log("this is the response gotten", response);
+        }
     }).catch((error) => {
-        console.log(error);
+        setErrorResponse("Invalid Login Credentials");
     })
-
-    // handleClose();
   };
 
   return (
