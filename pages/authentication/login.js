@@ -50,7 +50,7 @@ const Login = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:5000/v1/auth/login',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/login',
       data:{
         phone_number: phone_number,
         password: password
