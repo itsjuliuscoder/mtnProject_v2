@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import { Grid, Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import NextLink from "next/link";
@@ -35,7 +36,7 @@ const Register = () => {
     }).then(function(response){
         console.log("this is the response data -->", response.data);
         if(response.data.statusCode === "000"){
-          router.push('/dashboards/dashboard1');
+          router.push('/');
           setResponse(response.data.statusMessage);
         } else {
           console.log("this is the response gotten", response);
@@ -101,7 +102,7 @@ const Register = () => {
               }}
             >
               <Typography fontWeight="700" variant="h2">
-                Welcome to Flexy
+                Welcome to rightNet
               </Typography>
               <Box display="flex" alignItems="center">
                 <Typography
@@ -133,32 +134,68 @@ const Register = () => {
                   mt: 4,
                 }}
               >
-                <CustomFormLabel htmlFor="firstname">FirstName</CustomFormLabel>
-                <CustomTextField id="firstname" placeholder="Enter Firstname" variant="outlined" fullWidth />
-                <CustomFormLabel htmlFor="lastname">LastName</CustomFormLabel>
-                <CustomTextField id="lastname" variant="outlined" fullWidth />
-                <CustomFormLabel htmlFor="phone_number">Phone number</CustomFormLabel>
-                <CustomTextField id="phone_number" variant="outlined" fullWidth />
-                <CustomFormLabel htmlFor="phone_number">Phone number</CustomFormLabel>
-                <CustomTextField id="phone_number" variant="outlined" fullWidth />
-                <CustomFormLabel htmlFor="email">Email Address</CustomFormLabel>
-                <CustomTextField id="email" variant="outlined" fullWidth />
-                <CustomFormLabel htmlFor="dob">DOB</CustomFormLabel>
-                <CustomTextField id="dob" variant="outlined" fullWidth />
-                <CustomFormLabel htmlFor="referral_code">Referral Code</CustomFormLabel>
-                <CustomTextField id="referral_code" variant="outlined" fullWidth />
+                
+                <form onSubmit={handleSubmit}>
+                <CustomFormLabel htmlFor="phone_number">Phone numbaer</CustomFormLabel>
+                <CustomTextField 
+                  type="number"
+                  placeholder="Enter Phone Number"
+                  name="phone_number" 
+                  id="phone_number" 
+                  variant="outlined" 
+                  fullWidth 
+                  required 
+                  value={phone_number}
+                  onChange={e => setPhonenumber(e.target.value)} />
                 <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
                 <CustomTextField
+                  name="password"
+                  placeholder="Enter Password"
                   id="password"
+                  type="password"
                   variant="outlined"
                   fullWidth
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required
                   sx={{
                     mb: 3,
                   }}
                 />
-  
-                <NextLink href="/">
+                <Box
+                  sx={{
+                    display: {
+                      xs: "block",
+                      sm: "flex",
+                      lg: "flex",
+                    },
+                    alignItems: "center",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      ml: "auto",
+                    }}
+                  >
+                    <NextLink href="/authentication/reset-password">
+                      <Typography
+                        fontWeight="500"
+                        sx={{
+                          display: "block",
+                          textDecoration: "none",
+                          mb: "16px",
+                          color: "primary.main",
+                          cursor: "pointer",
+                        }}
+                      >
+                        Forgot Password ?
+                      </Typography>
+                    </NextLink>
+                  </Box>
+                </Box>
+                {/* <NextLink href="/"> */}
                   <Button
+                    type="submit"
                     color="secondary"
                     variant="contained"
                     size="large"
@@ -170,7 +207,8 @@ const Register = () => {
                   >
                     Sign Up
                   </Button>
-                </NextLink>
+                {/* </NextLink> */}
+              </form>              
   
                 <Box
                   sx={{
