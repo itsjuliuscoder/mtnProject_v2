@@ -1,18 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
-import { Grid, Box, Typography, Button } from "@mui/material";
-import Image from "next/image";
+import {
+  Grid,
+  Box,
+  Typography,
+  FormGroup,
+  FormControlLabel,
+  Button,
+} from "@mui/material";
 import NextLink from "next/link";
+import Image from "next/image";
 
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 
+import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 
+import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
+import axios from "axios";
 
 const Register = () => {
 
@@ -24,25 +34,31 @@ const Register = () => {
   const [ errorResponse, setErrorResponse ] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("this are the data -->", phone_number, password);
+    // console.log("this are the data -->", phone_number, password);
 
     axios({
       method: 'post',
       url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/register',
       data:{
-        phone_number: phone_number,
-        password: password
+        firstname:"Mercy",
+        lastname:"Bankole",
+        phone_number:"08034331177",
+        email: "mercy_ya@gmail.com",
+        dob:"12/09/1992",
+        referral_code:"09025015566",
+        password:"password@134",
+        acctype:"individual"
       }
     }).then(function(response){
         console.log("this is the response data -->", response.data);
         if(response.data.statusCode === "000"){
-          router.push('/');
+          router.push('/authentication/login');
           setResponse(response.data.statusMessage);
         } else {
           console.log("this is the response gotten", response);
         }
     }).catch((error) => {
-        setErrorResponse("Invalid Login Credentials");
+        setErrorResponse("Unable to register user");
     })
   };
 
@@ -81,8 +97,6 @@ const Register = () => {
           </Box>
   
           <Box
-            display="flex"
-            alignItems="center"
             sx={{
               p: 4,
               position: "absolute",
@@ -108,14 +122,14 @@ const Register = () => {
                 <Typography
                   color="textSecondary"
                   variant="h6"
-                  fontWeight="400"
+                  fontWeight="500"
                   sx={{
                     mr: 1,
                   }}
                 >
-                  Already have an Account?
+                  New to rightNet?
                 </Typography>
-                <NextLink href="/authentication/login">
+                <NextLink href="/authentication/register">
                   <Typography
                     fontWeight="500"
                     sx={{
@@ -125,7 +139,7 @@ const Register = () => {
                       cursor: "pointer",
                     }}
                   >
-                    Sign In
+                    Create an account
                   </Typography>
                 </NextLink>
               </Box>
@@ -133,9 +147,8 @@ const Register = () => {
                 sx={{
                   mt: 4,
                 }}
-              >
-                
-                <form onSubmit={handleSubmit}>
+              > 
+              <form onSubmit={handleSubmit}>
                 <CustomFormLabel htmlFor="phone_number">Phone numbaer</CustomFormLabel>
                 <CustomTextField 
                   type="number"
@@ -205,11 +218,10 @@ const Register = () => {
                       pb: "10px",
                     }}
                   >
-                    Sign Up
+                    Sign In
                   </Button>
                 {/* </NextLink> */}
-              </form>              
-  
+              </form>
                 <Box
                   sx={{
                     position: "relative",
@@ -413,3 +425,4 @@ const Register = () => {
 }
 
 export default Register;
+
