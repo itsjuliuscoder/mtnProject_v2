@@ -14,10 +14,14 @@ import Image from "next/image";
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Autocomplete from '@mui/material/Autocomplete';
 
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
+import CustomSelect from "../../src/components/forms/custom-elements/CustomSelect";
+import SizesAutocomplete from "../../src/components/forms/autoComplete/SizesAutocomplete";
+import { Select, MenuItem } from '@mui/material';
 
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
@@ -28,10 +32,22 @@ const Register = () => {
 
   const router = useRouter();
 
+  const [ firstname, setFirstname ] = useState('');
+  const [ lastname, setLastname ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ referral, setReferral ] = useState('');
   const [ phone_number, setPhonenumber ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ acctype, setAcctype ] = useState('');
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
+  const [ selected, setSelected ] = useState('');
+
+  const selectionChangeHandler = e => {
+
+  }; 
+
+
   const handleSubmit = e => {
     e.preventDefault();
     // console.log("this are the data -->", phone_number, password);
@@ -160,6 +176,8 @@ const Register = () => {
                   required 
                   value={phone_number}
                   onChange={e => setPhonenumber(e.target.value)} />
+                  <CustomFormLabel htmlFor="acctype">Select Account Type</CustomFormLabel>
+                  <SizesAutocomplete />
                 <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
                 <CustomTextField
                   name="password"
@@ -190,7 +208,7 @@ const Register = () => {
                       ml: "auto",
                     }}
                   >
-                    <NextLink href="/authentication/reset-password">
+                    <NextLink href="/">
                       <Typography
                         fontWeight="500"
                         sx={{
@@ -201,7 +219,7 @@ const Register = () => {
                           cursor: "pointer",
                         }}
                       >
-                        Forgot Password ?
+                        Already have an account ? Kindly login
                       </Typography>
                     </NextLink>
                   </Box>

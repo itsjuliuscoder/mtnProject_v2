@@ -1,4 +1,8 @@
 import { Grid } from '@mui/material';
+import mtn from "../../assets/images/logos/mtn.png"
+import mobile from "../../assets/images/logos/9mobile.png"
+import airtel from "../../assets/images/logos/airtel.png"
+import glo from "../../assets/images/logos/glo.png"
 import {
     WelcomeCard,
     BlogCard,
@@ -7,14 +11,19 @@ import {
     SalesOverview,
     TotalSales,
     ProductPerformance,
+    MedicalProBranding,
     WeeklyStats,
     DailyActivities,
+    EarningsShop
   } from '../../src/components/dashboard/dashboard1';
 
 const Dashboard1 = () => {
   return (
     <Grid container spacing={0}>
       {/* ------------------------- row 1 ------------------------- */}
+      <Grid item xs={12} lg={6}>
+        <Earnings />
+      </Grid>
       <Grid item xs={12} lg={6}>
         <WelcomeCard />
         <Grid container spacing={0}>
@@ -26,26 +35,46 @@ const Dashboard1 = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12} lg={6}>
-        <SalesOverview />
+      {/* ------------------------- row 3 ------------------------- */}
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="MTN" logo={mtn} />
       </Grid>
-      {/* ------------------------- row 2 ------------------------- */}
-      <Grid item xs={12} lg={4}>
-        <TotalSales />
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="GLO" logo={glo} />
       </Grid>
-      <Grid item xs={12} lg={8}>
-        <ProductPerformance />
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="AIRTEL" logo={airtel} />
+      </Grid>
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="9MOBILE" logo={mobile} />
       </Grid>
       {/* ------------------------- row 3 ------------------------- */}
-      <Grid item xs={12} lg={4}>
-        <BlogCard />
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="DSTV/GOTV" logo={mtn} />
       </Grid>
-      <Grid item xs={12} lg={4}>
-        <WeeklyStats />
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="UTILITY BILLS" logo={glo} />
       </Grid>
-      <Grid item xs={12} lg={4}>
-        <DailyActivities />
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="TRANSFER" logo={airtel} />
       </Grid>
+      <Grid item xs={12} lg={3}>
+        <EarningsShop title="BORROW AIRTIME & LOAN" logo={mobile} />
+      </Grid>
+      {/* ------------------------- row 2 ------------------------- */}
+      <Grid item xs={12} lg={3}>
+        <TotalSales />
+      </Grid>
+      <Grid item xs={12} lg={6}>
+        <ProductPerformance />
+      </Grid>
+      <Grid item xs={12} lg={3}>
+        <TotalSales />
+      </Grid>
+      {/* ------------------------- row 2 ------------------------- */}
+      <Grid item xs={12} lg={12}>
+        <MedicalProBranding />
+      </Grid>      
     </Grid>
   );
 };

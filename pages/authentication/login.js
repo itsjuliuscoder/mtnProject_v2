@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import NextLink from "next/link";
 import Image from "next/image";
+import Alert from "@mui/material/Alert";
 
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -124,6 +125,10 @@ const Login = () => {
               <Typography fontWeight="700" variant="h2">
                 Welcome to rightNet
               </Typography>
+              { errorResponse && <Alert variant="filled" severity="error">
+                    {errorResponse}
+                  </Alert> 
+              }
               <Box display="flex" alignItems="center">
                 <Typography
                   color="textSecondary"
