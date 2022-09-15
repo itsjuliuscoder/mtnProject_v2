@@ -1,8 +1,21 @@
 import { Grid } from '@mui/material';
+import React, { useState } from "react";
 import mtn from "../../assets/images/logos/mtn.png"
 import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
+import {
+  List,
+  Divider,
+  Button,
+  Box,
+  Dialog,
+  DialogTitle,
+  Slide,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+} from "@mui/material";
 import {
     WelcomeCard,
     BlogCard,
@@ -18,6 +31,17 @@ import {
   } from '../../src/components/dashboard/dashboard1';
 
 const Dashboard1 = () => {
+  const [open, setOpen] = useState(false);
+  const Transition = React.forwardRef((props, ref) => (
+    <Slide direction="up" ref={ref} {...props} />
+  ));
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Grid container spacing={0}>
       {/* ------------------------- row 1 ------------------------- */}
@@ -37,7 +61,7 @@ const Dashboard1 = () => {
       </Grid>
       {/* ------------------------- row 3 ------------------------- */}
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="MTN" logo={mtn} />
+        <EarningsShop title="MTN" logo={mtn} clickAction={handleClickOpen} />
       </Grid>
       <Grid item xs={12} lg={3}>
         <EarningsShop title="GLO" logo={glo} />
@@ -50,16 +74,16 @@ const Dashboard1 = () => {
       </Grid>
       {/* ------------------------- row 3 ------------------------- */}
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="DSTV/GOTV" />
+        <EarningsShop title="DSTV/GOTV" logo={glo} />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="UTILITY BILLS" />
+        <EarningsShop title="UTILITY BILLS" logo={glo} />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="TRANSFER" />
+        <EarningsShop title="TRANSFER" logo={glo} />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="BORROW AIRTIME & LOAN" />
+        <EarningsShop title="BORROW AIRTIME & LOAN" logo={glo} />
       </Grid>
       {/* ------------------------- row 2 ------------------------- */}
       <Grid item xs={12} lg={3}>
@@ -75,7 +99,36 @@ const Dashboard1 = () => {
       <Grid item xs={12} lg={12}>
         <MedicalProBranding />
       </Grid>      
-    </Grid>
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        fullWidth
+        aria-labelledby="alert-dialog-slide-title"
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle id="alert-dialog-slide-title" variant="h4">
+          Compose Mail
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-slide-description"
+            component="div"
+          >
+            <h2> Welcome here! </h2>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary" variant="contained">
+            Send
+          </Button>
+          <Button onClick={handleClose} color="secondary">
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Grid>    
   );
 };
 
