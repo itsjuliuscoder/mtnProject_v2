@@ -47,7 +47,7 @@ const Earnings = () => (
         }}
         gutterBottom
       >
-        $93,438.78
+        ₦93,438.78
       </Typography>
       <Typography
         variant="h6"

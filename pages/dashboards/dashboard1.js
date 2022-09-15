@@ -50,16 +50,16 @@ const Dashboard1 = () => {
       </Grid>
       {/* ------------------------- row 3 ------------------------- */}
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="DSTV/GOTV" logo={mtn} />
+        <EarningsShop title="DSTV/GOTV" />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="UTILITY BILLS" logo={glo} />
+        <EarningsShop title="UTILITY BILLS" />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="TRANSFER" logo={airtel} />
+        <EarningsShop title="TRANSFER" />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="BORROW AIRTIME & LOAN" logo={mobile} />
+        <EarningsShop title="BORROW AIRTIME & LOAN" />
       </Grid>
       {/* ------------------------- row 2 ------------------------- */}
       <Grid item xs={12} lg={3}>
