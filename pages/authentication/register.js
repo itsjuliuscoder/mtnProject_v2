@@ -17,6 +17,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Autocomplete from '@mui/material/Autocomplete';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
+import Alert from "@mui/material/Alert";
+
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
@@ -152,6 +154,10 @@ const Register = () => {
               <Typography fontWeight="700" variant="h2">
                 Welcome to rightNet
               </Typography>
+              { errorResponse && <Alert variant="filled" severity="error">
+                    {errorResponse}
+                  </Alert> 
+              }
               <Box display="flex" alignItems="center">
                 <Typography
                   color="textSecondary"
