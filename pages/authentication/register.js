@@ -63,32 +63,33 @@ const Register = () => {
 
     const date_of_birth = moment(value2).format("yyyy-M-D");
     const email_address = (email === null) ? "" : email;
+    const referral = (referral_code === null) ? "" : referral_code;
     
-    console.log("this are the data -->", phone_number, password, first_name, last_name, email_address, referral_code, dob, date_of_birth, acctype);
-    // axios({
-    //   method: 'post',
-    //   url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/register',
-    //   data:{
-    //     firstname: first_name,
-    //     lastname: last_name,
-    //     phone_number: phone_number,
-    //     email: email,
-    //     dob: date_of_birth,
-    //     referral_code: referral_code,
-    //     password: password,
-    //     acctype: acctype
-    //   }
-    // }).then(function(response){
-    //     console.log("this is the response data -->", response.data);
-    //     if(response.data.statusCode === "000"){
-    //       router.push('/authentication/login');
-    //       setResponse(response.data.statusMessage);
-    //     } else {
-    //       console.log("this is the response gotten", response);
-    //     }
-    // }).catch((error) => {
-    //     setErrorResponse("Unable to register user");
-    // })
+    // console.log("this are the data -->", phone_number, password, first_name, last_name, email_address, referral, dob, date_of_birth, acctype);
+    axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/register',
+      data:{
+        firstname: first_name,
+        lastname: last_name,
+        phone_number: phone_number,
+        email: email,
+        dob: date_of_birth,
+        referral_code: referral,
+        password: password,
+        acctype: acctype
+      }
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        if(response.data.statusCode === "000"){
+          router.push('/authentication/login');
+          setResponse(response.data.statusMessage);
+        } else {
+          console.log("this is the response gotten", response);
+        }
+    }).catch((error) => {
+        setErrorResponse("Unable to register user");
+    })
   };
 
   const handleChange = (event) => {
@@ -258,8 +259,7 @@ const Register = () => {
                   name="referral_code" 
                   id="referral_code" 
                   variant="outlined" 
-                  fullWidth 
-                  required 
+                  fullWidth  
                   value={referral_code}
                   onChange={e => setReferral(e.target.value)} />                
                   <CustomFormLabel htmlFor="acctype">Select Account Type</CustomFormLabel>
