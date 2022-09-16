@@ -103,32 +103,34 @@ const FormWizard = () => {
                 //onChange={e => setPhonenumber(e.target.value)} 
             />
             <CustomFormLabel htmlFor="Password">Amount</CustomFormLabel>
-            <CustomTextField 
-                type="number"
-                placeholder="Enter the amount"
-                name="phone_number" 
-                id="phone_number" 
-                variant="outlined" 
-                size="small"
-                fullWidth 
-                value=""
-                required
-                //value={phone_number}
-                //onChange={e => setPhonenumber(e.target.value)} 
+            <CustomTextField
+              id="Name"
+              type="number"
+              size="small"
+              variant="outlined"
+              fullWidth
+              sx={{ mt: 1, mb: 3 }}
+            />
+            <CustomFormLabel htmlFor="Password">Amount To Pay</CustomFormLabel>
+            <CustomTextField
+              id="Name"
+              type="number"
+              size="small"
+              variant="outlined"
+              fullWidth
+              disabled
+              value="599"
+              placeholder="599"
+              sx={{ mb: 3 }}
             />
             <CustomFormLabel htmlFor="Password">Mobile Number</CustomFormLabel>
-            <CustomTextField 
-                type="number"
-                placeholder="Enter Mobile Number"
-                name="phone_number" 
-                id="phone_number" 
-                variant="outlined" 
-                size="small"
-                fullWidth 
-                value=""
-                required
-                //value={phone_number}
-                //onChange={e => setPhonenumber(e.target.value)} 
+            <CustomTextField
+              id="Name"
+              type="number"
+              size="small"
+              variant="outlined"
+              fullWidth
+              sx={{ mt: 1, mb: 3 }}
             />
           </Box>
         );
