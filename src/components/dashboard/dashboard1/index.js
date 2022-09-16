@@ -9,6 +9,7 @@ import WeeklyStats from './WeeklyStats';
 import DailyActivities from './DailyActivities';
 import EarningsShop from './EarningsShop';
 import MedicalProBranding from './MedicalProBranding';
+import Pricing from './Pricing';
 
 export {
   WelcomeCard,
@@ -21,5 +22,6 @@ export {
   WeeklyStats,
   DailyActivities,
   EarningsShop,
-  MedicalProBranding
+  MedicalProBranding,
+  Pricing
 };

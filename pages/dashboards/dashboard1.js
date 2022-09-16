@@ -28,7 +28,8 @@ import {
     MedicalProBranding,
     WeeklyStats,
     DailyActivities,
-    EarningsShop
+    EarningsShop, 
+    Pricing
   } from '../../src/components/dashboard/dashboard1';
 
 const Dashboard1 = () => {
@@ -110,20 +111,20 @@ const Dashboard1 = () => {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle id="alert-dialog-slide-title" variant="h4">
-          Compose Mail
+          <Pricing />
         </DialogTitle>
         <DialogContent>
           <DialogContentText
             id="alert-dialog-slide-description"
             component="div"
           >
-            <h2> Welcome here! </h2>
+            
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="contained">
+          {/* <Button onClick={handleClose} color="primary" variant="contained">
             Send
-          </Button>
+          </Button> */}
           <Button onClick={handleClose} color="secondary">
             Cancel
           </Button>
