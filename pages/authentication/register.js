@@ -15,6 +15,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Autocomplete from '@mui/material/Autocomplete';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
@@ -22,26 +23,35 @@ import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFo
 import CustomSelect from "../../src/components/forms/custom-elements/CustomSelect";
 import SizesAutocomplete from "../../src/components/forms/autoComplete/SizesAutocomplete";
 import { Select, MenuItem } from '@mui/material';
+import { LocalizationProvider, TimePicker, DatePicker } from '@mui/lab';
 
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
 import axios from "axios";
+import moment from "moment";
 
 const Register = () => {
 
   const router = useRouter();
 
-  const [ firstname, setFirstname ] = useState('');
-  const [ lastname, setLastname ] = useState('');
+  const selectData = [
+    { label: 'Individual', value: 'Individual'  },
+    { label: 'Merchant', value: 'Merchant' }
+  ];
+
+  const [ first_name, setFirstname ] = useState('');
+  const [ last_name, setLastname ] = useState('');
   const [ email, setEmail ] = useState('');
-  const [ referral, setReferral ] = useState('');
+  const [ referral_code, setReferral ] = useState('');
   const [ phone_number, setPhonenumber ] = useState('');
+  const [ dob, setDOB ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ acctype, setAcctype ] = useState('');
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ selected, setSelected ] = useState('');
+  const [value2, setValue2] = React.useState(null);
 
   const selectionChangeHandler = e => {
 
@@ -50,32 +60,39 @@ const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log("this are the data -->", phone_number, password);
 
-    axios({
-      method: 'post',
-      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/register',
-      data:{
-        firstname:"Mercy",
-        lastname:"Bankole",
-        phone_number:"08034331177",
-        email: "mercy_ya@gmail.com",
-        dob:"12/09/1992",
-        referral_code:"09025015566",
-        password:"password@134",
-        acctype:"individual"
-      }
-    }).then(function(response){
-        console.log("this is the response data -->", response.data);
-        if(response.data.statusCode === "000"){
-          router.push('/authentication/login');
-          setResponse(response.data.statusMessage);
-        } else {
-          console.log("this is the response gotten", response);
-        }
-    }).catch((error) => {
-        setErrorResponse("Unable to register user");
-    })
+    const date_of_birth = moment(value2).format("yyyy-M-D");
+    const email_address = (email === null) ? "" : email;
+    
+    console.log("this are the data -->", phone_number, password, first_name, last_name, email_address, referral_code, dob, date_of_birth, acctype);
+    // axios({
+    //   method: 'post',
+    //   url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/register',
+    //   data:{
+    //     firstname: first_name,
+    //     lastname: last_name,
+    //     phone_number: phone_number,
+    //     email: email,
+    //     dob: date_of_birth,
+    //     referral_code: referral_code,
+    //     password: password,
+    //     acctype: acctype
+    //   }
+    // }).then(function(response){
+    //     console.log("this is the response data -->", response.data);
+    //     if(response.data.statusCode === "000"){
+    //       router.push('/authentication/login');
+    //       setResponse(response.data.statusMessage);
+    //     } else {
+    //       console.log("this is the response gotten", response);
+    //     }
+    // }).catch((error) => {
+    //     setErrorResponse("Unable to register user");
+    // })
+  };
+
+  const handleChange = (event) => {
+    setAcctype(event.target.value);
   };
 
   return (
@@ -143,9 +160,9 @@ const Register = () => {
                     mr: 1,
                   }}
                 >
-                  New to rightNet?
+                  Already a user?
                 </Typography>
-                <NextLink href="/authentication/register">
+                <NextLink href="/authentication/login">
                   <Typography
                     fontWeight="500"
                     sx={{
@@ -155,7 +172,7 @@ const Register = () => {
                       cursor: "pointer",
                     }}
                   >
-                    Create an account
+                    Login here
                   </Typography>
                 </NextLink>
               </Box>
@@ -165,10 +182,32 @@ const Register = () => {
                 }}
               > 
               <form onSubmit={handleSubmit}>
-                <CustomFormLabel htmlFor="phone_number">Phone numbaer</CustomFormLabel>
+                <CustomFormLabel htmlFor="first_name">First Name</CustomFormLabel>
+                <CustomTextField 
+                  type="text"
+                  placeholder="Enter First Name"
+                  name="first_name" 
+                  id="first_name" 
+                  variant="outlined" 
+                  fullWidth 
+                  required 
+                  value={first_name}
+                  onChange={e => setFirstname(e.target.value)} />
+                <CustomFormLabel htmlFor="last_name">Last name</CustomFormLabel>
+                <CustomTextField 
+                  type="text"
+                  placeholder="Enter Last name"
+                  name="last_name" 
+                  id="last_name" 
+                  variant="outlined" 
+                  fullWidth 
+                  required 
+                  value={last_name}
+                  onChange={e => setLastname(e.target.value)} />
+                <CustomFormLabel htmlFor="phone_number">Phone number</CustomFormLabel>
                 <CustomTextField 
                   type="number"
-                  placeholder="Enter Phone Number"
+                  placeholder="Enter Phone number"
                   name="phone_number" 
                   id="phone_number" 
                   variant="outlined" 
@@ -176,8 +215,65 @@ const Register = () => {
                   required 
                   value={phone_number}
                   onChange={e => setPhonenumber(e.target.value)} />
+                <CustomFormLabel htmlFor="email">Email Address</CustomFormLabel>
+                <CustomTextField 
+                  type="email"
+                  placeholder="Enter Email Address"
+                  name="email" 
+                  id="email" 
+                  variant="outlined" 
+                  fullWidth  
+                  value={email}
+                  onChange={e => setEmail(e.target.value)} />
+                <CustomFormLabel htmlFor="dob">Date of Birth</CustomFormLabel>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                      <DatePicker
+                        value={value2}
+                        onChange={(newValue2) => {
+                          setValue2(newValue2);
+                        }}
+                        renderInput={(params) => (
+                          <CustomTextField
+                            size="small"
+                            {...params}
+                            fullWidth
+                            id="date"
+                            sx={{
+                              '& .MuiSvgIcon-root': {
+                                width: '18px',
+                                height: '18px',
+                              },
+                              '& .MuiFormHelperText-root': {
+                                display: 'none',
+                              },
+                            }}
+                          />
+                        )}
+                      />
+                  </LocalizationProvider>
+                <CustomFormLabel htmlFor="dob">Referral Code</CustomFormLabel>
+                <CustomTextField 
+                  type="referral_code"
+                  placeholder="Enter Referral Code"
+                  name="referral_code" 
+                  id="referral_code" 
+                  variant="outlined" 
+                  fullWidth 
+                  required 
+                  value={referral_code}
+                  onChange={e => setReferral(e.target.value)} />                
                   <CustomFormLabel htmlFor="acctype">Select Account Type</CustomFormLabel>
-                  <SizesAutocomplete />
+                  <CustomSelect
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={acctype}
+                    onChange={handleChange}
+                    fullWidth
+                    size="small"
+                  >
+                    <MenuItem value="Individual">Individual</MenuItem>
+                    <MenuItem value="Merchant">Merchant</MenuItem>
+                  </CustomSelect>
                 <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
                 <CustomTextField
                   name="password"
@@ -236,7 +332,7 @@ const Register = () => {
                       pb: "10px",
                     }}
                   >
-                    Sign In
+                    Sign Up
                   </Button>
                 {/* </NextLink> */}
               </form>

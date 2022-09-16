@@ -4,6 +4,7 @@ import mtn from "../../assets/images/logos/mtn.png"
 import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
+import utility from "../../assets/images/logos/utility.png"
 import {
   List,
   Divider,
@@ -74,16 +75,16 @@ const Dashboard1 = () => {
       </Grid>
       {/* ------------------------- row 3 ------------------------- */}
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="DSTV/GOTV" logo={glo} />
+        <EarningsShop title="DSTV/GOTV" logo={utility} />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="UTILITY BILLS" logo={glo} />
+        <EarningsShop title="UTILITY BILLS" logo={utility} />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="TRANSFER" logo={glo} />
+        <EarningsShop title="TRANSFER" logo={utility} />
       </Grid>
       <Grid item xs={12} lg={3}>
-        <EarningsShop title="BORROW AIRTIME & LOAN" logo={glo} />
+        <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} />
       </Grid>
       {/* ------------------------- row 2 ------------------------- */}
       <Grid item xs={12} lg={3}>
