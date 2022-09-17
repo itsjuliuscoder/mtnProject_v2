@@ -236,14 +236,14 @@ const ProfileDD = ({ data }) => {
                       lineHeight: "1.235",
                     }}
                   >
-                    My Tasks
+                    My Referral Code
                   </Typography>
                   <Typography
                     color="textSecondary"
                     variant="h6"
                     fontWeight="400"
                   >
-                    To-do and Daily Tasks
+                    {data && data.referral_code ? data.referral_code : ""}
                   </Typography>
                 </Box>
               </Box>
