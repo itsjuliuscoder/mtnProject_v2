@@ -10,6 +10,8 @@ import DailyActivities from './DailyActivities';
 import EarningsShop from './EarningsShop';
 import MedicalProBranding from './MedicalProBranding';
 import Pricing from './Pricing';
+import SuccessToaster from './SuccessToaster';
+import ErrorToaster from './ErrorToaster';
 
 export {
   WelcomeCard,
@@ -23,5 +25,7 @@ export {
   DailyActivities,
   EarningsShop,
   MedicalProBranding,
-  Pricing
+  Pricing,
+  SuccessToaster,
+  ErrorToaster
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FeatherIcon from "feather-icons-react";
 import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import PropTypes from "prop-types";
@@ -16,6 +16,14 @@ const Header = ({
   toggleMobileSidebar,
   position,
 }) => {
+
+  const [userData, setUserData] = useState("");
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
+    setUserData(currentUser);
+  }, []);
+
   return (
     <AppBar sx={sx} position={position} elevation={0} className={customClass}>
       <Toolbar>
@@ -91,7 +99,7 @@ const Header = ({
         {/* ------------------------------------------- */}
         {/* Profile Dropdown */}
         {/* ------------------------------------------- */}
-        <ProfileDD />
+        <ProfileDD data={userData} />
         {/* ------------------------------------------- */}
         {/* Profile Dropdown */}
         {/* ------------------------------------------- */}

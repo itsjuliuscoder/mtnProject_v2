@@ -79,7 +79,7 @@ const MonthlySales = () => {
               }}
               gutterBottom
             >
-              Monthly Sales
+              Bonus
             </Typography>
             <Typography
               variant="h2"

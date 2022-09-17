@@ -13,6 +13,7 @@ import FullLayout from "../src/layouts/FullLayout";
 import BlankLayout from "../src/layouts/BlankLayout";
 import "../styles/style.scss";
 import wrapper from "../src/store/Store";
+// import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 

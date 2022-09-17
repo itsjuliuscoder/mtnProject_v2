@@ -18,7 +18,9 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
+import ErrorToaster from "../../src/components/dashboard/dashboard1/ErrorToaster";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
+import MoonLoader from "react-spinners/MoonLoader";
 
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
@@ -45,7 +47,10 @@ const Login = () => {
   const [ password, setPassword ] = useState('');
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
+  const [ isloading, setIsloading ] = useState(false);
   const handleSubmit = e => {
+
+    setIsloading(true);
     e.preventDefault();
     console.log("this are the data -->", phone_number, password);
 
@@ -58,16 +63,31 @@ const Login = () => {
       }
     }).then(function(response){
         console.log("this is the response data -->", response.data);
+        setIsloading(false);
         if(response.data.statusCode === "000"){
           router.push('/dashboards/dashboard1');
           setResponse(response.data.statusMessage);
+          const token = response.data.access_token;
+          const data = response.data;
+          if(response.data && response.data.payload){
+            localStorage.setItem('token', token);
+            localStorage.setItem('userData', JSON.stringify(data.payload));
+          }
         } else {
           console.log("this is the response gotten", response);
         }
     }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten");
         setErrorResponse("Invalid Login Credentials");
+        setTimeout(setEmptyAlert, 5000);
     })
   };
+
+  const setEmptyAlert = () => {
+    setResponse("");
+    setErrorResponse("");
+  }  
 
   return (
     <Grid container sx={{ height: "100vh", justifyContent: "center" }}>
@@ -125,10 +145,7 @@ const Login = () => {
               <Typography fontWeight="700" variant="h2">
                 Welcome to rightNet
               </Typography>
-              { errorResponse && <Alert variant="filled" severity="error">
-                    {errorResponse}
-                  </Alert> 
-              }
+              { errorResponse && <ErrorToaster title={ errorResponse } /> }
               <Box display="flex" alignItems="center">
                 <Typography
                   color="textSecondary"
@@ -228,11 +245,13 @@ const Login = () => {
                       pt: "10px",
                       pb: "10px",
                     }}
+                    onClick={() => setIsloading(!isloading)}
                   >
-                    Sign In
+                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} /> : 'Sign In' }
                   </Button>
                 {/* </NextLink> */}
               </form>
+              
                 <Box
                   sx={{
                     position: "relative",

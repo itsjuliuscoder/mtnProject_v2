@@ -26,6 +26,7 @@ import CustomSelect from "../../src/components/forms/custom-elements/CustomSelec
 import SizesAutocomplete from "../../src/components/forms/autoComplete/SizesAutocomplete";
 import { Select, MenuItem } from '@mui/material';
 import { LocalizationProvider, TimePicker, DatePicker } from '@mui/lab';
+import MoonLoader from "react-spinners/MoonLoader";
 
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
@@ -50,10 +51,11 @@ const Register = () => {
   const [ dob, setDOB ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ acctype, setAcctype ] = useState('');
-  const [ response, setResponse ] = useState('');
+  const [ responseMessage, setResponseMessage ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ selected, setSelected ] = useState('');
   const [value2, setValue2] = React.useState(null);
+  const [ isloading, setIsloading ] = useState(false);
 
   const selectionChangeHandler = e => {
 
@@ -85,18 +87,25 @@ const Register = () => {
         console.log("this is the response data -->", response.data);
         if(response.data.statusCode === "000"){
           router.push('/authentication/login');
-          setResponse(response.data.statusMessage);
+          setResponseMessage(response.data.statusMessage);
+          setTimeout(setEmptyAlert, 5000);
         } else {
           console.log("this is the response gotten", response);
         }
     }).catch((error) => {
         setErrorResponse("Unable to register user");
+        setTimeout(setEmptyAlert, 5000);
     })
   };
 
   const handleChange = (event) => {
     setAcctype(event.target.value);
   };
+
+  const setEmptyAlert = () => {
+    setResponseMessage("");
+    setErrorMessage("");
+  } 
 
   return (
     <Grid container sx={{ height: "100vh", justifyContent: "center" }}>
@@ -154,10 +163,8 @@ const Register = () => {
               <Typography fontWeight="700" variant="h2">
                 Welcome to rightNet
               </Typography>
-              { errorResponse && <Alert variant="filled" severity="error">
-                    {errorResponse}
-                  </Alert> 
-              }
+              { errorResponse && <ErrorToaster title={ errorResponse } /> }
+              { responseMessage && <ErrorToaster title={ responseMessage } /> }
               <Box display="flex" alignItems="center">
                 <Typography
                   color="textSecondary"
@@ -337,8 +344,9 @@ const Register = () => {
                       pt: "10px",
                       pb: "10px",
                     }}
+                    onClick={() => setIsloading(!isloading)}
                   >
-                    Sign Up
+                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} />: 'Sign Up' }
                   </Button>
                 {/* </NextLink> */}
               </form>

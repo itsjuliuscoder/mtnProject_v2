@@ -11,7 +11,7 @@ import {
   Button,
   Divider,
 } from "@mui/material";
-const ProfileDD = () => {
+const ProfileDD = ({ data }) => {
   const [anchorEl4, setAnchorEl4] = React.useState(null);
 
   const handleClick4 = (event) => {
@@ -21,6 +21,8 @@ const ProfileDD = () => {
   const handleClose4 = () => {
     setAnchorEl4(null);
   };
+
+  
   return (
     <>
       <Button
@@ -62,7 +64,7 @@ const ProfileDD = () => {
                 ml: 1,
               }}
             >
-              Julia
+              {data.firstname}
             </Typography>
             <FeatherIcon icon="chevron-down" width="20" height="20" />
           </Box>
@@ -122,10 +124,10 @@ const ProfileDD = () => {
                     lineHeight: "1.235",
                   }}
                 >
-                  Julia Roberts
+                  {data && data.firstname ? data.firstname : ""} {data && data.lastname ? data.lastname : ""}
                 </Typography>
                 <Typography color="textSecondary" variant="h6" fontWeight="400">
-                  Administrator
+                  {data && data.acctype ? data.acctype : 'Unknown Type'}
                 </Typography>
                 <Box display="flex" alignItems="center">
                   <Typography
@@ -140,7 +142,7 @@ const ProfileDD = () => {
                     <FeatherIcon icon="mail" width="18" />
                   </Typography>
                   <Typography color="textSecondary" variant="h6">
-                    info@flexy.com
+                    {data && data.email ? data.email : "Email Unknown"}
                   </Typography>
                 </Box>
               </Box>
@@ -193,55 +195,6 @@ const ProfileDD = () => {
                     fontWeight="400"
                   >
                     Account Settings
-                  </Typography>
-                </Box>
-              </Box>
-            </MenuItem>
-            <Divider
-              style={{
-                marginTop: 0,
-                marginBottom: 0,
-              }}
-            />
-            <MenuItem
-              sx={{
-                pt: 3,
-                pb: 3,
-              }}
-            >
-              <Box display="flex" alignItems="center">
-                <Button
-                  sx={{
-                    backgroundColor: (theme) => theme.palette.success.light,
-                    color: (theme) => theme.palette.success.main,
-                    boxShadow: "none",
-                    minWidth: "50px",
-                    width: "45px",
-                    height: "40px",
-                    borderRadius: "10px",
-                  }}
-                >
-                  <FeatherIcon icon="shield" width="18" height="18" />
-                </Button>
-                <Box
-                  sx={{
-                    ml: 2,
-                  }}
-                >
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      lineHeight: "1.235",
-                    }}
-                  >
-                    My Inbox
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    variant="h6"
-                    fontWeight="400"
-                  >
-                    Messages & Emails
                   </Typography>
                 </Box>
               </Box>

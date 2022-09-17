@@ -18,7 +18,7 @@ const Earnings = () => (
           }}
           gutterBottom
         >
-          Earnings
+          Wallet
         </Typography>
         <Box
           sx={{
