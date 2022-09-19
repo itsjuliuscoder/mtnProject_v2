@@ -48,6 +48,7 @@ const Login = () => {
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ isloading, setIsloading ] = useState(false);
+  
   const handleSubmit = e => {
 
     setIsloading(true);
@@ -67,10 +68,10 @@ const Login = () => {
         if(response.data.statusCode === "000"){
           router.push('/dashboards/dashboard1');
           setResponse(response.data.statusMessage);
-          const token = response.data.access_token;
+          const token = response.data.accessToken;
           const data = response.data;
           if(response.data && response.data.payload){
-            localStorage.setItem('token', token);
+            localStorage.setItem('userToken', token);
             localStorage.setItem('userData', JSON.stringify(data.payload));
           }
         } else {
@@ -177,7 +178,7 @@ const Login = () => {
                 }}
               > 
               <form onSubmit={handleSubmit}>
-                <CustomFormLabel htmlFor="phone_number">Phone numbaer</CustomFormLabel>
+                <CustomFormLabel htmlFor="phone_number">Phone Number</CustomFormLabel>
                 <CustomTextField 
                   type="number"
                   placeholder="Enter Phone Number"
@@ -187,7 +188,8 @@ const Login = () => {
                   fullWidth 
                   required 
                   value={phone_number}
-                  onChange={e => setPhonenumber(e.target.value)} />
+                  onChange={e => setPhonenumber(e.target.value)} 
+                  />
                 <CustomFormLabel htmlFor="password">Password</CustomFormLabel>
                 <CustomTextField
                   name="password"

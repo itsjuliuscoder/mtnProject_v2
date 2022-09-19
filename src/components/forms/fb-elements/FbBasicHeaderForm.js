@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Card,
   CardContent,
@@ -16,6 +16,9 @@ import CustomTextField from '../custom-elements/CustomTextField';
 import CustomSelect from '../custom-elements/CustomSelect';
 import CustomRadio from '../custom-elements/CustomRadio';
 import CustomFormLabel from '../custom-elements/CustomFormLabel';
+import MoonLoader from "react-spinners/MoonLoader";
+import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
+import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster"
 
 const currencies = [
   {
@@ -49,12 +52,18 @@ const countries = [
 
 const FbBasicHeaderForm = () => {
   const [currency, setCurrency] = React.useState('');
+  
 
   const handleChange2 = (event) => {
     setCurrency(event.target.value);
   };
 
   const [selectedValue, setSelectedValue] = React.useState('');
+  const [pin, setPin] = React.useState('');
+  const [rPin, setRPin] = React.useState('');
+  const [ isloading, setIsloading ] = useState(false);
+  const [ response, setResponse ] = useState('');
+  const [ errorResponse, setErrorResponse ] = useState('');
 
   const handleChange3 = (event) => {
     setSelectedValue(event.target.value);
@@ -64,6 +73,46 @@ const FbBasicHeaderForm = () => {
 
   const handleChange4 = (event) => {
     setCountry(event.target.value);
+  };
+
+  const handleSubmit = e => {
+
+    setIsloading(true);
+    e.preventDefault();
+    console.log("this are the data -->", pin, rPin);
+
+    if(pin == rPin){
+        /*axios({
+          method: 'post',
+          url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/login',
+          data:{
+            phone_number: phone_number,
+            password: password
+          }
+        }).then(function(response){
+            console.log("this is the response data -->", response.data);
+            setIsloading(false);
+            if(response.data.statusCode === "000"){
+              router.push('/dashboards/dashboard1');
+              setResponse(response.data.statusMessage);
+              const token = response.data.accessToken;
+              const data = response.data;
+              if(response.data && response.data.payload){
+                localStorage.setItem('userToken', token);
+                localStorage.setItem('userData', JSON.stringify(data.payload));
+              }
+            } else {
+              console.log("this is the response gotten", response);
+            }
+        }).catch((error) => {
+            setIsloading(false);
+            console.log("this is the error response gotten");
+            setErrorResponse("Invalid Login Credentials");
+            setTimeout(setEmptyAlert, 5000);
+        })*/
+    } else {
+      setErrorResponse("PIN Do not Match");
+    }
   };
 
   return (
@@ -85,7 +134,7 @@ const FbBasicHeaderForm = () => {
         >
           <Box flexGrow={1}>
             <Typography fontWeight="500" variant="h4">
-              Basic Header Form
+              Create Transaction PIN
             </Typography>
           </Box>
         </Box>
@@ -100,186 +149,81 @@ const FbBasicHeaderForm = () => {
           }}
         >
           <FeatherIcon icon="alert-circle" width="18" />
-          <Box sx={{ ml: 1 }}>Person Info</Box>
+          <Box sx={{ ml: 1 }}>This PIN will be used to buy Airtime and Data</Box>
         </Box>
-        <CardContent
-          sx={{
-            padding: '30px',
-          }}
-        >
-          <form>
-            <Grid container spacing={3}>
-              <Grid item lg={6} md={12} sm={12}>
-                <CustomFormLabel htmlFor="fname-text">First Name</CustomFormLabel>
-                <CustomTextField id="fname-text" variant="outlined" fullWidth size="small" />
-                <CustomFormLabel htmlFor="standard-select-currency">Select Gender</CustomFormLabel>
-                <CustomSelect
-                  id="standard-select-currency"
-                  value={currency}
-                  onChange={handleChange2}
-                  fullWidth
-                  variant="outlined"
-                  size="small"
-                >
-                  {currencies.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </CustomSelect>
-                <CustomFormLabel>Membership</CustomFormLabel>
-
-                <FormControl
-                  sx={{
-                    width: '100%',
-                  }}
-                >
-                  <Box>
-                    <FormControlLabel
-                      checked={selectedValue === 'a'}
-                      onChange={handleChange3}
-                      value="a"
-                      label="Free"
-                      name="radio-button-demo"
-                      control={<CustomRadio />}
-                      inputprops={{ 'aria-label': 'A' }}
-                    />
-                    <FormControlLabel
-                      checked={selectedValue === 'b'}
-                      onChange={handleChange3}
-                      value="b"
-                      label="Paid"
-                      control={<CustomRadio />}
-                      name="radio-button-demo"
-                      inputprops={{ 'aria-label': 'B' }}
-                    />
-                  </Box>
-                </FormControl>
-              </Grid>
-              <Grid item lg={6} md={12} sm={12}>
-                <CustomFormLabel htmlFor="lname-text">Last Name</CustomFormLabel>
-
-                <CustomTextField id="lname-text" variant="outlined" fullWidth size="small" />
-                <CustomFormLabel htmlFor="date">Date of Birth</CustomFormLabel>
-
-                <CustomTextField
-                  id="date"
-                  type="date"
-                  variant="outlined"
-                  fullWidth
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  size="small"
-                />
-              </Grid>
-            </Grid>
-          </form>
-        </CardContent>
-        <Box
-          display="flex"
-          alignItems="center"
-          p={2}
-          sx={{
-            backgroundColor: 'primary.light',
-            color: 'primary.main',
-          }}
-        >
-          <FeatherIcon icon="alert-circle" width="18" />
-          <Box sx={{ ml: 1 }}>Address</Box>
-        </Box>
-        <CardContent
-          sx={{
-            padding: '30px',
-          }}
-        >
-          <Grid container spacing={3}>
-            <Grid item lg={12} md={12} sm={12} xs={12}>
-              <CustomFormLabel
-                sx={{
-                  mt: 0,
-                }}
-                htmlFor="street-text"
-              >
-                Street
-              </CustomFormLabel>
-
-              <CustomTextField id="street-text" variant="outlined" fullWidth size="small" />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel
-                sx={{
-                  mt: 0,
-                }}
-                htmlFor="city-text"
-              >
-                City
-              </CustomFormLabel>
-              <CustomTextField id="city-text" variant="outlined" fullWidth size="small" />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel
-                sx={{
-                  mt: 0,
-                }}
-                htmlFor="state-text"
-              >
-                State
-              </CustomFormLabel>
-              <CustomTextField id="state-text" variant="outlined" fullWidth size="small" />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel
-                sx={{
-                  mt: 0,
-                }}
-                htmlFor="post-text"
-              >
-                Post Code
-              </CustomFormLabel>
-              <CustomTextField id="post-text" variant="outlined" fullWidth size="small" />
-            </Grid>
-            <Grid item lg={6} md={12} sm={12} xs={12}>
-              <CustomFormLabel
-                sx={{
-                  mt: 0,
-                }}
-                htmlFor="country-text"
-              >
-                Country
-              </CustomFormLabel>
-              <CustomSelect
-                id="country-select"
-                value={country}
-                onChange={handleChange4}
-                fullWidth
-                variant="outlined"
-                size="small"
-              >
-                {countries.map((option) => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </CustomSelect>
-            </Grid>
-          </Grid>
-        </CardContent>
-        <Divider />
-        <Box p={3}>
-          <Button
-            variant="contained"
-            color="error"
+        <form onSubmit={handleSubmit}>
+          <CardContent
             sx={{
-              mr: 1,
+              padding: '30px',
             }}
           >
-            Cancel
-          </Button>
-          <Button variant="contained" color="primary">
-            Submit
-          </Button>
-        </Box>
+            <Grid container spacing={3}>
+              <Grid item lg={6} md={12} sm={12} xs={12}>
+                <CustomFormLabel
+                  sx={{
+                    mt: 0,
+                  }}
+                  htmlFor="city-text"
+                >
+                  Enter PIN
+                </CustomFormLabel>
+                <CustomTextField 
+                  type="number"
+                  placeholder="Enter PIN"
+                  name="rPin" 
+                  id="rPin" 
+                  variant="outlined" 
+                  fullWidth 
+                  required 
+                  value={rPin}
+                  onChange={e => setRPin(e.target.value)}
+                  size="small"
+                  />
+              </Grid>
+              <Grid item lg={6} md={12} sm={12} xs={12}>
+                <CustomFormLabel
+                  sx={{
+                    mt: 0,
+                  }}
+                  htmlFor="state-text"
+                >
+                  Enter PIN Again
+                </CustomFormLabel>
+                <CustomTextField 
+                  type="number"
+                  placeholder="Enter PIN"
+                  name="pin" 
+                  id="pin" 
+                  variant="outlined" 
+                  fullWidth 
+                  required 
+                  value={pin}
+                  onChange={e => setPin(e.target.value)}
+                  size="small"
+                  />
+              </Grid>
+            </Grid>
+          </CardContent>
+          <Divider />
+          <Box p={3}>
+            <Button
+              variant="contained"
+              color="error"
+              sx={{
+                mr: 1,
+              }}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" variant="contained" color="primary" onClick={() => setIsloading(!isloading)} >
+            {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} /> : 'Create Pin' }
+            </Button>
+            
+          </Box>
+        </form>
+        { errorResponse && <ErrorToaster title={ errorResponse } /> }
+        { response && <SuccessToaster title={ response } /> }
+        SuccessToaster
       </Card>
     </div>
   );

@@ -34,8 +34,9 @@ import {
 
 import BeatLoader from "react-spinners/BeatLoader";
 import axios from "axios";
+import FbBasicHeaderForm from '../../src/components/forms/fb-elements/FbBasicHeaderForm';
 
-const Dashboard1 = () => {
+const SetPin = () => {
   const [open, setOpen] = useState(false);
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
@@ -129,116 +130,13 @@ const Dashboard1 = () => {
     { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
-        <Grid item xs={12} lg={6}>
-          <WelcomeCard data={userData} time={currentTimeGreetings} />
-        </Grid>
-        <Grid item xs={12} lg={6}>
-          <Grid container spacing={0}>
-            <Grid item xs={12} lg={6} sm={6}>
-              <Earnings />
-            </Grid>
-            <Grid item xs={12} lg={6} sm={6}>
-              <MonthlySales />
-            </Grid>
-          </Grid>
-        </Grid>
-        {/* ------------------------- row 3 ------------------------- */}
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="MTN" logo={mtn} clickAction={handleClickOpen} />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="GLO" logo={glo} />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="AIRTEL" logo={airtel} />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="9MOBILE" logo={mobile} />
-        </Grid>
-        {/* ------------------------- row 3 ------------------------- */}
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="DSTV/GOTV" logo={utility} />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="UTILITY BILLS" logo={utility} />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="TRANSFER" logo={utility} />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} />
-        </Grid>
-        {/* ------------------------- row 2 ------------------------- */}
-        <Grid item xs={12} lg={4}>
-          <TotalSales />
-        </Grid>
-        <Grid item xs={12} lg={8}>
-          <ProductPerformance />
-        </Grid>
-        {/* ------------------------- row 2 ------------------------- */}
         <Grid item xs={12} lg={12}>
-          <MedicalProBranding />
+        <FbBasicHeaderForm />
         </Grid>      
-        
-        <Dialog
-          open={open}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={handleClose}
-          fullWidth
-        >
-          <DialogTitle id="alert-dialog-slide-title" variant="h4">
-            <Pricing />
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText
-              id="alert-dialog-slide-description"
-              component="div"
-            >
-              
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            {/* <Button onClick={handleClose} color="primary" variant="contained">
-              Send
-            </Button> */}
-            <Button onClick={handleClose} color="secondary">
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
-
-        <Dialog
-          open={openPinModal}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={handlePinClose}
-          fullWidth
-        >
-          <DialogTitle id="alert-dialog-slide-title" variant="h4">
-            <Pricing />
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText
-              id="alert-dialog-slide-description"
-              component="div"
-            >
-              
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            {/* <Button onClick={handleClose} color="primary" variant="contained">
-              Send
-            </Button> */}
-            <Button onClick={handleClose} color="secondary">
-              Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
       </Grid> 
     }
     </>
   );
 };
 
-export default Dashboard1;
+export default SetPin;

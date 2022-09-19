@@ -1,9 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import { Card, CardContent, Button, Typography, Box } from "@mui/material";
+import NextLink from "next/link";
 import imgsvg from "../../../../assets/images/backgrounds/welcome-bg2-2x-svg.svg";
+import ErrorToaster from "../../../components/dashboard/dashboard1/ErrorToaster";
+import ErrorToaster from "../../../components/dashboard/dashboard1/ErrorToaster";
 
-const WelcomeCard = () => (
+const WelcomeCard = ({ data, time }) => (
   <Card
     elevation={0}
     sx={{
@@ -26,17 +29,38 @@ const WelcomeCard = () => (
         variant="h3"
         gutterBottom
       >
-        Hey Julia, <br /> Download Latest Report
+        {time ? time : 'Hey'} {data && data.firstname ? data.firstname : 'User'}, <br />
       </Typography>
-      <Button
-        sx={{
-          marginTop: "15px",
-        }}
-        variant="contained"
-        color="primary"
-      >
-        Download
-      </Button>
+      <Typography
+            variant="h5"            
+          >
+            Welcome to <b>rightNet</b>, Buy Airtime & Data
+          </Typography>
+      { data.isPin == "false" ?
+      <NextLink href="/dashboard/set-pin">
+          <Button
+            sx={{
+              marginTop: "15px",
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Create Pin
+          </Button>
+      </NextLink>
+      : 
+      <NextLink href="/dashboard/purchase">
+          <Button
+            sx={{
+              marginTop: "15px",
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Buy Airtime & Data Now!
+          </Button>
+      </NextLink>
+      }
     </CardContent>
   </Card>
 );
