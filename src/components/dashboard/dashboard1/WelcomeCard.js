@@ -36,7 +36,7 @@ const WelcomeCard = ({ data, time }) => (
             Welcome to <b>rightNet</b>, Buy Airtime & Data
           </Typography>
       { data.isPin ?
-        <NextLink href="/dashboard/purchase">
+        <NextLink href="/dashboards/purchase">
           <Button
             sx={{
               marginTop: "15px",
@@ -48,7 +48,7 @@ const WelcomeCard = ({ data, time }) => (
           </Button>
       </NextLink>
       : 
-      <NextLink href="/dashboard/set-pin">
+      <NextLink href="/dashboards/set-pin">
           <Button
             sx={{
               marginTop: "15px",
