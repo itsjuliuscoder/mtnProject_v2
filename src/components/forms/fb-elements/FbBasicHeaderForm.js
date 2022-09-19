@@ -110,21 +110,15 @@ const FbBasicHeaderForm = () => {
             console.log("this is the response data -->", response.data);
             setIsloading(false);
             if(response.data.statusCode === "000"){
-              router.push('/dashboards/dashboard1');
               setResponse(response.data.statusMessage);
-              const token = response.data.accessToken;
-              const data = response.data;
-              if(response.data && response.data.payload){
-                localStorage.setItem('userToken', token);
-                localStorage.setItem('userData', JSON.stringify(data.payload));
-              }
             } else {
               console.log("this is the response gotten", response);
+              setErrorResponse("Unable to create PIN");
             }
         }).catch((error) => {
             setIsloading(false);
             console.log("this is the error response gotten");
-            setErrorResponse("Invalid Login Credentials");
+            setErrorResponse("Unable to create PIN");
             setTimeout(setEmptyAlert, 5000);
         })
     } else {
