@@ -35,7 +35,19 @@ const WelcomeCard = ({ data, time }) => (
           >
             Welcome to <b>rightNet</b>, Buy Airtime & Data
           </Typography>
-      { data.isPin == "false" ?
+      { data.isPin ?
+        <NextLink href="/dashboard/purchase">
+          <Button
+            sx={{
+              marginTop: "15px",
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Buy Airtime & Data Now!
+          </Button>
+      </NextLink>
+      : 
       <NextLink href="/dashboard/set-pin">
           <Button
             sx={{
@@ -45,18 +57,6 @@ const WelcomeCard = ({ data, time }) => (
             color="primary"
           >
             Create Pin
-          </Button>
-      </NextLink>
-      : 
-      <NextLink href="/dashboard/purchase">
-          <Button
-            sx={{
-              marginTop: "15px",
-            }}
-            variant="contained"
-            color="primary"
-          >
-            Buy Airtime & Data Now!
           </Button>
       </NextLink>
       }

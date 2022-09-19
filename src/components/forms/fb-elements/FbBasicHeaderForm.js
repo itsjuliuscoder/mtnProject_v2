@@ -188,7 +188,7 @@ const FbBasicHeaderForm = () => {
                   Enter PIN
                 </CustomFormLabel>
                 <CustomTextField 
-                  type="number"
+                  type="password"
                   placeholder="Enter PIN"
                   name="rPin" 
                   id="rPin" 
@@ -210,7 +210,7 @@ const FbBasicHeaderForm = () => {
                   Enter PIN Again
                 </CustomFormLabel>
                 <CustomTextField 
-                  type="number"
+                  type="password"
                   placeholder="Enter PIN"
                   name="pin" 
                   id="pin" 
