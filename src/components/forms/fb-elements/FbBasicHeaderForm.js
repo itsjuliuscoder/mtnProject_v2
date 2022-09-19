@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Card,
   CardContent,
@@ -18,7 +18,8 @@ import CustomRadio from '../custom-elements/CustomRadio';
 import CustomFormLabel from '../custom-elements/CustomFormLabel';
 import MoonLoader from "react-spinners/MoonLoader";
 import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
-import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster"
+import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster";
+import axios from "axios";
 
 const currencies = [
   {
@@ -64,6 +65,8 @@ const FbBasicHeaderForm = () => {
   const [ isloading, setIsloading ] = useState(false);
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
+  const [userData, setUserData] = useState("");
+  const [ accessToken, setAccessToken ] = useState(''); 
 
   const handleChange3 = (event) => {
     setSelectedValue(event.target.value);
@@ -75,19 +78,33 @@ const FbBasicHeaderForm = () => {
     setCountry(event.target.value);
   };
 
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
+    const token = localStorage.getItem("userToken");
+    setAccessToken(token);
+    setUserData(currentUser);
+  }, []);
+
   const handleSubmit = e => {
 
     setIsloading(true);
     e.preventDefault();
     console.log("this are the data -->", pin, rPin);
 
+    const headers = {
+      Accept: "application/json",
+      Authorization: accessToken ? accessToken : "No Auth"
+    }
+
     if(pin == rPin){
-        /*axios({
+        axios({
           method: 'post',
-          url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/login',
+          url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/create_transactionPin',
+          headers,
           data:{
-            phone_number: phone_number,
-            password: password
+            phone_number: userData.phone_number,
+            user_id: userData._id,
+            pin: rPin
           }
         }).then(function(response){
             console.log("this is the response data -->", response.data);
@@ -109,11 +126,20 @@ const FbBasicHeaderForm = () => {
             console.log("this is the error response gotten");
             setErrorResponse("Invalid Login Credentials");
             setTimeout(setEmptyAlert, 5000);
-        })*/
+        })
     } else {
       setErrorResponse("PIN Do not Match");
     }
   };
+
+  React.useEffect(() =>{
+    setTimeout(() => setIsloading(false), 6000);
+  });
+
+  const setEmptyAlert = () => {
+    setResponse("");
+    setErrorResponse("");
+  }
 
   return (
     <div>
@@ -223,7 +249,6 @@ const FbBasicHeaderForm = () => {
         </form>
         { errorResponse && <ErrorToaster title={ errorResponse } /> }
         { response && <SuccessToaster title={ response } /> }
-        SuccessToaster
       </Card>
     </div>
   );
