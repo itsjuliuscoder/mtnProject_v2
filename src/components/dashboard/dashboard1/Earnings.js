@@ -2,7 +2,7 @@ import React from "react";
 import FeatherIcon from "feather-icons-react";
 import { Card, CardContent, Typography, Box, Fab } from "@mui/material";
 
-const Earnings = () => (
+const Earnings = ({ data }) => (
   <Card
     sx={{
       backgroundColor: (theme) => theme.palette.secondary.main,
@@ -47,7 +47,7 @@ const Earnings = () => (
         }}
         gutterBottom
       >
-        ₦93,438.78
+        ₦{data && data.wallet_balance ? data.wallet_balance : " "}
       </Typography>
       <Typography
         variant="h6"

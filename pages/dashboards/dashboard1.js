@@ -135,7 +135,7 @@ const Dashboard1 = () => {
         <Grid item xs={12} lg={6}>
           <Grid container spacing={0}>
             <Grid item xs={12} lg={6} sm={6}>
-              <Earnings />
+              <Earnings data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={6}>
               <MonthlySales />
