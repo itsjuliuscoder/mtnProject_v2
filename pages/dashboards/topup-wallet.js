@@ -35,8 +35,9 @@ import {
 import BeatLoader from "react-spinners/BeatLoader";
 import axios from "axios";
 import FbBasicHeaderForm from '../../src/components/forms/fb-elements/FbBasicHeaderForm';
+import FbDefaultForm from '../../src/components/forms/fb-elements/FbDefaultForm';
 
-const SetPin = () => {
+const TopupWallet = () => {
   const [open, setOpen] = useState(false);
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
@@ -71,8 +72,41 @@ const SetPin = () => {
     const token = localStorage.getItem("userToken");
     setAccessToken(token);
     setUserData(currentUser);
+    retrieveUserDetails();
     currentDate();
   }, []);
+
+  const retrieveUserDetails = () => {
+
+    setIsloading(true);
+    const headers = {
+      Accept: "application/json",
+      Authorization: accessToken ? accessToken : "No Auth"
+    }
+
+    axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_UserDetails',
+      headers,
+      data:{
+        phone_number: userData.phone_number,
+        user_id: userData._id
+      }
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+          setUserResponseData(response.data.payload);
+        } else {
+          console.log("this is the response gotten", response);
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten", error);
+        setErrorResponse("Invalid Login Credentials");
+        setTimeout(setEmptyAlert, 5000);
+    })
+  };
 
   const setEmptyAlert = () => {
     setResponse("");
@@ -98,7 +132,7 @@ const SetPin = () => {
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={12}>
-        <FbBasicHeaderForm />
+        <FbDefaultForm data={userData} />
         </Grid>      
       </Grid> 
     }
@@ -106,4 +140,4 @@ const SetPin = () => {
   );
 };
 
-export default SetPin;
+export default TopupWallet;

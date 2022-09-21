@@ -1,6 +1,7 @@
 import React from "react";
 import FeatherIcon from "feather-icons-react";
-import { Card, CardContent, Typography, Box, Fab } from "@mui/material";
+import { Card, CardContent, Typography, Box, Fab, Button } from "@mui/material";
+import NextLink from "next/link";
 
 const Earnings = ({ data }) => (
   <Card
@@ -49,17 +50,17 @@ const Earnings = ({ data }) => (
       >
         ₦{data && data.wallet_balance ? data.wallet_balance : " "}
       </Typography>
-      <Typography
-        variant="h6"
-        fontWeight="400"
-        sx={{
-          marginBottom: "0",
-          opacity: "0.6",
-        }}
-        gutterBottom
-      >
-        Monthly Revenue
-      </Typography>
+      <NextLink href="/dashboards/topup-wallet">
+          <Button
+            sx={{
+              marginTop: '15px',
+            }}
+            variant="contained"
+            color="primary"
+          >
+            Top Up Wallet
+          </Button>
+      </NextLink>
     </CardContent>
   </Card>
 );

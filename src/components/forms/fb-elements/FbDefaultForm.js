@@ -37,7 +37,7 @@ const numbers = [
   },
 ];
 
-const FbDefaultForm = () => {
+const FbDefaultForm = ({ data }) => {
   const [state, setState] = React.useState({
     checkedA: false,
     checkedB: false,
@@ -79,7 +79,7 @@ const FbDefaultForm = () => {
         >
           <Box flexGrow={1}>
             <Typography fontWeight="500" variant="h4">
-              Default Form
+              Top Up Wallet
             </Typography>
           </Box>
         </Box>
@@ -90,151 +90,54 @@ const FbDefaultForm = () => {
           }}
         >
           <form>
-            <CustomFormLabel
-              sx={{
-                mt: 0,
-              }}
-              htmlFor="default-value"
-            >
-              Default Text
-            </CustomFormLabel>
-            <CustomTextField
-              id="default-value"
-              variant="outlined"
-              defaultValue="George deo"
-              fullWidth
-              size="small"
-            />
-            <CustomFormLabel htmlFor="email-text">Email</CustomFormLabel>
-            <CustomTextField
-              id="email-text"
-              type="email"
-              variant="outlined"
-              fullWidth
-              size="small"
-            />
-            <CustomFormLabel htmlFor="default-outlined-password-input">Password</CustomFormLabel>
-
-            <CustomTextField
-              id="default-outlined-password-input"
-              type="password"
-              autoComplete="current-password"
-              variant="outlined"
-              fullWidth
-              size="small"
-            />
-            <CustomFormLabel htmlFor="outlined-multiline-static">Textarea</CustomFormLabel>
-
-            <CustomTextField
-              id="outlined-multiline-static"
-              multiline
-              rows={4}
-              variant="outlined"
-              fullWidth
-              size="small"
-            />
-            <CustomFormLabel htmlFor="readonly-text">Read Only</CustomFormLabel>
-
-            <CustomTextField
-              id="readonly-text"
-              defaultValue="Hello World"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-              fullWidth
-              size="small"
-            />
-            <Grid
-              container
-              spacing={0}
-              sx={{
-                mb: 2,
-                mt: 2,
-              }}
-            >
-              <Grid item lg={4} md={6} sm={12}>
-                <FormControlLabel
-                  control={
-                    <CustomCheckbox
-                      checked={state.checkedA}
-                      onChange={handleChange}
-                      name="checkedA"
-                      color="primary"
-                    />
-                  }
-                  label="Check this custom checkbox"
-                />
-                <FormControlLabel
-                  control={
-                    <CustomCheckbox
-                      checked={state.checkedB}
-                      onChange={handleChange}
-                      name="checkedB"
-                      color="primary"
-                    />
-                  }
-                  label="Check this custom checkbox"
-                />
-                <FormControlLabel
-                  control={
-                    <CustomCheckbox
-                      checked={state.checkedC}
-                      onChange={handleChange}
-                      name="checkedC"
-                      color="primary"
-                    />
-                  }
-                  label="Check this custom checkbox"
+          <Grid>
+              <Grid item xs={12} md={6}>
+                <CustomFormLabel
+                  sx={{
+                    mt: 0,
+                  }}
+                  htmlFor="default-value"
+                >
+                  Fullname
+                </CustomFormLabel>
+                <CustomTextField
+                  id="default-value"
+                  variant="outlined"
+                  defaultValue={data && data.firstname ? (data.firstname + " " + data.lastname) : ""}
+                  fullWidth
+                  size="small"
+                  disabled
                 />
               </Grid>
-              <Grid item lg={4} md={6} sm={12}>
-                <FormControl component="fieldset">
-                  <RadioGroup
-                    aria-label="gender"
-                    name="gender1"
-                    value={value}
-                    onChange={handleChange2}
-                  >
-                    <FormControlLabel
-                      value="radio1"
-                      control={<CustomRadio />}
-                      label="Toggle this custom radio"
-                    />
-                    <FormControlLabel
-                      value="radio2"
-                      control={<CustomRadio />}
-                      label="Toggle this custom radio"
-                    />
-                    <FormControlLabel
-                      value="radio3"
-                      control={<CustomRadio />}
-                      label="Toggle this custom radio"
-                    />
-                  </RadioGroup>
-                </FormControl>
+              <Grid item xs={12} md={6}>
+                  <CustomFormLabel htmlFor="email-text">Email</CustomFormLabel>
+                  <CustomTextField
+                    id="email-text"
+                    type="email"
+                    variant="outlined"
+                    defaultValue={data && data.email ? (data.email + " " + data.email) : "techcapacitybuilder@gmail.com"}
+                    fullWidth
+                    size="small"
+                    disabled
+                  />
               </Grid>
-            </Grid>
-            <CustomFormLabel htmlFor="standard-select-number">Select</CustomFormLabel>
-            <CustomSelect
-              fullWidth
-              id="standard-select-number"
-              variant="outlined"
-              value={number}
-              onChange={handleChange3}
-              size="small"
-              sx={{
-                mb: 2,
-              }}
-            >
-              {numbers.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
-                  {option.label}
-                </MenuItem>
-              ))}
-            </CustomSelect>
+          </Grid>
+            <Grid item xs={12} md={6}>
+              <CustomFormLabel htmlFor="default-outlined-password-input">Phone Number</CustomFormLabel>
+              <CustomTextField
+                id="default-outlined-password-input"
+                type="number"
+                variant="outlined"
+                defaultValue={data && data.phone_number ? data.phone_number : "09025015566"}
+                fullWidth
+                size="small"
+                disabled
+              />
+            </Grid>            
             <div>
-              <Button color="primary" variant="contained">
+              <Button sx={{
+                mt: 2,
+              }} color="primary" variant="contained">
                 Submit
               </Button>
             </div>
