@@ -17,25 +17,8 @@ import CustomSelect from '../custom-elements/CustomSelect';
 import CustomCheckbox from '../custom-elements/CustomCheckbox';
 import CustomRadio from '../custom-elements/CustomRadio';
 import CustomFormLabel from '../custom-elements/CustomFormLabel';
-
-const numbers = [
-  {
-    value: 'one',
-    label: 'One',
-  },
-  {
-    value: 'two',
-    label: 'Two',
-  },
-  {
-    value: 'three',
-    label: 'Three',
-  },
-  {
-    value: 'four',
-    label: 'Four',
-  },
-];
+import { PaystackButton } from 'react-paystack'; 
+import styles from "../../../../styles/Component.module.css";
 
 const FbDefaultForm = ({ data }) => {
   const [state, setState] = React.useState({
@@ -44,13 +27,39 @@ const FbDefaultForm = ({ data }) => {
     checkedC: false,
   });
 
-  const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  // const handleChange = (event) => {
+  //   setState({ ...state, [event.target.name]: event.target.checked });
+  // };
 
   const [value, setValue] = React.useState('');
   const [amount, setAmount] = React.useState('');
-  setAmount
+
+  const config = {
+    reference: (new Date()).getTime().toString(),
+    email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
+    amount: amount ? amount : "100",
+    publicKey: 'pk_test_cdbf19c426a4d163dd3e939e53edde7f831fd6b6',
+  };
+
+  const handlePaystackSuccessAction = (reference) => {
+    // Implementation for whatever you want to do with reference and after success call.
+    console.log(reference);
+  };
+
+  // you can call this function anything
+  const handlePaystackCloseAction = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed')
+  }
+
+  const componentProps = {
+    ...config,
+    text: 'Paystack Button Implementation',
+    onSuccess: (reference) => handlePaystackSuccessAction(reference),
+    onClose: handlePaystackCloseAction,
+  };
+
+
 
   const handleChange2 = (event) => {
     setValue(event.target.value);
@@ -153,11 +162,12 @@ const FbDefaultForm = ({ data }) => {
               />
             </Grid>
             <div>
-              <Button sx={{
+              {/* <Button sx={{
                 mt: 2,
               }} color="primary" variant="contained">
                 Submit
-              </Button>
+              </Button> */}
+              <PaystackButton className={styles.paystack__button} {...componentProps} />
             </div>
           </form>
         </CardContent>

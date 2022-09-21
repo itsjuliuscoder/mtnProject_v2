@@ -7,3 +7,27 @@
     line-height: 165%;
     color: #4f4f4f;
 }
+
+.paystack__button {
+    cursor: pointer;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    background-color: #d3793c;
+    font-weight: bold;
+    color: #e0eafc;
+    border: none;
+    border-radius: 5px;
+    width: 30%;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.paystack__button:hover {
+    background-color: rgb(106, 29, 29);
+}
+
+.paystack__button:focus {
+    outline: none;
+}
