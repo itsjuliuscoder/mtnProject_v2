@@ -49,6 +49,8 @@ const FbDefaultForm = ({ data }) => {
   };
 
   const [value, setValue] = React.useState('');
+  const [amount, setAmount] = React.useState('');
+  setAmount
 
   const handleChange2 = (event) => {
     setValue(event.target.value);
@@ -134,6 +136,22 @@ const FbDefaultForm = ({ data }) => {
                 disabled
               />
             </Grid>            
+            <Grid item xs={12} md={6}>
+              <CustomFormLabel htmlFor="default-outlined-password-input">Enter Amount</CustomFormLabel>
+              <CustomTextField
+                name="amount"
+                placeholder="Enter Amount"
+                id="amount"
+                type="number"
+                variant="outlined"
+                fullWidth
+                size="small"
+                value={amount}
+                onChange={e => setAmount(e.target.value)}
+                required
+
+              />
+            </Grid>
             <div>
               <Button sx={{
                 mt: 2,
