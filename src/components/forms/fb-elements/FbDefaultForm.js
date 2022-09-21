@@ -38,8 +38,8 @@ const FbDefaultForm = ({ data }) => {
   const [value, setValue] = React.useState('');
   const [amount, setAmount] = React.useState('');
   const [ isloading, setIsloading ] = React.useState(false);
-  const [ response, setResponse ] = useState('');
-  const [ errorResponse, setErrorResponse ] = useState('');
+  const [ response, setResponse ] = React.useState('');
+  const [ errorResponse, setErrorResponse ] = React.useState('');
   // const [config, setConfig] = React.useState({
   //   reference: (new Date()).getTime().toString(),
   //   email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
