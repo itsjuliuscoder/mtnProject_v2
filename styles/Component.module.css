@@ -31,3 +31,8 @@
 .paystack__button:focus {
     outline: none;
 }
+
+.input__field {
+    padding: 12px;
+    width: 100%;
+}
