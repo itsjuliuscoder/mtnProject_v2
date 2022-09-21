@@ -138,7 +138,7 @@ const Dashboard1 = () => {
               <Earnings data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={6}>
-              <MonthlySales />
+              <MonthlySales data={userData} />
             </Grid>
           </Grid>
         </Grid>

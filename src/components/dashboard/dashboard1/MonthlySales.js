@@ -5,7 +5,7 @@ import FeatherIcon from "feather-icons-react";
 import { Card, CardContent, Typography, Box, Fab } from "@mui/material";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const MonthlySales = () => {
+const MonthlySales = ({ data }) => {
   const theme = useTheme();
   const primary = theme.palette.primary.main;
 
@@ -89,7 +89,7 @@ const MonthlySales = () => {
               }}
               gutterBottom
             >
-              3,246
+              ₦{data && data.bonus_amount ? data.bonus_amount : "0" }
             </Typography>
           </Box>
 
