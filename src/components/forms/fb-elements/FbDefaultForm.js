@@ -40,6 +40,16 @@ const FbDefaultForm = ({ data }) => {
   const [ isloading, setIsloading ] = React.useState(false);
   const [ response, setResponse ] = React.useState('');
   const [ errorResponse, setErrorResponse ] = React.useState('');
+  const [ accessToken, setAccessToken ] = React.useState(''); 
+
+  React.useEffect(() => {
+    // const currentUser = JSON.parse(localStorage.getItem("userData"));
+    const token = localStorage.getItem("userToken");
+    setAccessToken(token);
+    // setUserData(currentUser);
+  }, []);
+
+
   // const [config, setConfig] = React.useState({
   //   reference: (new Date()).getTime().toString(),
   //   email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
@@ -56,28 +66,25 @@ const FbDefaultForm = ({ data }) => {
 
   const handlePaystackSuccessAction = (reference) => {
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
 
     const headers = {
       Accept: "application/json",
       Authorization: accessToken ? accessToken : "No Auth"
-    }
-
-    const body = {
-      reference_id: reference,
-      user_id: data._id,
-      fullname: data.firstname + " " + data.lastname,
-      phone_number: data.phone_number,
-      amount: amount,
-      previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
-      description: "Wallet Top up with amount " + amount + " was successful"
     }
     
     axios({
       method: 'post',
       url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/wallet_transaction',
       headers,
-      data: body
+      data: {
+        reference_id: reference.trxref,
+        user_id: data._id,
+        fullname: data.firstname + " " + data.lastname,
+        phone_number: data.phone_number,
+        amount: amount,
+        previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
+        description: "Wallet Top up with amount " + amount + " was successful"
+      }
     }).then(function(response){
         console.log("this is the response data -->", response.data);
         setIsloading(false);
@@ -93,6 +100,8 @@ const FbDefaultForm = ({ data }) => {
         setErrorResponse("Wallet Top Up failed");
         setTimeout(setEmptyAlert, 5000);
     })
+
+    console.log(reference);
   };
 
   React.useEffect(() =>{
@@ -121,7 +130,7 @@ const FbDefaultForm = ({ data }) => {
     reference: (new Date()).getTime().toString(),
     email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
     publicKey: 'pk_test_cdbf19c426a4d163dd3e939e53edde7f831fd6b6',
-    text: 'Paystack Button Implementation',
+    text: 'Top Up Wallet',
     onSuccess: (reference) => handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
