@@ -10,10 +10,7 @@ const Earnings = ({ data }) => {
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
   const [userData, setUserData] = useState("");
-  const [userResponseData, setUserResponseData] = useState("");
-  const [ response, setResponse ] = useState('');
-  const [ errorResponse, setErrorResponse ] = useState('');
-  const [ accessToken, setAccessToken ] = useState(''); 
+  
   const [balanceAmount, setBalanceAmount] = useState("");
 
   React.useEffect(() =>{

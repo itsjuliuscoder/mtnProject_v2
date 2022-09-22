@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Image from "next/image";
 import {
   Typography,
@@ -13,12 +13,16 @@ import {
 } from '@mui/material';
 import ThemeSelect from './ThemeSelect';
 import DashboardCard from '../../baseCard/DashboardCard';
+import axios from "axios";
 
 import img1 from '../../../../assets/images/users/1.jpg';
 import img2 from '../../../../assets/images/users/2.jpg';
 import img3 from '../../../../assets/images/users/3.jpg';
 import img4 from '../../../../assets/images/users/4.jpg';
 import img5 from '../../../../assets/images/users/5.jpg';
+import moment from "moment";
+
+
 
 const products = [
   {
@@ -63,104 +67,119 @@ const products = [
   },
 ];
 
-const ProductPerformance = () => (
-  <DashboardCard
-    title="Product Performance"
-    subtitle="Ample Admin Vs Pixel Admin"
-    customdisplay="block"
-    custommargin="10px"
-    action={<ThemeSelect />}
-  >
-    <Box
-      sx={{
-        overflow: 'auto',
-        mt: -3,
-      }}
+const ProductPerformance = ({ data }) => {
+
+  const [open, setOpen] = useState(false);
+  const [openPinModal, setPinModal] = useState(false);
+  const [ isloading, setIsloading ] = useState(true);
+  const [transactionData, setTransactionData] = useState([]);
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
+    const token = localStorage.getItem("userToken");
+    // setAccessToken(token);
+    // setUserData(currentUser);
+    retrieveTransactionHistory();
+    // currentDate();
+  }, []);
+
+
+  const retrieveTransactionHistory = () => {
+
+    setIsloading(true);
+    const headers = {
+      Accept: "application/json",
+      // Authorization: accessToken ? accessToken : "No Auth"
+    }
+
+    axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/getTransaction',
+      headers,
+      data:{
+        phone_number: data.phone_number,
+        user_id: data._id
+      }
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+          // setUserResponseData(response.data.payload);
+          setTransactionData(response.data.data);
+        } else {
+          console.log("this is the response gotten", response);
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten", error);
+        setErrorResponse("No Data for the User");
+        setTimeout(setEmptyAlert, 5000);
+    })
+  };
+
+  return (
+    <DashboardCard
+      title="Transaction History"
+      subtitle="Ample Admin Vs Pixel Admin"
+      customdisplay="block"
+      custommargin="10px"
+      action={<ThemeSelect />}
     >
-      <Table
-        aria-label="simple table"
+      <Box
         sx={{
-          whiteSpace: 'nowrap',
+          overflow: 'auto',
+          mt: -3,
         }}
       >
-        <TableHead>
-          <TableRow>
-            <TableCell>
-              <Typography variant="h5">Assigned</Typography>
-            </TableCell>
-            <TableCell>
-              <Typography variant="h5">Name</Typography>
-            </TableCell>
-            <TableCell>
-              <Typography variant="h5">Priority</Typography>
-            </TableCell>
-            <TableCell align="right">
-              <Typography variant="h5">Budget</Typography>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {products.map((product) => (
-            <TableRow key={product.name}>
+        <Table
+          aria-label="simple table"
+          sx={{
+            whiteSpace: 'nowrap',
+          }}
+        >
+          <TableHead>
+            <TableRow>
               <TableCell>
-                <Box display="flex" alignItems="center">
-                  <Image
-                    src={product.imgsrc}
-                    alt={product.imgsrc}
-                    width="40"
-                    height="40"
-                    className='roundedCircle'
-                  />
-                  <Box
-                    sx={{
-                      ml: 2,
-                    }}
-                  >
-                    <Typography variant="h6" fontWeight="600">
-                      {product.name}
-                    </Typography>
-                    <Typography color="textSecondary" variant="h6" fontWeight="400">
-                      {product.post}
-                    </Typography>
-                  </Box>
-                </Box>
+                <Typography variant="h5">Reference ID</Typography>
               </TableCell>
               <TableCell>
-                <Typography color="textSecondary" variant="h6">
-                  {product.pname}
-                </Typography>
+                <Typography variant="h5">Transaction Date</Typography>
               </TableCell>
               <TableCell>
-                <Chip
-                  sx={{
-                    backgroundColor:
-                      product.priority === 'Low'
-                        ? (theme) => theme.palette.primary.main
-                        : product.priority === 'Medium'
-                        ? (theme) => theme.palette.secondary.main
-                        : product.priority === 'High'
-                        ? (theme) => theme.palette.warning.main
-                        : product.priority === 'Moderate'
-                        ? (theme) => theme.palette.success.main
-                        : product.priority === 'Critical'
-                        ? (theme) => theme.palette.error.main
-                        : (theme) => theme.palette.secondary.main,
-                    color: '#fff',
-                    borderRadius: '6px',
-                  }}
-                  size="small"
-                  label={product.priority}
-                />
+                <Typography variant="h5">Amount</Typography>
               </TableCell>
-              <TableCell align="right">
-                <Typography variant="h6">${product.budget}k</Typography>
+              <TableCell>
+                <Typography variant="h5">Description</Typography>
               </TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Box>
-  </DashboardCard>
-);
-
+          </TableHead>
+          <TableBody>
+            {transactionData ? transactionData.map((transaction) => (
+              <TableRow key={transaction.id}>
+                <TableCell>
+                  <Typography color="textSecondary" variant="h6">
+                    {transaction.reference_id}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography color="textSecondary" variant="h6">
+                    {moment(transaction.createdAt).format("MMMM, DD YYYY")}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography color="textSecondary" variant="h6">
+                  ₦{transaction.amount}
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="h6">{transaction.description}</Typography>
+                </TableCell>
+              </TableRow>
+            )) : "No Transaction Data" }
+          </TableBody>
+        </Table>
+      </Box>
+    </DashboardCard>
+  );  
+}
 export default ProductPerformance;

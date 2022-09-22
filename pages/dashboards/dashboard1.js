@@ -74,38 +74,6 @@ const Dashboard1 = () => {
     currentDate();
   }, []);
 
-  const retrieveUserDetails = () => {
-
-    setIsloading(true);
-    const headers = {
-      Accept: "application/json",
-      Authorization: accessToken ? accessToken : "No Auth"
-    }
-
-    axios({
-      method: 'post',
-      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_UserDetails',
-      headers,
-      data:{
-        phone_number: userData.phone_number,
-        user_id: userData._id
-      }
-    }).then(function(response){
-        console.log("this is the response data -->", response.data);
-        setIsloading(false);
-        if(response.data.statusCode === "000"){
-          setUserResponseData(response.data.payload);
-        } else {
-          console.log("this is the response gotten", response);
-        }
-    }).catch((error) => {
-        setIsloading(false);
-        console.log("this is the error response gotten", error);
-        setErrorResponse("Invalid Login Credentials");
-        setTimeout(setEmptyAlert, 5000);
-    })
-  };
-
   const setEmptyAlert = () => {
     setResponse("");
     setErrorResponse("");
@@ -169,16 +137,13 @@ const Dashboard1 = () => {
           <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} />
         </Grid>
         {/* ------------------------- row 2 ------------------------- */}
-        <Grid item xs={12} lg={4}>
-          <TotalSales />
-        </Grid>
-        <Grid item xs={12} lg={8}>
-          <ProductPerformance />
+        <Grid item xs={12} lg={12}>
+          <ProductPerformance data={userData} />
         </Grid>
         {/* ------------------------- row 2 ------------------------- */}
-        <Grid item xs={12} lg={12}>
+        {/* <Grid item xs={12} lg={12}>
           <MedicalProBranding />
-        </Grid>      
+        </Grid>       */}
         
         <Dialog
           open={open}
