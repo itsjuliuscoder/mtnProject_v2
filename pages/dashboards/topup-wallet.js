@@ -81,7 +81,7 @@ const TopupWallet = () => {
     setIsloading(true);
     const headers = {
       Accept: "application/json",
-      Authorization: accessToken ? accessToken : "No Auth"
+      // Authorization: accessToken ? accessToken : "No Auth"
     }
 
     axios({

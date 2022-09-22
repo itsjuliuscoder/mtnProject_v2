@@ -70,7 +70,7 @@ const Dashboard1 = () => {
     const token = localStorage.getItem("userToken");
     setAccessToken(token);
     setUserData(currentUser);
-    retrieveUserDetails();
+    // retrieveUserDetails();
     currentDate();
   }, []);
 
@@ -138,7 +138,7 @@ const Dashboard1 = () => {
               <Earnings data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={6}>
-              <MonthlySales data={userData} />
+              <MonthlySales />
             </Grid>
           </Grid>
         </Grid>
