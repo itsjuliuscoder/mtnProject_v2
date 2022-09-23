@@ -34,7 +34,7 @@ const Menuitems = [
   {
     title: "Buy Data",
     icon: "refresh-cw",
-    href: "/dashboards/airtime",
+    href: "/dashboards/purchase",
   },
   // {
   //   title: "Services",
