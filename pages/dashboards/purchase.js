@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Stepper,
@@ -15,12 +15,28 @@ import CustomTextField from "../../src/components/forms/custom-elements/CustomTe
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 import CustomSelect from "../../src/components/forms/custom-elements/CustomSelect";
+import styles from "../../styles/Component.module.css";
 
 const steps = ["Account", "One Time PIN", "Finish"];
 
 const FormWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
+  const [amount, setAmount] = React.useState("");
+  const [phone, setPhonenumber] = React.useState("");
+  const [amountTP, setAmountTP] = React.useState(0);
+  const [userData, setUserData] = React.useState("");
   const [skipped, setSkipped] = React.useState(new Set());
+  const [paymentDesc, setPaymentDesc] = React.useState("");
+  const [pin, setPin] = React.useState("");
+  
+
+
+  useEffect(() => {
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
+    //const token = localStorage.getItem("userToken");
+    // setAccessToken(token);
+    setUserData(currentUser);
+  }, []);
 
   const isStepOptional = (step) => step === 1;
 
@@ -56,13 +72,23 @@ const FormWizard = () => {
     });
   };
 
+  const setTransactionAmount = (e) => {
+    // console.log("this is the transaction amount", e);
+    const amounttp = e * 0.03;
+    const amounttpValue = (e - amounttp);
+    // console.log("amounttpValue -->", amounttpValue);
+    setAmount(e);
+    userData.acctype === "merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
+    setPaymentDesc("You are purchasing an airtime of " + e);
+  }
+
   // eslint-disable-next-line consistent-return
   const handleSteps = (step) => {
     switch (step) {
       case 0:
         return (
           <Box sx={{ p: 3 }}>
-            <CustomFormLabel htmlFor="Name">Select Type VTU</CustomFormLabel>
+            <CustomFormLabel htmlFor="Name">Select Type</CustomFormLabel>
             <CustomSelect
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -71,8 +97,8 @@ const FormWizard = () => {
                 fullWidth
                 size="small"
                 >
-                <MenuItem value="Individual">Individual</MenuItem>
-                <MenuItem value="Merchant">Merchant</MenuItem>
+                <MenuItem value="VTU">VTU(Airtime & Data)</MenuItem>
+                <MenuItem value="EPIN">EPIN</MenuItem>
             </CustomSelect>
             <CustomFormLabel htmlFor="Email">Select Payment Method</CustomFormLabel>
             <CustomSelect
@@ -83,12 +109,12 @@ const FormWizard = () => {
                 fullWidth
                 size="small"
                 >
-                <MenuItem value="Individual">Wallet</MenuItem>
-                <MenuItem value="Merchant">Bonus</MenuItem>
-                <MenuItem value="Merchant">Card</MenuItem>
+                <MenuItem value="Wallet">Wallet</MenuItem>
+                <MenuItem value="Bonus">Bonus</MenuItem>
+                <MenuItem value="Card">Card</MenuItem>
             </CustomSelect>
             <CustomFormLabel htmlFor="Password">Network</CustomFormLabel>
-            <CustomTextField 
+            {/* <CustomTextField 
                 type="number"
                 placeholder="MTN"
                 name="phone_number" 
@@ -101,8 +127,21 @@ const FormWizard = () => {
                 disabled
                 //value={phone_number}
                 //onChange={e => setPhonenumber(e.target.value)} 
-            />
-            <CustomFormLabel htmlFor="Password">Amount</CustomFormLabel>
+            /> */}
+            <CustomSelect
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value="MTN"
+                // onChange={handleChange}
+                fullWidth
+                size="small"
+                >
+                <MenuItem value="MTN">MTN</MenuItem>
+                <MenuItem value="AIRTEL">AIRTEL</MenuItem>
+                <MenuItem value="9MOBILE">9MOBILE</MenuItem>
+                <MenuItem value="GLO">GLO</MenuItem>
+            </CustomSelect>
+            <CustomFormLabel htmlFor="Amount">Amount</CustomFormLabel>
             <CustomTextField
               id="Name"
               type="number"
@@ -110,44 +149,52 @@ const FormWizard = () => {
               variant="outlined"
               fullWidth
               sx={{ mt: 1, mb: 3 }}
+              onChange={e => setTransactionAmount(e.target.value)} 
+              required
             />
-            <CustomFormLabel htmlFor="Password">Amount To Pay</CustomFormLabel>
+            <CustomFormLabel htmlFor="Amount">Amount To Pay</CustomFormLabel>
             <CustomTextField
               id="Name"
               type="number"
               size="small"
               variant="outlined"
               fullWidth
+              name="amount_tp"
               disabled
-              value="599"
+              value={amountTP ? amountTP : '0'}
               placeholder="599"
               sx={{ mb: 3 }}
             />
             <CustomFormLabel htmlFor="Password">Mobile Number</CustomFormLabel>
-            <CustomTextField
+            {/* <CustomTextField
+              maxLength="11"
               id="Name"
               type="number"
               size="small"
               variant="outlined"
               fullWidth
               sx={{ mt: 1, mb: 3 }}
+            /> */}
+            <input
+              maxLength={11}
+              type="text"
+              id="phone_number"
+              name="phone_number"
+              className={styles.input__field}
+              required
+              value={phone ? phone : ""}
+              onChange={e => setPhonenumber(e.target.value)} 
             />
           </Box>
         );
       case 1:
         return (
           <Box sx={{ p: 3 }}>
-            <CustomFormLabel htmlFor="Fname">Enter ONE TIME PIN</CustomFormLabel>
-            <CustomTextField
-              id="pin"
-              size="small"
-              variant="outlined"
-              fullWidth
-              sx={{ mt: 1, mb: 3 }}
-            />
-            <CustomFormLabel htmlFor="Address">Enter Payment Description</CustomFormLabel>
+            <CustomFormLabel htmlFor="Address">Payment Description</CustomFormLabel>
             <CustomTextField
               id="Address"
+              value={paymentDesc ? paymentDesc : "Your Payment Description" }
+              name="paymentDesc"
               multiline
               rows={4}
               variant="outlined"
@@ -155,14 +202,38 @@ const FormWizard = () => {
               disabled
               sx={{ mt: 1, mb: 3 }}
             />
+            {/* <CustomTextField
+              id="pin"
+              size="small"
+              variant="outlined"
+              maxLength="4"
+              fullWidth
+              sx={{ mt: 1, mb: 3 }}
+            /> */}
+            <CustomFormLabel htmlFor="Fname">Enter Transaction PIN</CustomFormLabel>
+            <input
+              maxLength={4}
+              type="text"
+              id="pin"
+              name="pin"
+              className={styles.input__field}
+              required
+              value={pin ? pin : ""}
+              onChange={e => setPin(e.target.value)}
+              //value={firstName}
+              //onChange={handleNameChange}
+            />
           </Box>
         );
       case 2:
         return (
           <Box sx={{ p: 3 }}>
-            <Typography variant="h5">Terms and condition</Typography>
+            <Typography variant="h2">Payment Details</Typography>
+            <Typography variant="h4">Amount: {amount}</Typography>
+            <Typography variant="h4">Amount To Pay: {amountTP}</Typography>
+            <Typography variant="h4">Payment Description: {paymentDesc}</Typography>
             <Typography variant="body2" sx={{ mt: 1 }}>
-              You are about to make an airtime purchase, we do not refund the amount purchased after 24hours.
+              Thank you for using rightNet.
             </Typography>
             <FormControlLabel
               control={<CustomCheckbox defaultChecked />}
@@ -235,21 +306,22 @@ const FormWizard = () => {
                 Back
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
-              {isStepOptional(activeStep) && (
+              {/* {isStepOptional(activeStep) && (
                 <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
                   Skip
                 </Button>
-              )}
-
-              <Button
+              )} */}
+              { phone && amount != " " ? <Button
                 onClick={handleNext}
                 variant="contained"
+                // disabled={(steps === "One Time PIN") && (pin === "")}
                 color={
                   activeStep === steps.length - 1 ? "success" : "secondary"
                 }
               >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
+                {((activeStep === steps.length - 1) && (pin != "")) ? "Finish" : "Next"}
+              </Button>  : ""}
+          
             </Box>
           </>
         )}

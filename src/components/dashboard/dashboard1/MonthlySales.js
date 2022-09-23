@@ -72,7 +72,7 @@ const MonthlySales = ({ data }) => {
         <Box display="flex" alignItems="flex-start">
           <Box>
             <Typography
-              variant="h5"
+              variant="h3"
               color="textSecondary"
               sx={{
                 marginBottom: "0",
@@ -93,31 +93,9 @@ const MonthlySales = ({ data }) => {
             </Typography>
           </Box>
 
-          <Box
-            sx={{
-              marginLeft: "auto",
-            }}
-          >
-            <Fab
-              size="medium"
-              aria-label="add"
-              elevation="0"
-              color="primary"
-              sx={{
-                boxShadow: "none",
-              }}
-            >
-              <FeatherIcon icon="shopping-bag" />
-            </Fab>
-          </Box>
+         
         </Box>
       </CardContent>
-      <Chart
-        options={optionsmonthlychart}
-        series={seriesmonthlychart}
-        type="area"
-        height="90px"
-      />
     </Card>
   );
 };

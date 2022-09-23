@@ -163,7 +163,7 @@ const ProductPerformance = ({ data }) => {
                 </TableCell>
                 <TableCell>
                   <Typography color="textSecondary" variant="h6">
-                    {moment(transaction.createdAt).format("MMMM, DD YYYY")}
+                    {moment(transaction.createdAt).format("MMMM, DD YYYY HH:mm:ss")}
                   </Typography>
                 </TableCell>
                 <TableCell>

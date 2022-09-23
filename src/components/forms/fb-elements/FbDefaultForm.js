@@ -23,6 +23,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import axios from "axios";
 import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
 import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster";
+import { useRouter } from "next/router";
 
 const FbDefaultForm = ({ data }) => {
   const [state, setState] = React.useState({
@@ -63,8 +64,9 @@ const FbDefaultForm = ({ data }) => {
   //   amount: amount ? amount : "100",
   //   publicKey: 'pk_test_cdbf19c426a4d163dd3e939e53edde7f831fd6b6',
   // };
+  const Router = useRouter();
 
-  const handlePaystackSuccessAction = (reference) => {
+  const handlePaystackSuccessAction = (reference) => {  
     // Implementation for whatever you want to do with reference and after success call.
 
     const headers = {
@@ -90,6 +92,9 @@ const FbDefaultForm = ({ data }) => {
         setIsloading(false);
         if(response.data.statusCode === "000"){
           setResponse(response.data.statusMessage);
+          // setTimeout(() => {
+          //   Router.replace("/dashboards/dashboard1");
+          // }, 6000)
         } else {
           console.log("this is the response gotten", response);
           setErrorResponse("Unable to create PIN");

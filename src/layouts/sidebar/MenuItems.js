@@ -19,37 +19,37 @@ const Menuitems = [
   {
     title: "My Wallet",
     icon: "message-square",
-    href: "#",
+    href: "/dashboards/wallet",
   },
   {
     title: "Referral Bonus",
     icon: "dollar-sign",
-    href: "/apps/notes",
+    href: "/dashboards/bonus",
   },
   {
     title: "Buy Airtime",
     icon: "refresh-ccw",
-    href: "/apps/notes",
+    href: "/dashboards/purchase",
   },
   {
     title: "Buy Data",
     icon: "refresh-cw",
-    href: "#",
+    href: "/dashboards/airtime",
   },
-  {
-    title: "Services",
-    icon: "settings",
-    href: "#",
-  },
+  // {
+  //   title: "Services",
+  //   icon: "settings",
+  //   href: "#",
+  // },
   {
     title: "Subscriptions",
     icon: "clipboard",
-    href: "/apps/notes",
+    href: "//dashboards/subscription",
   },
   {
     title: "My Profile",
     icon: "user",
-    href: "/apps/notes",
+    href: "/dashboards/profile",
   },
   {
     navlabel: true,

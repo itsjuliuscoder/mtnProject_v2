@@ -54,7 +54,7 @@ const Earnings = ({ data }) => {
     }).catch((error) => {
         setIsloading(false);
         console.log("this is the error response gotten", error);
-        setErrorResponse("Invalid Login Credentials");
+        //setErrorResponse("Invalid Login Credentials");
         setTimeout(setEmptyAlert, 5000);
     })
   };
@@ -81,23 +81,6 @@ const Earnings = ({ data }) => {
         >
           Wallet
         </Typography>
-        <Box
-          sx={{
-            marginLeft: "auto",
-          }}
-        >
-          <Fab
-            size="medium"
-            aria-label="add"
-            color="default"
-            elevation="0"
-            sx={{
-              boxShadow: "none",
-            }}
-          >
-            <FeatherIcon icon="dollar-sign" />
-          </Fab>
-        </Box>
       </Box>
       <Typography
         variant="h1"
