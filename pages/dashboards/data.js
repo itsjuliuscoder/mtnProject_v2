@@ -36,7 +36,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import axios from "axios";
 import FbBasicHeaderForm from '../../src/components/forms/fb-elements/FbBasicHeaderForm';
 
-const Wallet = () => {
+const Data = () => {
   const [open, setOpen] = useState(false);
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
@@ -98,7 +98,7 @@ const Wallet = () => {
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={6}>
-            <Earnings data={userData} />
+            <MonthlySales data={userData} />
         </Grid>
         <Grid item xs={12} lg={12}>
             <ProductPerformance data={userData} />
@@ -109,4 +109,4 @@ const Wallet = () => {
   );
 };
 
-export default Wallet;
+export default Data;

@@ -22,19 +22,19 @@ const Menuitems = [
     href: "/dashboards/wallet",
   },
   {
-    title: "Referral Bonus",
+    title: "Bonus",
     icon: "dollar-sign",
     href: "/dashboards/bonus",
   },
   {
-    title: "Buy Airtime",
+    title: "Airtime",
     icon: "refresh-ccw",
-    href: "/dashboards/purchase",
+    href: "/dashboards/airtime",
   },
   {
-    title: "Buy Data",
+    title: "Data",
     icon: "refresh-cw",
-    href: "/dashboards/purchase",
+    href: "/dashboards/data",
   },
   // {
   //   title: "Services",

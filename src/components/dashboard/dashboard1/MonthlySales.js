@@ -91,6 +91,15 @@ const MonthlySales = ({ data }) => {
             >
               ₦{data && data.bonus_amount ? data.bonus_amount : "0" }
             </Typography>
+            <Typography
+                variant="h4"
+                sx={{
+                  mt: "12px",
+                  mb: "0px",
+                }}
+            >
+            <b>REFERRAL CODE:</b> {data && data.referral_code ? data.referral_code : ""}
+            </Typography>
           </Box>
 
          

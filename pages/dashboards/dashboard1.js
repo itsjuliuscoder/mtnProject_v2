@@ -16,6 +16,8 @@ import {
   DialogContent,
   DialogActions,
   DialogContentText,
+  Modal,
+  Typography
 } from "@mui/material";
 import {
     WelcomeCard,
@@ -34,6 +36,9 @@ import {
 
 import BeatLoader from "react-spinners/BeatLoader";
 import axios from "axios";
+import styles from "../../styles/Component.module.css";
+
+
 
 const Dashboard1 = () => {
   const [open, setOpen] = useState(false);
@@ -106,7 +111,7 @@ const Dashboard1 = () => {
               <Earnings data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={6}>
-              <MonthlySales />
+              <MonthlySales data={userData} />
             </Grid>
           </Grid>
         </Grid>
@@ -145,7 +150,7 @@ const Dashboard1 = () => {
           <MedicalProBranding />
         </Grid>       */}
         
-        <Dialog
+        {/* <Dialog
           open={open}
           TransitionComponent={Transition}
           keepMounted
@@ -167,11 +172,11 @@ const Dashboard1 = () => {
             {/* <Button onClick={handleClose} color="primary" variant="contained">
               Send
             </Button> */}
-            <Button onClick={handleClose} color="secondary">
+            {/* <Button onClick={handleClose} color="secondary">
               Cancel
-            </Button>
-          </DialogActions>
-        </Dialog>
+            </Button> */}
+          {/* </DialogActions>
+        </Dialog> */}
 
         <Dialog
           open={openPinModal}
@@ -200,6 +205,22 @@ const Dashboard1 = () => {
             </Button>
           </DialogActions>
         </Dialog>
+
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className={styles.modal___window}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Text in a modal
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+        </Modal>
       </Grid> 
     }
     </>

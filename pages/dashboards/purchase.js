@@ -17,7 +17,7 @@ import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFo
 import CustomSelect from "../../src/components/forms/custom-elements/CustomSelect";
 import styles from "../../styles/Component.module.css";
 
-const steps = ["Account", "One Time PIN", "Finish"];
+const steps = ["Account", "Transaction PIN", "Finish"];
 
 const FormWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
