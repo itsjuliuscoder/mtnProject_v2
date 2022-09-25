@@ -78,7 +78,7 @@ const FormWizard = () => {
     const amounttpValue = (e - amounttp);
     // console.log("amounttpValue -->", amounttpValue);
     setAmount(e);
-    userData.acctype === "merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
+    userData.acctype === "Merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
     setPaymentDesc("You are purchasing an airtime of " + e);
   }
 

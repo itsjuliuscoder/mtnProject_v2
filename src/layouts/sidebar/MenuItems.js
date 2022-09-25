@@ -42,9 +42,9 @@ const Menuitems = [
   //   href: "#",
   // },
   {
-    title: "Subscriptions",
+    title: "Services",
     icon: "clipboard",
-    href: "//dashboards/subscription",
+    href: "/dashboards/services",
   },
   {
     title: "My Profile",
