@@ -4,12 +4,12 @@ import FeatherIcon from 'feather-icons-react';
 import { Card, CardContent, Typography, Box, Fab, Button } from '@mui/material';
 import imgsvg from '../../../../assets/images/backgrounds/welcome-bg-2x-svg.svg';
 
-const EarningsShop = ({ title, logo, clickAction }) => (
+const EarningsShop = ({ title, color, logo, clickAction }) => (
   <Card
     elevation={0}
     sx={{
       position: 'relative',
-      backgroundColor: (theme) => `${theme.palette.mode === 'dark' ? '#32363e' : ''}`,
+      backgroundColor: `${color}`,
       '&:before': {
         content: `""`,
         position: 'absolute',
@@ -68,9 +68,9 @@ const EarningsShop = ({ title, logo, clickAction }) => (
         title == "MTN" ? <Button
         sx={{
           marginTop: '15px',
+          backgroundColor: '#000'
         }}
         variant="contained"
-        color="primary"
         onClick={clickAction}
       >
         Click Here
@@ -79,9 +79,9 @@ const EarningsShop = ({ title, logo, clickAction }) => (
       <Button
         sx={{
           marginTop: '15px',
+          backgroundColor: '#000'
         }}
         variant="contained"
-        color="primary"
       >
         Click Here
       </Button>

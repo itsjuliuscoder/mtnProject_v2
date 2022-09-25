@@ -48,7 +48,8 @@ const Dashboard1 = () => {
   const [userResponseData, setUserResponseData] = useState("");
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
-  const [ accessToken, setAccessToken ] = useState(''); 
+  const [ accessToken, setAccessToken ] = useState('');
+  const [ pinModalCheck, setPinModalCheck ] = useState(false);  
   const [currentTimeGreetings, setTimeGreeting] = useState("");
 
   const Transition = React.forwardRef((props, ref) => (
@@ -57,6 +58,10 @@ const Dashboard1 = () => {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
+  const handleModalClose = () => {
+    setPinModalCheck(false)
+  }
 
   const handleClose = () => {
     setOpen(false);
@@ -75,6 +80,7 @@ const Dashboard1 = () => {
     const token = localStorage.getItem("userToken");
     setAccessToken(token);
     setUserData(currentUser);
+    (userData.isPin === true) ? setPinModalCheck(false) : setPinModalCheck(true);
     // retrieveUserDetails();
     currentDate();
   }, []);
@@ -117,26 +123,26 @@ const Dashboard1 = () => {
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="MTN" logo={mtn} clickAction={handleClickOpen} />
+          <EarningsShop color="#FFCB00" title="MTN" logo={mtn} clickAction={handleClickOpen} />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="GLO" logo={glo} />
+          <EarningsShop title="GLO" logo={glo} color="#2AAF21" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="AIRTEL" logo={airtel} />
+          <EarningsShop title="AIRTEL" logo={airtel} color="#EE1C25" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="9MOBILE" logo={mobile} />
+          <EarningsShop title="9MOBILE" logo={mobile} color="#006848" />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="DSTV/GOTV" logo={utility} />
+          <EarningsShop title="DSTV/GOTV" logo={utility} color="#0099DC" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="UTILITY BILLS" logo={utility} />
+          <EarningsShop title="UTILITY BILLS" logo={utility} color="#C5C5C5" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="TRANSFER" logo={utility} />
+          <EarningsShop title="TRANSFER" logo={utility} color="#C5C5C5" />
         </Grid>
         <Grid item xs={12} lg={3}>
           <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} />
@@ -205,6 +211,22 @@ const Dashboard1 = () => {
             </Button>
           </DialogActions>
         </Dialog>
+
+        <Modal
+          open={pinModalCheck}
+          onClose={handleModalClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box className={styles.modal___window}>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
+                Hi {userData && userData.firstname ? userData.firstname : ""} Click the link below to create transaction pin
+            </Typography>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
+                
+            </Typography>
+          </Box>
+        </Modal>
 
         <Modal
           open={open}
