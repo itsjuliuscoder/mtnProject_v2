@@ -94,7 +94,7 @@ const FbDefaultForm = ({ data }) => {
           setResponse(response.data.statusMessage);
           setTimeout(() => {
             Router.replace("/dashboards/dashboard1");
-          }, 6000)
+          }, 3000)
         } else {
           console.log("this is the response gotten", response);
           setErrorResponse("Unable to create PIN");
@@ -110,7 +110,7 @@ const FbDefaultForm = ({ data }) => {
   };
 
   React.useEffect(() =>{
-    setTimeout(() => setIsloading(false), 6000);
+    setTimeout(() => setIsloading(false), 3000);
   });
 
   const setEmptyAlert = () => {

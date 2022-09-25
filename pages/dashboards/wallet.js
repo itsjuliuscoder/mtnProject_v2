@@ -63,7 +63,7 @@ const Wallet = () => {
   };
 
   React.useEffect(() =>{
-    setTimeout(() => setIsloading(false), 6000);
+    setTimeout(() => setIsloading(false), 3000);
   });
 
   useEffect(() => {
