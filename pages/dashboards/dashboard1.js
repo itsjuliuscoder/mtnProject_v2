@@ -37,6 +37,7 @@ import {
 import BeatLoader from "react-spinners/BeatLoader";
 import axios from "axios";
 import styles from "../../styles/Component.module.css";
+import NextLink from "next/link";
 
 
 
@@ -46,6 +47,7 @@ const Dashboard1 = () => {
   const [ isloading, setIsloading ] = useState(true);
   const [userData, setUserData] = useState("");
   const [userResponseData, setUserResponseData] = useState("");
+  const [pinStatus, setPinStatus] = useState("");
   const [ response, setResponse ] = useState('');
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ accessToken, setAccessToken ] = useState('');
@@ -80,8 +82,8 @@ const Dashboard1 = () => {
     const token = localStorage.getItem("userToken");
     setAccessToken(token);
     setUserData(currentUser);
-    (userData.isPin === true) ? setPinModalCheck(false) : setPinModalCheck(true);
-    // retrieveUserDetails();
+    retrieveUserDetails();
+    ((pinStatus == false) && (userData.isPin == false)) ? setPinModalCheck(true) : setPinModalCheck(false);
     currentDate();
   }, []);
 
@@ -102,6 +104,40 @@ const Dashboard1 = () => {
         setTimeGreeting("Good Evening");
     }
   }
+
+  const retrieveUserDetails = () => {
+
+    setIsloading(true);
+    const headers = {
+      Accept: "application/json",
+      // Authorization: accessToken ? accessToken : "No Auth"
+    }
+
+    axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_UserDetails',
+      headers,
+      data:{
+        phone_number: userData.phone_number,
+        user_id: userData._id
+      }
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+          // setUserResponseData(response.data.payload);
+          setBalanceAmount(response.data.payload.wallet_balance);
+          setPinStatus(response.data.payload.isPin);
+        } else {
+          console.log("this is the response gotten", response);
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten", error);
+        //setErrorResponse("Invalid Login Credentials");
+        setTimeout(setEmptyAlert, 5000);
+    })
+  };
 
   return (
     <>
@@ -136,7 +172,7 @@ const Dashboard1 = () => {
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="DSTV/GOTV" logo={utility} color="#0099DC" />
+          <EarningsShop title="DSTV/GOTV" logo={utility} color="#C5C5C5" />
         </Grid>
         <Grid item xs={12} lg={3}>
           <EarningsShop title="UTILITY BILLS" logo={utility} color="#C5C5C5" />
@@ -175,7 +211,6 @@ const Dashboard1 = () => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            {/* <Button onClick={handleClose} color="primary" variant="contained">
               Send
             </Button> */}
             {/* <Button onClick={handleClose} color="secondary">
@@ -218,12 +253,22 @@ const Dashboard1 = () => {
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-          <Box className={styles.modal___window}>
+          <Box className={styles.modal___window_1}>
             <Typography id="modal-modal-title" variant="h4" component="h2">
-                Hi {userData && userData.firstname ? userData.firstname : ""} Click the link below to create transaction pin
+                Hi {userData && userData.firstname ? userData.firstname : ""}, Welcome to rightNet Click the link below to create transaction pin
             </Typography>
             <Typography id="modal-modal-title" variant="h4" component="h2">
-                
+              <NextLink href="/dashboards/set-pin">
+                <Button
+                  sx={{
+                    marginTop: '15px',
+                    backgroundColor: '#000'
+                  }}
+                  variant="contained"
+                >
+                  Click Here
+                </Button>
+              </NextLink>
             </Typography>
           </Box>
         </Modal>

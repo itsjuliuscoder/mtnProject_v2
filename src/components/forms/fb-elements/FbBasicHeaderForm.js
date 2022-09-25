@@ -20,6 +20,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
 import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const currencies = [
   {
@@ -52,6 +53,7 @@ const countries = [
 ];
 
 const FbBasicHeaderForm = () => {
+  const Router = useRouter();
   const [currency, setCurrency] = React.useState('');
   
 
