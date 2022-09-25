@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { Card, CardContent, Button, Typography, Box } from "@mui/material";
 import NextLink from "next/link";
-import imgsvg from "../../../../assets/images/backgrounds/welcome-bg2-2x-svg.svg";
+import imgsvg1 from "../../../../assets/images/backgrounds/welcome-bg2-2x-svg.svg";
+import imgsvg from "../../../../assets/images/backgrounds/people.png";
 import ErrorToaster from "../../../components/dashboard/dashboard1/ErrorToaster";
 
 const WelcomeCard = ({ data, time }) => (

@@ -73,6 +73,8 @@ const ProductPerformance = ({ data }) => {
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
   const [transactionData, setTransactionData] = useState([]);
+  const [ response, setResponse ] = useState('');
+  const [ errorResponse, setErrorResponse ] = useState('');
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("userData"));
@@ -82,6 +84,12 @@ const ProductPerformance = ({ data }) => {
     retrieveTransactionHistory();
     // currentDate();
   }, []);
+
+
+  const setEmptyAlert = () => {
+    setResponse("");
+    setErrorResponse("");
+  }
 
 
   const retrieveTransactionHistory = () => {
