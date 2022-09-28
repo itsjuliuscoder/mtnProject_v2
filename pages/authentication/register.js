@@ -53,7 +53,7 @@ const Register = () => {
   const [ password, setPassword ] = useState('');
   const [ acctype, setAcctype ] = useState('');
   const [ responseMessage, setResponseMessage ] = useState('');
-  const [ errorResponse, setErrorResponse ] = useState('');
+  const [ errorResponse, setErrorMessage ] = useState('');
   const [ selected, setSelected ] = useState('');
   const [value2, setValue2] = React.useState(null);
   const [ isloading, setIsloading ] = useState(false);
@@ -94,7 +94,7 @@ const Register = () => {
           console.log("this is the response gotten", response);
         }
     }).catch((error) => {
-        setErrorResponse("Unable to register user");
+      setErrorMessage("Unable to register user");
         setTimeout(setEmptyAlert, 5000);
     })
   };

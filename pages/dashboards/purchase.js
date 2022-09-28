@@ -23,6 +23,9 @@ const FormWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [amount, setAmount] = React.useState("");
   const [phone, setPhonenumber] = React.useState("");
+  const [type, setType] = React.useState("");
+  const [paymentType, setPaymentType] = React.useState("");
+  const [walletOperator, setWalletOperator] = React.useState("");
   const [amountTP, setAmountTP] = React.useState(0);
   const [userData, setUserData] = React.useState("");
   const [skipped, setSkipped] = React.useState(new Set());
@@ -76,10 +79,13 @@ const FormWizard = () => {
     // console.log("this is the transaction amount", e);
     const amounttp = e * 0.03;
     const amounttpValue = (e - amounttp);
-    // console.log("amounttpValue -->", amounttpValue);
+    let phone_number = phone ? phone : "";
+    console.log("this is the type value -->", type);
+    console.log("this is the payment type -->", paymentType);
+    console.log("this is the walletOperator -->", walletOperator);
     setAmount(e);
     userData.acctype === "Merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
-    setPaymentDesc("You are purchasing an airtime of " + e);
+    setPaymentDesc("You are purchasing an airtime of " + e + " for this phone number " + phone);
   }
 
   // eslint-disable-next-line consistent-return
@@ -96,6 +102,7 @@ const FormWizard = () => {
                 // onChange={handleChange}
                 fullWidth
                 size="small"
+                onChange={e => setType(e.target.value)}
                 >
                 <MenuItem value="VTU">VTU(Airtime & Data)</MenuItem>
                 <MenuItem value="EPIN">EPIN</MenuItem>
@@ -108,6 +115,7 @@ const FormWizard = () => {
                 // onChange={handleChange}
                 fullWidth
                 size="small"
+                onChange={e => setPaymentType(e.target.value)}
                 >
                 <MenuItem value="Wallet">Wallet</MenuItem>
                 <MenuItem value="Bonus">Bonus</MenuItem>
@@ -131,16 +139,36 @@ const FormWizard = () => {
             <CustomSelect
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value="MTN"
                 // onChange={handleChange}
                 fullWidth
                 size="small"
+                onChange={e => setWalletOperator(e.target.value)}
                 >
                 <MenuItem value="MTN">MTN</MenuItem>
                 <MenuItem value="AIRTEL">AIRTEL</MenuItem>
                 <MenuItem value="9MOBILE">9MOBILE</MenuItem>
                 <MenuItem value="GLO">GLO</MenuItem>
             </CustomSelect>
+            <CustomFormLabel htmlFor="Password">Recipient Mobile Number</CustomFormLabel>
+            <input
+              maxLength={11}
+              type="text"
+              id="phone_number"
+              name="phone_number"
+              className={styles.input__field}
+              required
+              value={phone ? phone : ""}
+              onChange={e => setPhonenumber(e.target.value)} 
+            />
+            {/* <CustomTextField
+              maxLength="11"
+              id="Name"
+              type="number"
+              size="small"
+              variant="outlined"
+              fullWidth
+              sx={{ mt: 1, mb: 3 }}
+            /> */}
             <CustomFormLabel htmlFor="Amount">Amount</CustomFormLabel>
             <CustomTextField
               id="Name"
@@ -164,26 +192,6 @@ const FormWizard = () => {
               value={amountTP ? amountTP : '0'}
               placeholder="599"
               sx={{ mb: 3 }}
-            />
-            <CustomFormLabel htmlFor="Password">Mobile Number</CustomFormLabel>
-            {/* <CustomTextField
-              maxLength="11"
-              id="Name"
-              type="number"
-              size="small"
-              variant="outlined"
-              fullWidth
-              sx={{ mt: 1, mb: 3 }}
-            /> */}
-            <input
-              maxLength={11}
-              type="text"
-              id="phone_number"
-              name="phone_number"
-              className={styles.input__field}
-              required
-              value={phone ? phone : ""}
-              onChange={e => setPhonenumber(e.target.value)} 
             />
           </Box>
         );
@@ -281,7 +289,7 @@ const FormWizard = () => {
                 borderRadius: 1,
               }}
             >
-              All steps completed - you&apos;re finished
+              Transaction Successful - Thank You for using RightNet
             </Box>
 
             <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>

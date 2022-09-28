@@ -74,6 +74,8 @@ const FbDefaultForm = ({ data }) => {
       Authorization: accessToken ? accessToken : "No Auth"
     }
     
+    console.log("this is the wallet balance here -->", data.wallet_balance);
+    
     axios({
       method: 'post',
       url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/wallet_transaction',
@@ -84,7 +86,7 @@ const FbDefaultForm = ({ data }) => {
         fullname: data.firstname + " " + data.lastname,
         phone_number: data.phone_number,
         amount: amount,
-        previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
+        // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
         description: "Wallet Top up with amount " + amount + " was successful"
       }
     }).then(function(response){
@@ -256,7 +258,9 @@ const FbDefaultForm = ({ data }) => {
                   >
                     {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} /> : 'Top Up' }
                   </Button> */}
-                  <PaystackButton className={styles.paystack__button} {...componentProps} />
+                  <Grid xs={12} md={4} lg={4}>
+                      <PaystackButton className={styles.paystack__button} {...componentProps} />
+                  </Grid>
                 </Grid>
                 {/* </NextLink> */}
           {/* </form> */}
