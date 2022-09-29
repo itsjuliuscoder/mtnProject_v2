@@ -27,12 +27,12 @@ const Menuitems = [
     href: "/dashboards/bonus",
   },
   {
-    title: "Airtime",
+    title: "Buy Airtime",
     icon: "refresh-ccw",
     href: "/dashboards/purchase/airtime",
   },
   {
-    title: "Data",
+    title: "Buy Data",
     icon: "refresh-cw",
     href: "/dashboards/purchase/data",
   },

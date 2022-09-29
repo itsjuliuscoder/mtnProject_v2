@@ -18,6 +18,9 @@ import CustomSelect from "../../../src/components/forms/custom-elements/CustomSe
 import styles from "../../../styles/Component.module.css";
 import Router from "next/router";
 import axios from "axios";
+import BeatLoader from "react-spinners/BeatLoader";
+import ErrorToaster from "../../../src/components/dashboard/dashboard1/ErrorToaster";
+import SuccessToaster from "../../../src/components/dashboard/dashboard1/SuccessToaster";
 
 const steps = ["Account", "Transaction PIN", "Finish"];
 
@@ -162,7 +165,8 @@ const FormWizard = () => {
           phone_number: userData.phone_number,
           msisdn: phone,
           amount: parseInt(amount),
-          amount_charged: amountTP
+          amount_charged: amountTP,
+          pin: pin
           // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
           // description: "Wallet Top up with amount " + amount + " was successful"
         }
@@ -179,9 +183,12 @@ const FormWizard = () => {
             setErrorResponse("Unable to create PIN");
           }
       }).catch((error) => {
-          setIsloading(false);
-          console.log("this is the error response gotten");
-          setErrorResponse("Wallet Top Up failed");
+            setIsloading(false);
+            console.log("this is the error response gotten", error);
+            setTimeout(() => {
+                Router.replace("/dashboards/dashboard1");
+            }, 3000);
+          setErrorResponse("Topup or bundle activation failed");
           setTimeout(setEmptyAlert, 5000);
       })
   }
@@ -190,7 +197,7 @@ const FormWizard = () => {
 
     axios({
         method: 'post',
-        url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/buyAirtime',
+        url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/buyData',
         headers,
         data: {
           transactionId: Math.floor(Math.random() * 2356472122),
@@ -198,7 +205,8 @@ const FormWizard = () => {
           phone_number: userData.phone_number,
           msisdn: phone,
           amount: parseInt(amount),
-          amount_charged: amountTP
+          amount_charged: amountTP,
+          pin: pin
           // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
           // description: "Wallet Top up with amount " + amount + " was successful"
         }
@@ -211,13 +219,16 @@ const FormWizard = () => {
               Router.replace("/dashboards/dashboard1");
             }, 3000)
           } else {
-            console.log("this is the response gotten", response);
-            setErrorResponse("Unable to create PIN");
+            console.log("this is the response gotten", error);
+            setTimeout(() => {
+                Router.replace("/dashboards/dashboard1");
+            }, 3000);
+            setErrorResponse("Unable to topup airtime");
           }
       }).catch((error) => {
           setIsloading(false);
-          console.log("this is the error response gotten");
-          setErrorResponse("Wallet Top Up failed");
+          console.log("this is the error response gotten", error);
+          setErrorResponse("Topup or bundle activation failed");
           setTimeout(setEmptyAlert, 5000);
       })
   }
@@ -408,98 +419,111 @@ const FormWizard = () => {
     }
   };
 
+  React.useEffect(() =>{
+    setTimeout(() => setIsloading(false), 3000);
+  });
+
   const handleReset = () => {
     setActiveStep(0);
   };
+
+
   return (
-    <Card>
-      <Box sx={{ width: "100%" }}>
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
-            if (isStepOptional(index)) {
-              labelProps.optional = (
-                <Typography variant="caption">Important</Typography>
-              );
-            }
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        {activeStep === steps.length ? (
-          <>
-            <Box
-              sx={{
-                m: 3,
-                p: 2,
-                // backgroundColor: "primary.light",
-                borderRadius: 1,
-              }}
-            >
-                <Typography>
-                    Thank You for using RightNet
-                </Typography>
-            {  subType == "data" ? 
-            
-                <Button  onClick={completeData} sx={{ mt: 2 }} variant="contained" color="success">
-                    Complete Transaction
-                </Button> : 
-                <Button  onClick={completeAirtime} sx={{ mt: 2 }} variant="contained" color="success">
-                    Complete Transaction
-                </Button>
-            }
-            </Box>
+    <>
+        { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
+            <Card>
+            <Box sx={{ width: "100%" }}>
+                <Stepper activeStep={activeStep}>
+                {steps.map((label, index) => {
+                    const stepProps = {};
+                    const labelProps = {};
+                    if (isStepOptional(index)) {
+                    labelProps.optional = (
+                        <Typography variant="caption">Important</Typography>
+                    );
+                    }
+                    if (isStepSkipped(index)) {
+                    stepProps.completed = false;
+                    }
+                    return (
+                    <Step key={label} {...stepProps}>
+                        <StepLabel {...labelProps}>{label}</StepLabel>
+                    </Step>
+                    );
+                })}
+                </Stepper>
+                {activeStep === steps.length ? (
+                <>
+                    <Box
+                    sx={{
+                        m: 3,
+                        p: 2,
+                        // backgroundColor: "primary.light",
+                        borderRadius: 1,
+                    }}
+                    >
+                        <Typography>
+                            Thank You for using RightNet
+                        </Typography>
+                    {  subType == "data" ? 
+                    
+                        <Button  onClick={completeData} sx={{ mt: 2 }} variant="contained" color="success">
+                            Complete Transaction
+                        </Button> : 
+                        <Button  onClick={completeAirtime} sx={{ mt: 2 }} variant="contained" color="success">
+                            Complete Transaction
+                        </Button>
+                    }
+                    </Box>
 
-            <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
-              <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset} variant="contained" color="error">
-                Reset
-              </Button>
-            </Box>
-          </>
-        ) : (
-          <>
-            <Box>{handleSteps(activeStep)}</Box>
+                    <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
+                    <Box sx={{ flex: "1 1 auto" }} />
+                    <Button onClick={handleReset} variant="contained" color="error">
+                        Reset
+                    </Button>
+                    </Box>
+                </>
+                ) : (
+                <>
+                    <Box>{handleSteps(activeStep)}</Box>
 
-            <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
-              <Button
-                color="inherit"
-                variant="contained"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
-              {/* {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Skip
-                </Button>
-              )} */}
-              { phone && amount != " " ? <Button
-                onClick={handleNext}
-                variant="contained"
-                // disabled={(steps === "One Time PIN") && (pin === "")}
-                color={
-                  activeStep === steps.length - 1 ? "success" : "secondary"
-                }
-              >
-                {((activeStep === steps.length - 1) && (pin != "")) ? "Finish" : "Next"}
-              </Button>  : ""}
-          
+                    <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
+                    <Button
+                        color="inherit"
+                        variant="contained"
+                        disabled={activeStep === 0}
+                        onClick={handleBack}
+                        sx={{ mr: 1 }}
+                    >
+                        Back
+                    </Button>
+                    <Box sx={{ flex: "1 1 auto" }} />
+                    {/* {isStepOptional(activeStep) && (
+                        <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                        Skip
+                        </Button>
+                    )} */}
+                    { phone && amount != " " ? <Button
+                        onClick={handleNext}
+                        variant="contained"
+                        // disabled={(steps === "One Time PIN") && (pin === "")}
+                        color={
+                        activeStep === steps.length - 1 ? "success" : "secondary"
+                        }
+                    >
+                        {((activeStep === steps.length - 1) && (pin != "")) ? "Finish" : "Next"}
+                    </Button>  : ""}
+                
+                    </Box>
+                </>
+                )}
             </Box>
-          </>
-        )}
-      </Box>
-    </Card>
+            </Card>
+            }
+
+            { errorResponse && <ErrorToaster title={ errorResponse } /> }
+            { response && <SuccessToaster title={ response } /> }
+    </>
   );
 };
 
