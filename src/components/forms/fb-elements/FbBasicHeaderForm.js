@@ -114,8 +114,8 @@ const FbBasicHeaderForm = () => {
             if(response.data.statusCode === "000"){
               setResponse(response.data.statusMessage);
               setTimeout(() => {
-                Router.replace("/dashboards/dashboard1");
-              }, 6000)
+                Router.replace("/authentication/login");
+              }, 4000)
             } else {
               console.log("this is the response gotten", response);
               setErrorResponse("Unable to create PIN");

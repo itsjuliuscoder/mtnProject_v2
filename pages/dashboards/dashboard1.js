@@ -38,6 +38,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import axios from "axios";
 import styles from "../../styles/Component.module.css";
 import NextLink from "next/link";
+import Router from "next/router";
 
 
 
@@ -77,14 +78,30 @@ const Dashboard1 = () => {
     setTimeout(() => setIsloading(false), 3000);
   });
 
+  // React.useEffect(() => {
+  //   if(isPin == false){
+  //       setTimeout(() => {
+  //         Router.replace("/dashboards/set-pin");
+  //     }, 7000) 
+  //   }
+  // });
+
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("userData"));
     const token = localStorage.getItem("userToken");
     setAccessToken(token);
     setUserData(currentUser);
     retrieveUserDetails();
-    ((pinStatus == false) && (userData.isPin == false)) ? setPinModalCheck(true) : setPinModalCheck(false);
+    // ((userData.isPin == false)) ? setPinModalCheck(true) : setPinModalCheck(false);
     currentDate();
+    if(userData.isPin == false){
+      setTimeout(() => {
+            Router.replace("/dashboards/set-pin");
+      }, 7000)
+    }
+    // localStorage.setItem('isPin', userData.isPin);
+    // const pinStat = localStorage.getItem("isPin");
+    // setPinStatus(pinStat);
   }, []);
 
   const setEmptyAlert = () => {
@@ -159,16 +176,16 @@ const Dashboard1 = () => {
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop color="#FFCB00" title="MTN" logo={mtn} clickAction={handleClickOpen} />
+          <EarningsShop color="#C5C5C5" title="MTN" logo={mtn} clickAction={handleClickOpen} />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="GLO" logo={glo} color="#2AAF21" />
+          <EarningsShop title="GLO" logo={glo} color="#C5C5C5" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="AIRTEL" logo={airtel} color="#EE1C25" />
+          <EarningsShop title="AIRTEL" logo={airtel} color="#C5C5C5" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="9MOBILE" logo={mobile} color="#006848" />
+          <EarningsShop title="9MOBILE" logo={mobile} color="#C5C5C5" />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
@@ -181,7 +198,7 @@ const Dashboard1 = () => {
           <EarningsShop title="TRANSFER" logo={utility} color="#C5C5C5" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} />
+          <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} color="#C5C5C5"  />
         </Grid>
         {/* ------------------------- row 2 ------------------------- */}
         <Grid item xs={12} lg={12}>

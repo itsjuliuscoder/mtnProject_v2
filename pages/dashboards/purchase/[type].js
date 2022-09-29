@@ -41,6 +41,7 @@ const FormWizard = () => {
   const [ isloading, setIsloading ] = React.useState(true);
   const [ response, setResponse ] = React.useState('');
   const [ errorResponse, setErrorResponse ] = React.useState('');
+  const [ dataServices, setDataServices ] = React.useState([]);
   
 
 
@@ -51,6 +52,7 @@ const FormWizard = () => {
     fetchType();
     setUserData(currentUser);
     retrieveUserDetails();
+    getAllServices();
   }, []);
 
   const retrieveUserDetails = () => {
@@ -76,6 +78,37 @@ const FormWizard = () => {
           // setUserResponseData(response.data.payload);
           setBalanceAmount(response.data.payload.wallet_balance);
           setPinStatus(response.data.payload.isPin);
+        } else {
+          console.log("this is the response gotten", response);
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten", error);
+        //setErrorResponse("Invalid Login Credentials");
+        setTimeout(setEmptyAlert, 5000);
+    })
+  };
+
+  const getAllServices = () => {
+
+    setIsloading(true);
+    const headers = {
+      Accept: "application/json",
+      // Authorization: accessToken ? accessToken : "No Auth"
+    }
+
+    axios({
+      method: 'get',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/getAllProducts',
+      headers,
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+           // setUserResponseData(response.data.payload);
+          //setBalanceAmount(response.data.payload.wallet_balance);
+          //setPinStatus(response.data.payload.isPin);
+          // setDataServices(response.data.data);
         } else {
           console.log("this is the response gotten", response);
         }
