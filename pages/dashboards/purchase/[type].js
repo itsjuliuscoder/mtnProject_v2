@@ -416,19 +416,27 @@ const FormWizard = () => {
               fullWidth
               sx={{ mt: 1, mb: 3 }}
             /> */}
-            <CustomFormLabel htmlFor="Fname">Enter Transaction PIN</CustomFormLabel>
-            <input
-              maxLength={4}
-              type="text"
-              id="pin"
-              name="pin"
-              className={styles.input__field}
-              required
-              value={pin ? pin : ""}
-              onChange={e => setPin(e.target.value)}
-              //value={firstName}
-              //onChange={handleNameChange}
-            />
+            <>
+            { userData.isPin == true ? 
+                <div>
+                <CustomFormLabel htmlFor="Fname">Enter Transaction PIN</CustomFormLabel>
+                <input
+                maxLength={4}
+                type="text"
+                id="pin"
+                name="pin"
+                className={styles.input__field}
+                required
+                value={pin ? pin : ""}
+                onChange={e => setPin(e.target.value)}
+                //value={firstName}
+                //onChange={handleNameChange}
+                />
+                </div>
+                
+             :  <Box> Kindly Create Your Transaction PIN by <NextLink href="/dashboards/set-pin">Clicking Me</NextLink>  </Box>  }
+            </>
+            
           </Box>
         );
       case 2:
@@ -496,7 +504,7 @@ const FormWizard = () => {
                     }}
                     >
                         <Typography>
-                            Thank You for using RightNet
+                            Kindly Click on the Link Below 
                         </Typography>
                     {  subType == "data" ? 
                     
@@ -511,9 +519,9 @@ const FormWizard = () => {
 
                     <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
                     <Box sx={{ flex: "1 1 auto" }} />
-                    <Button onClick={handleReset} variant="contained" color="error">
+                    {/* <Button onClick={handleReset} variant="contained" color="error">
                         Reset
-                    </Button>
+                    </Button> */}
                     </Box>
                 </>
                 ) : (

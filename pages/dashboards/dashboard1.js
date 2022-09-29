@@ -97,7 +97,7 @@ const Dashboard1 = () => {
     if(userData.isPin == false){
       setTimeout(() => {
             Router.replace("/dashboards/set-pin");
-      }, 7000)
+      }, 4000)
     }
     // localStorage.setItem('isPin', userData.isPin);
     // const pinStat = localStorage.getItem("isPin");
@@ -175,16 +175,16 @@ const Dashboard1 = () => {
           </Grid>
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
-        <Grid item xs={12} lg={3}>
+        <Grid item xs={6} lg={3}>
           <EarningsShop color="#C5C5C5" title="MTN" logo={mtn} clickAction={handleClickOpen} />
         </Grid>
-        <Grid item xs={12} lg={3}>
+        <Grid item xs={6} lg={3}>
           <EarningsShop title="GLO" logo={glo} color="#C5C5C5" />
         </Grid>
-        <Grid item xs={12} lg={3}>
+        <Grid item xs={6} lg={3}>
           <EarningsShop title="AIRTEL" logo={airtel} color="#C5C5C5" />
         </Grid>
-        <Grid item xs={12} lg={3}>
+        <Grid item xs={6} lg={3}>
           <EarningsShop title="9MOBILE" logo={mobile} color="#C5C5C5" />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
