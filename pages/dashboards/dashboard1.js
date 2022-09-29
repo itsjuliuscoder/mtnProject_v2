@@ -5,7 +5,6 @@ import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
-import NextLink from "next/link";
 import {
   List,
   Divider,
