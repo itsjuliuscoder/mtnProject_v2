@@ -29,12 +29,12 @@ const Menuitems = [
   {
     title: "Airtime",
     icon: "refresh-ccw",
-    href: "/dashboards/airtime",
+    href: "/dashboards/purchase/airtime",
   },
   {
     title: "Data",
     icon: "refresh-cw",
-    href: "/dashboards/data",
+    href: "/dashboards/purchase/data",
   },
   // {
   //   title: "Services",

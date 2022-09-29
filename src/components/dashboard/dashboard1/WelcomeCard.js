@@ -6,7 +6,7 @@ import imgsvg1 from "../../../../assets/images/backgrounds/welcome-bg2-2x-svg.sv
 import imgsvg from "../../../../assets/images/backgrounds/people.png";
 import ErrorToaster from "../../../components/dashboard/dashboard1/ErrorToaster";
 
-const WelcomeCard = ({ data, time }) => (
+const WelcomeCard = ({ data, time, clickAction }) => (
   <Card
     elevation={0}
     sx={{
@@ -36,18 +36,17 @@ const WelcomeCard = ({ data, time }) => (
           >
             Welcome to <b>rightNet</b>, Buy Airtime & Data
           </Typography>
-      { data.isPin ?
-        <NextLink href="/dashboards/purchase">
-          <Button
+      { data.isPin ?     
+        <Button
             sx={{
               marginTop: "15px",
             }}
             variant="contained"
             color="primary"
+            onClick={clickAction}
           >
             Buy Airtime & Data Now!
-          </Button>
-      </NextLink>
+        </Button>
       : 
       <NextLink href="/dashboards/set-pin">
           <Button

@@ -145,7 +145,7 @@ const Dashboard1 = () => {
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={6}>
-          <WelcomeCard data={userData} time={currentTimeGreetings} />
+          <WelcomeCard data={userData} time={currentTimeGreetings} clickAction={handleClickOpen} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <Grid container spacing={0}>

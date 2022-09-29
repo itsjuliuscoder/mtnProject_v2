@@ -24,7 +24,8 @@ const pricing = [
     bkp: "X2 Your Recharge",
     btnsize: "large",
     btncolor: "secondary",
-    btntext: "Airtime"
+    btntext: "Airtime",
+    btnlink: "/dashboards/purchase/airtime"
   },
   {
     id: 2,
@@ -36,7 +37,8 @@ const pricing = [
     bkp: "Double Data",
     btnsize: "large",
     btncolor: "primary",
-    btntext: "Data"
+    btntext: "Data",
+    btnlink: "/dashboards/purchase/data"
   }
 ];
 
@@ -57,7 +59,7 @@ const Pricing = () => {
               position: "relative",
             }}
           >
-            <NextLink href="/dashboards/purchase">
+            <NextLink href={price.btnlink}>
               <Button
                 variant="contained"
                 size={price.btnsize}
