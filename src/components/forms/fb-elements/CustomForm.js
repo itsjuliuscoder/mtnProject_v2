@@ -157,11 +157,11 @@ const CustomForm = ({ data, acctype }) => {
       }).then(function(response){
           console.log("this is the response data -->", response.data);
           // setIsloading(false);
-          if(response.data.statusCode === "000"){
+          if(response.data.statusCode === "0000"){
             setResponse(response.data.statusMessage);
             setTimeout(() => {
               Router.replace("/dashboards/dashboard1");
-            }, 3000)
+            }, 2000)
           } else {
             console.log("this is the response gotten", response);
             setErrorResponse("Unable to create PIN");
