@@ -40,7 +40,8 @@
     "redux-thunk": "2.3.0",
     "sass": "^1.50.0",
     "simplebar-react": "^2.3.6",
-    "stylis-plugin-rtl": "^2.1.1"
+    "stylis-plugin-rtl": "^2.1.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "7.9.0",

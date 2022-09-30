@@ -16,10 +16,12 @@ import CustomCheckbox from "../../src/components/forms/custom-elements/CustomChe
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 import CustomSelect from "../../src/components/forms/custom-elements/CustomSelect";
 import styles from "../../styles/Component.module.css";
+import CustomForm from "../../src/components/forms/fb-elements/CustomForm";
+import { Router } from "@mui/icons-material";
 
 const steps = ["Account", "Transaction PIN", "Finish"];
 
-const FormWizard = () => {
+const Purchase = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [amount, setAmount] = React.useState("");
   const [phone, setPhonenumber] = React.useState("");
@@ -31,311 +33,28 @@ const FormWizard = () => {
   const [skipped, setSkipped] = React.useState(new Set());
   const [paymentDesc, setPaymentDesc] = React.useState("");
   const [pin, setPin] = React.useState("");
+  const [subType, setSubType] = React.useState("");
   
-
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("userData"));
     //const token = localStorage.getItem("userToken");
     // setAccessToken(token);
     setUserData(currentUser);
+    fetchType()
   }, []);
 
-  const isStepOptional = (step) => step === 1;
-
-  const isStepSkipped = (step) => skipped.has(step);
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
+  const fetchType = () => {
+    //console.log("this is the subscription type", Router.query.type);
+    setSubType(Router.query.type);
+    //console.log("this is the subscription type state data", subType);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const setTransactionAmount = (e) => {
-    // console.log("this is the transaction amount", e);
-    const amounttp = e * 0.03;
-    const amounttpValue = (e - amounttp);
-    let phone_number = phone ? phone : "";
-    console.log("this is the type value -->", type);
-    console.log("this is the payment type -->", paymentType);
-    console.log("this is the walletOperator -->", walletOperator);
-    setAmount(e);
-    userData.acctype === "Merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
-    setPaymentDesc("You are purchasing an airtime of " + e + " for this phone number " + phone);
-  }
-
-  // eslint-disable-next-line consistent-return
-  const handleSteps = (step) => {
-    switch (step) {
-      case 0:
-        return (
-          <Box sx={{ p: 3 }}>
-            <CustomFormLabel htmlFor="Name">Select Type</CustomFormLabel>
-            <CustomSelect
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                // value={acctype}
-                // onChange={handleChange}
-                fullWidth
-                size="small"
-                onChange={e => setType(e.target.value)}
-                >
-                <MenuItem value="VTU">VTU(Airtime & Data)</MenuItem>
-                <MenuItem value="EPIN">EPIN</MenuItem>
-            </CustomSelect>
-            <CustomFormLabel htmlFor="Email">Select Payment Method</CustomFormLabel>
-            <CustomSelect
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                // value={acctype}
-                // onChange={handleChange}
-                fullWidth
-                size="small"
-                onChange={e => setPaymentType(e.target.value)}
-                >
-                <MenuItem value="Wallet">Wallet</MenuItem>
-                <MenuItem value="Bonus">Bonus</MenuItem>
-                <MenuItem value="Card">Card</MenuItem>
-            </CustomSelect>
-            <CustomFormLabel htmlFor="Password">Network</CustomFormLabel>
-            {/* <CustomTextField 
-                type="number"
-                placeholder="MTN"
-                name="phone_number" 
-                id="phone_number" 
-                variant="outlined" 
-                size="small"
-                fullWidth 
-                value="MTN"
-                required
-                disabled
-                //value={phone_number}
-                //onChange={e => setPhonenumber(e.target.value)} 
-            /> */}
-            <CustomSelect
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                // onChange={handleChange}
-                fullWidth
-                size="small"
-                onChange={e => setWalletOperator(e.target.value)}
-                >
-                <MenuItem value="MTN">MTN</MenuItem>
-                <MenuItem value="AIRTEL">AIRTEL</MenuItem>
-                <MenuItem value="9MOBILE">9MOBILE</MenuItem>
-                <MenuItem value="GLO">GLO</MenuItem>
-            </CustomSelect>
-            <CustomFormLabel htmlFor="Password">Recipient Mobile Number</CustomFormLabel>
-            <input
-              maxLength={11}
-              type="text"
-              id="phone_number"
-              name="phone_number"
-              className={styles.input__field}
-              required
-              value={phone ? phone : ""}
-              onChange={e => setPhonenumber(e.target.value)} 
-            />
-            {/* <CustomTextField
-              maxLength="11"
-              id="Name"
-              type="number"
-              size="small"
-              variant="outlined"
-              fullWidth
-              sx={{ mt: 1, mb: 3 }}
-            /> */}
-            <CustomFormLabel htmlFor="Amount">Amount</CustomFormLabel>
-            <CustomTextField
-              id="Name"
-              type="number"
-              size="small"
-              variant="outlined"
-              fullWidth
-              sx={{ mt: 1, mb: 3 }}
-              onChange={e => setTransactionAmount(e.target.value)} 
-              required
-            />
-            <CustomFormLabel htmlFor="Amount">Amount To Pay</CustomFormLabel>
-            <CustomTextField
-              id="Name"
-              type="number"
-              size="small"
-              variant="outlined"
-              fullWidth
-              name="amount_tp"
-              disabled
-              value={amountTP ? amountTP : '0'}
-              placeholder="599"
-              sx={{ mb: 3 }}
-            />
-          </Box>
-        );
-      case 1:
-        return (
-          <Box sx={{ p: 3 }}>
-            <CustomFormLabel htmlFor="Address">Payment Description</CustomFormLabel>
-            <CustomTextField
-              id="Address"
-              value={paymentDesc ? paymentDesc : "Your Payment Description" }
-              name="paymentDesc"
-              multiline
-              rows={4}
-              variant="outlined"
-              fullWidth
-              disabled
-              sx={{ mt: 1, mb: 3 }}
-            />
-            {/* <CustomTextField
-              id="pin"
-              size="small"
-              variant="outlined"
-              maxLength="4"
-              fullWidth
-              sx={{ mt: 1, mb: 3 }}
-            /> */}
-            <CustomFormLabel htmlFor="Fname">Enter Transaction PIN</CustomFormLabel>
-            <input
-              maxLength={4}
-              type="text"
-              id="pin"
-              name="pin"
-              className={styles.input__field}
-              required
-              value={pin ? pin : ""}
-              onChange={e => setPin(e.target.value)}
-              //value={firstName}
-              //onChange={handleNameChange}
-            />
-          </Box>
-        );
-      case 2:
-        return (
-          <Box sx={{ p: 3 }}>
-            <Typography variant="h2">Payment Details</Typography>
-            <Typography variant="h4">Amount: {amount}</Typography>
-            <Typography variant="h4">Amount To Pay: {amountTP}</Typography>
-            <Typography variant="h4">Payment Description: {paymentDesc}</Typography>
-            <Typography variant="body2" sx={{ mt: 1 }}>
-              Thank you for using rightNet.
-            </Typography>
-            <FormControlLabel
-              control={<CustomCheckbox defaultChecked />}
-              label="Agree with terms?"
-            />
-          </Box>
-        );
-      default:
-        break;
-    }
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-  };
   return (
-    <Card>
-      <Box sx={{ width: "100%" }}>
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
-            if (isStepOptional(index)) {
-              labelProps.optional = (
-                <Typography variant="caption">Important</Typography>
-              );
-            }
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
-            return (
-              <Step key={label} {...stepProps}>
-                <StepLabel {...labelProps}>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-        {activeStep === steps.length ? (
-          <>
-            <Box
-              sx={{
-                m: 3,
-                p: 2,
-                backgroundColor: "primary.light",
-                borderRadius: 1,
-              }}
-            >
-              Transaction Successful - Thank You for using RightNet
-            </Box>
-
-            <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
-              <Box sx={{ flex: "1 1 auto" }} />
-              <Button onClick={handleReset} variant="contained" color="error">
-                Reset
-              </Button>
-            </Box>
-          </>
-        ) : (
-          <>
-            <Box>{handleSteps(activeStep)}</Box>
-
-            <Box display="flex" sx={{ flexDirection: "row", p: 3 }}>
-              <Button
-                color="inherit"
-                variant="contained"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
-              {/* {isStepOptional(activeStep) && (
-                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                  Skip
-                </Button>
-              )} */}
-              { phone && amount != " " ? <Button
-                onClick={handleNext}
-                variant="contained"
-                // disabled={(steps === "One Time PIN") && (pin === "")}
-                color={
-                  activeStep === steps.length - 1 ? "success" : "secondary"
-                }
-              >
-                {((activeStep === steps.length - 1) && (pin != "")) ? "Finish" : "Next"}
-              </Button>  : ""}
-          
-            </Box>
-          </>
-        )}
-      </Box>
-    </Card>
+    <>
+      <CustomForm data={userData} type={subType} />
+    </>
   );
 };
 
-export default FormWizard;
+export default Purchase;
