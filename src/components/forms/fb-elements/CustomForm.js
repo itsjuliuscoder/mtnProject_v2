@@ -203,7 +203,7 @@ const CustomForm = ({ data, acctype, services }) => {
             }, 2000)
           } else {
             console.log("this is the response gotten", response);
-            setErrorResponse("Unable to create PIN");
+            setErrorResponse("Data Top Up Failed");
           }
       }).catch((error) => {
             // setIsloading(false);
@@ -211,7 +211,7 @@ const CustomForm = ({ data, acctype, services }) => {
             setTimeout(() => {
                 Router.replace("/dashboards/dashboard1");
             }, 3000);
-          setErrorResponse("Topup or bundle activation failed");
+          setErrorResponse("Data Top Up Failed");
           setTimeout(setEmptyAlert, 5000);
       })
   }  
@@ -273,7 +273,7 @@ const CustomForm = ({ data, acctype, services }) => {
         <Formik
             initialValues={initalValues}
             validationSchema={object({
-            phone_number: string().required("Please enter phone number").min(11, "Not a valid number").max(13, "Not a valid number"),
+            phone_number: string().required("Please enter phone number").min(11, "Not a valid number").max(11, "Not a valid number"),
             pin: string().required("Please enter pin").min(4, "Name too short").max(4, "Not more than 4 digit"),
             })}
             onSubmit={(values, formikHelpers) => {
