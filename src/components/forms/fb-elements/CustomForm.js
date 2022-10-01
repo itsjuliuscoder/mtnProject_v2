@@ -31,12 +31,13 @@ const initalValues = {
   pin: "",
 };
 
-const CustomForm = ({ data, acctype }) => {
+const CustomForm = ({ data, acctype, services }) => {
 
   const [open, setOpen] = useState(false);
   const [amount, setAmount] = React.useState("");
   const [phone, setPhonenumber] = React.useState("");
   const [type, setType] = React.useState("");
+  const [dataType, setDataType] = React.useState("");
   const [paymentType, setPaymentType] = React.useState("");
   const [walletOperator, setWalletOperator] = React.useState("");
   const [amountTP, setAmountTP] = React.useState(0);
@@ -46,9 +47,13 @@ const CustomForm = ({ data, acctype }) => {
   const [ errorResponse, setErrorResponse ] = useState('');
   const [paymentDesc, setPaymentDesc] = React.useState("");
   const [pin, setPin] = React.useState(""); 
-  const [dataServices, setDataServices] = React.useState("");
-  const [ isloading, setIsloading ] = useState(true);
+  // const [ isloading, setIsloading ] = useState(true);
   const Router = useRouter();
+
+  useEffect(() => {
+    retrieveUserDetails();
+    // getAllServices();
+  }, []);
 
   const headers = {
     Accept: "application/json",
@@ -57,7 +62,7 @@ const CustomForm = ({ data, acctype }) => {
 
   const retrieveUserDetails = () => {
 
-    setIsloading(true);
+    // setIsloading(true);
     const headers = {
       Accept: "application/json",
       // Authorization: accessToken ? accessToken : "No Auth"
@@ -73,7 +78,7 @@ const CustomForm = ({ data, acctype }) => {
       }
     }).then(function(response){
         console.log("this is the response data -->", response.data);
-        setIsloading(false);
+        // setIsloading(false);
         if(response.data.statusCode === "000"){
           // setUserResponseData(response.data.payload);
           setBalanceAmount(response.data.payload.wallet_balance);
@@ -82,43 +87,20 @@ const CustomForm = ({ data, acctype }) => {
           console.log("this is the response gotten", response);
         }
     }).catch((error) => {
-        setIsloading(false);
+        // setIsloading(false);
         console.log("this is the error response gotten", error);
         //setErrorResponse("Invalid Login Credentials");
         setTimeout(setEmptyAlert, 5000);
     })
   };
 
-  const getAllServices = () => {
+  
 
-    // setIsloading(true);
-    const headers = {
-      Accept: "application/json",
-      // Authorization: accessToken ? accessToken : "No Auth"
-    }
-
-    axios({
-      method: 'get',
-      url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/getAllProducts',
-      headers,
-    }).then(function(response){
-        console.log("this is the response data -->", response.data);
-        setIsloading(false);
-        if(response.data.statusCode === "000"){
-          console.log("this is the data serviced data -->", response.data);
-           // setUserResponseData(response.data.payload);
-          //setBalanceAmount(response.data.payload.wallet_balance);
-          //setPinStatus(response.data.payload.isPin);
-          // setDataServices(response.data.data);
-        } else {
-          console.log("this is the response gotten", response);
-        }
-    }).catch((error) => {
-        setIsloading(false);
-        console.log("this is the error response gotten", error);
-        //setErrorResponse("Invalid Login Credentials");
-        setTimeout(setEmptyAlert, 5000);
-    })
+  const handleTransaction = (payload) => {
+    console.log("the transaction values --->", payload);
+    setPin(payload.pin);
+    setPhonenumber(payload.phone_number);
+    setOpen(true);
   };
 
   const setTransactionAmount = (e) => {
@@ -134,7 +116,24 @@ const CustomForm = ({ data, acctype }) => {
     setAmount(e);
     data.acctype === "Merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
     // console.log("this is the amount to pay stored -->", amountTP);
-    setPaymentDesc("You are purchasing an airtime of " + e + " for this phone number " + phone);
+    setPaymentDesc("You are purchasing an airtime of " + e + " for this phone number " + phone_number);
+  } 
+
+  const setDataAmount = (e) => {
+    console.log("this is the transaction amount", e);
+    const amounttp = e * 0.03;
+    const amounttpValue = (e - amounttp);
+    let phone_number = phone ? phone : "";
+    console.log("this is the type value -->", type);
+    console.log("this is the payment type -->", paymentType);
+    console.log("this is the walletOperator -->", walletOperator);
+    console.log("this is the amount -->", e);
+    console.log("this is the amount to pay -->", amounttpValue);
+    setAmount(e);
+    // setDataType(e)
+    data.acctype === "Merchant" ? setAmountTP(amounttpValue)  : setAmountTP(e);
+    // console.log("this is the amount to pay stored -->", amountTP);
+    setPaymentDesc("You are purchasing an airtime of " + e + " for this phone number " + phone_number);
   }
 
   const completeAirtime = () => {
@@ -167,7 +166,7 @@ const CustomForm = ({ data, acctype }) => {
             setErrorResponse("Unable to create PIN");
           }
       }).catch((error) => {
-            setIsloading(false);
+            // setIsloading(false);
             console.log("this is the error response gotten", error);
             setTimeout(() => {
                 Router.replace("/dashboards/dashboard1");
@@ -177,12 +176,45 @@ const CustomForm = ({ data, acctype }) => {
       })
   }
 
-  const handleTransaction = (payload) => {
-    console.log("the transaction values --->", payload);
-    setPin(payload.pin);
-    setPhonenumber(payload.phone_number);
-    setOpen(true);
-  };
+  const completeData = () => {
+
+    axios({
+        method: 'post',
+        url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/buyData',
+        headers,
+        data: {
+          transactionId: Math.floor(Math.random() * 2356472122),
+          user_id: data._id,
+          phone_number: data.phone_number,
+          msisdn: phone,
+          amount: parseInt(amount),
+          amount_charged: amountTP,
+          pin: pin
+          // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
+          // description: "Wallet Top up with amount " + amount + " was successful"
+        }
+      }).then(function(response){
+          console.log("this is the response data -->", response.data);
+          // setIsloading(false);
+          if(response.data.statusCode === "0000"){
+            setResponse(response.data.statusMessage);
+            setTimeout(() => {
+              Router.replace("/dashboards/dashboard1");
+            }, 2000)
+          } else {
+            console.log("this is the response gotten", response);
+            setErrorResponse("Unable to create PIN");
+          }
+      }).catch((error) => {
+            // setIsloading(false);
+            console.log("this is the error response gotten", error);
+            setTimeout(() => {
+                Router.replace("/dashboards/dashboard1");
+            }, 3000);
+          setErrorResponse("Topup or bundle activation failed");
+          setTimeout(setEmptyAlert, 5000);
+      })
+  }  
 
   const handleClose = () => {
     setOpen(false);
@@ -210,9 +242,11 @@ const CustomForm = ({ data, acctype }) => {
                 <p><b>Amount To Pay: </b>{amountTP}</p>
                 <p><b>Payment Description: </b>{paymentDesc}</p>
               </Typography>
-              <Button onClick={completeAirtime} sx={{ mt: 2 }} variant="contained" color="success">
-                  Complete Transaction
-              </Button>
+              {acctype && acctype=="airtime" ? <Button onClick={completeAirtime} sx={{ mt: 2 }} variant="contained" color="success">
+                  Buy Airtime
+              </Button> : <Button onClick={completeData} sx={{ mt: 2 }} variant="contained" color="success">
+                  Buy Data
+              </Button> }
             </Box>
           </Modal>
         </div>
@@ -229,16 +263,13 @@ const CustomForm = ({ data, acctype }) => {
             alignItems="center"
           >
             <Box flexGrow={1}>
-              <Typography fontWeight="500" variant="h4">
-                Create Transaction PIN
+              <Typography variant="h3">
+                Hi {data.firstname}, Buy Your <b>{acctype ? acctype : "" }</b>
               </Typography>
             </Box>
           </Box>
           <Divider />
         <CardContent>
-          <Typography variant="h4">
-            Hi {data.firstname}, Buy Your {acctype ? acctype : "" }
-          </Typography>
         <Formik
             initialValues={initalValues}
             validationSchema={object({
@@ -317,18 +348,41 @@ const CustomForm = ({ data, acctype }) => {
                 />
               </Grid>
               <Grid item xs={12} lg={6}>
-                <CustomFormLabel htmlFor="Email">Enter Amount</CustomFormLabel>
-                <Field
-                    name="amount"
-                    type="number"
-                    as={TextField}
-                    variant="outlined"
-                    color="primary"
-                    label="Amount"
-                    fullWidth
-                    onChange={e => setTransactionAmount(e.target.value)} 
-                    required
-                  />
+                { acctype == "airtime" ?
+                <div>
+                  <CustomFormLabel htmlFor="Email">Enter Amount</CustomFormLabel>
+                  <Field
+                      name="amount"
+                      type="number"
+                      as={TextField}
+                      variant="outlined"
+                      color="primary"
+                      label="Amount"
+                      fullWidth
+                      onChange={e => setTransactionAmount(e.target.value)} 
+                      required
+                    />
+                </div>
+                : 
+                <>
+                  <CustomFormLabel htmlFor="Email">Select Data Offer</CustomFormLabel>
+                  
+                  <CustomSelect
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      // value={acctype}
+                      // onChange={handleChange}
+                      fullWidth
+                      size="small"
+                      onChange={e => setDataAmount(e.target.value)}
+                      >
+                      {services && services.length > 0 && services.map((service) => (
+                        <MenuItem value={service.amount}>{service.name}</MenuItem>
+                      ))}
+                      <MenuItem value="EPIN">EPIN</MenuItem>
+                  </CustomSelect>
+                </>
+                }
               </Grid>
               {/* <Box height={14} /> */}
               <Grid item xs={12} lg={6}>
