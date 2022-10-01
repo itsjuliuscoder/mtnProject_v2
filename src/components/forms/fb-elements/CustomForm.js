@@ -177,13 +177,13 @@ const CustomForm = ({ data, acctype, services }) => {
   }
 
   const completeData = () => {
-
+    
     axios({
         method: 'post',
         url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/buyData',
         headers,
         data: {
-          transactionId: Math.floor(Math.random() * 2356472122),
+          transactionId: Math.floor(Math.random() * 98881228958813),
           user_id: data._id,
           phone_number: data.phone_number,
           msisdn: phone,
