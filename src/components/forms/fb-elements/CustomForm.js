@@ -177,7 +177,7 @@ const CustomForm = ({ data, acctype, services }) => {
   }
 
   const completeData = () => {
-    
+
     axios({
         method: 'post',
         url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/buyData',
@@ -377,7 +377,7 @@ const CustomForm = ({ data, acctype, services }) => {
                       onChange={e => setDataAmount(e.target.value)}
                       >
                       {services && services.length > 0 && services.map((service) => (
-                        <MenuItem value={service.amount}>{service.name}</MenuItem>
+                        <MenuItem key={service.id} value={service.amount}>{service.name}</MenuItem>
                       ))}
                       <MenuItem value="EPIN">EPIN</MenuItem>
                   </CustomSelect>
