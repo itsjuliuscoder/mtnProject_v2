@@ -5,11 +5,12 @@ import DailyActivity from "../src/components/dashboard/DailyActivity";
 import ProductPerfomance from "../src/components/dashboard/ProductPerfomance";
 
 import Login from "../pages/authentication/login";
+import Landing from "./landing";
 
 export default function Index() {
   return (
      <>
-      <Login />
+      <Landing />
      </>
   );
 }

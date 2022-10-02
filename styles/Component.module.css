@@ -1,3 +1,152 @@
+.banner_bg {
+    width: 100%;
+    padding: 6em;
+    position: relative;
+    background: url("../assets/images/backgrounds/banner.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #000 !important;
+    min-height: 400px;
+}
+
+.btn__register {
+    width: 50% !important;
+    margin: auto !important;
+    position: relative !important;
+}
+
+.footer__row {
+    width: 100%;
+    padding: 3em;
+    position: relative;
+    background: url("../assets/images/backgrounds/footer_bg.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff !important;
+    min-height: 400px;
+}
+
+.container__style {
+    width: 85%;
+    margin: 2em auto;
+    position: relative;
+}
+
+.top2 {
+    margin: 2em auto !important;
+}
+
+.never__runout {
+    width: 85%;
+    padding: 3em;
+    position: relative;
+    margin: auto;
+    background: url("../assets/images/backgrounds/giphy.webp");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+}
+
+.never__runout_text {
+    margin: 6em auto;
+    width: 100%;
+    padding: 2em;
+}
+
+.never__runout_text__2 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 2em;
+}
+
+.never__runout_text__3 {
+    margin: 9px auto;
+    width: 100%;
+    padding: 1em;
+}
+
+.getting__started {
+    width: 100%;
+    padding: 3em;
+    position: relative;
+    margin: auto;
+    background: url("../assets/images/backgrounds/started.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 300px;
+}
+
+.row__style {
+    width: 100%;
+    padding: 6em;
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+    min-height: 300px;
+}
+
+.row__style__2 {
+    width: 100%;
+    padding: 6em;
+    position: relative;
+    margin: auto;
+    background-color: rgb(7, 42, 66);
+    min-height: 300px;
+    color: #fff;
+}
+
+.row__style__3 {
+    width: 100%;
+    padding: 6em;
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+    min-height: 300px;
+    color: #000;
+}
+
+.create__account {
+    width: 60%;
+    padding: 12px !important;
+    float: left;
+    color: #fff !important;
+    background-color: #000 !important;
+    border: none;
+    margin: 2em auto !important;
+    border-radius: 12px !important;
+}
+
+.inner__row {
+    width: 55%;
+    position: relative;
+    margin: auto;
+}
+
+.create__account__2 {
+    width: 100%;
+    padding: 12px !important;
+    color: #fff !important;
+    background-color: #000 !important;
+    border: none;
+    margin: 2em auto !important;
+    border-radius: 12px !important;
+}
+
+.create__account__2 {
+    width: 50%;
+    padding: 12px !important;
+    float: left;
+    color: #fff !important;
+    background-color: #000 !important;
+    border: none;
+    margin: 2em auto !important;
+    border-radius: 12px !important;
+}
+
 .toaster__content {
     margin: 0 !important;
     font-family: Work Sans;
@@ -6,6 +155,18 @@
     font-size: 14px;
     line-height: 165%;
     color: #4f4f4f;
+}
+
+ul.row__line {
+    padding: 0px;
+    list-style: none;
+    margin: 0px !important;
+}
+
+ul.row__line li {
+    display: inline-block !important;
+    padding-right: 22px;
+    margin: 5px auto !important;
 }
 
 .paystack__button {

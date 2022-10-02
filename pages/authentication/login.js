@@ -144,7 +144,7 @@ const Login = () => {
               }}
             >
               <Typography fontWeight="700" variant="h2">
-                Welcome to rightNet
+                Welcome to RightNet
               </Typography>
               { errorResponse && <ErrorToaster title={ errorResponse } /> }
               <Box display="flex" alignItems="center">
