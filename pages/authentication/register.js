@@ -162,7 +162,7 @@ const Register = () => {
               }}
             >
               <Typography fontWeight="700" variant="h2">
-                Welcome to rightNet
+                Welcome to RightNet
               </Typography>
               { errorResponse && <ErrorToaster title={ errorResponse } /> }
               { responseMessage && <ErrorToaster title={ responseMessage } /> }
