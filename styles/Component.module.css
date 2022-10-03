@@ -1,13 +1,62 @@
 .banner_bg {
     width: 100%;
-    padding: 6em;
+    padding: 13em;
     position: relative;
-    background: url("../assets/images/backgrounds/banner.png");
+    background: url("../assets/images/backgrounds/banner_bg.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     color: #000 !important;
-    min-height: 400px;
+    min-height: 680px;
+}
+
+.row__steps {
+    width: 100%;
+    padding: 2em;
+    background-color: #fff;
+    color: #000;
+    position: relative;
+}
+
+.step_one {
+    width: 80%;
+    padding: 3em;
+    position: relative;
+    background: url("../assets/images/backgrounds/1.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 350px;
+    background-size: cover;
+}
+.step_two {
+    width: 80%;
+    padding: 3em;
+    position: relative;
+    min-height: 350px;
+    background: url("../assets/images/backgrounds/2.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.step_three {
+    width: 80%;
+    padding: 3em;
+    position: relative;
+    min-height: 350px;
+    background: url("../assets/images/backgrounds/3.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.step_four {
+    width: 80%;
+    padding: 3em;
+    position: relative;
+    min-height: 350px;
+    background: url("../assets/images/backgrounds/4.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .btn__register {
@@ -59,8 +108,74 @@
 .never__runout_text__2 {
     margin: 1em auto;
     width: 100%;
-    padding: 2em;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col1.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
 }
+
+.never__runout_text__2_2 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col2.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
+.never__runout_text__2_3 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col3.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
+.never__runout_text__2_4 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col4.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
+.never__runout_text__2_5 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col5.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
+.never__runout_text__2_6 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col6.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
+.never__runout_text__2_7 {
+    margin: 1em auto;
+    width: 100%;
+    padding: 4em;
+    background: url("../assets/images/backgrounds/col7.png");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
+
 
 .never__runout_text__3 {
     margin: 9px auto;
@@ -126,14 +241,49 @@
     margin: auto;
 }
 
-.create__account__2 {
+.btn__center {
+    width: 25%;
+    margin: auto !important;
+    position: relative; 
+}
+
+.group__btn {
+    width: 30%;
+    margin: auto;
+    position: relative;
+
+}
+
+.create__account__3 {
     width: 100%;
     padding: 12px !important;
     color: #fff !important;
     background-color: #000 !important;
     border: none;
+    font-weight: 900 !important;
     margin: 2em auto !important;
     border-radius: 12px !important;
+}
+
+.create__account__4 {
+    width: 100%;
+    padding: 12px !important;
+    color: #fff !important;
+    background-color: #004AAD !important;
+    border: none;
+    font-weight: 900 !important;
+    margin: 2em auto !important;
+    border-radius: 12px !important;
+}
+
+.create__account__4:hover {
+    color: #fff;
+    background-color: #051A37 !important;
+}
+
+.create__account__3:hover {
+    color: #fff;
+    background-color: #333538 !important;
 }
 
 .create__account__2 {
@@ -143,6 +293,7 @@
     color: #fff !important;
     background-color: #000 !important;
     border: none;
+    font-weight: 900 !important;
     margin: 2em auto !important;
     border-radius: 12px !important;
 }

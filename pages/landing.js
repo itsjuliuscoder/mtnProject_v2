@@ -26,66 +26,56 @@ export default function Landing() {
                         We offer services such as Data Bundle and Airtime TopUp, Bills Payments, Cable Subscription and lots more
                     </Typography>
                 </Grid>
-                <div className={styles.inner__row}>
-                    <Grid container spacing={0}>
-                        <Grid item xs={12}  lg={6}>
-                            <Typography variant="h5" fontWeight="900" textAlign="center">
-                                <Button className={styles.create__account__2}> Create An Account </Button> 
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={12}  lg={6}>
-                            <Typography variant="h5" fontWeight="900" textAlign="center">
-                                <Button className={styles.create__account__2}> Create An Account </Button> 
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </div>
             </Grid>
+            <div className={styles.group__btn}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}  lg={6}>
+                        <Typography variant="h5" fontWeight="900" textAlign="center">
+                            <Button className={styles.create__account__4}> Login To Continue </Button> 
+                        </Typography>
+                    </Grid> 
+                    <Grid item xs={12}  lg={6}>
+                        <Typography variant="h5" fontWeight="900" textAlign="center">
+                            <Button className={styles.create__account__3}> Create An Account </Button> 
+                        </Typography>
+                    </Grid> 
+                </Grid>
+            </div>
         </div>
         <div className={styles.row__style__3}>
             <div className={styles.container__style}>
-                <Typography variant="h1" fontWeight="900" textAlign="center">
+                <Typography variant="h1" fontWeight="900" textAlign="center" style={{ fontSize: '48px', marginBottom: '1em' }}>
                     Our Services
                 </Typography>   
                 <Grid container spacing={2}>
                     {/* ------------------------- row 1 ------------------------- */}
-                    <Grid item xs={12} lg={3}>
+                    <Grid item xs={12} lg={4}>
                         <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
+                            <Box textAlign="left">
                                 <FeatherIcon icon="layers" width="50" height="50" />
                             </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
+                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
                                 Airtime TopUp
                             </Typography>
                         </div>
                     </Grid>
-                    <Grid item xs={12} lg={3}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
+                    <Grid item xs={12} lg={4}>
+                        <div className={styles.never__runout_text__2_2}>
+                            <Box textAlign="left">
                                 <FeatherIcon icon="database" width="50" height="50" />
                             </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
+                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
                                 Data Bundle Subscription
                             </Typography>
                         </div>
                     </Grid>
-                    <Grid item xs={12} lg={3}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
+                    <Grid item xs={12} lg={4}>
+                        <div className={styles.never__runout_text__2_3}>
+                            <Box textAlign="left">
                                 <FeatherIcon icon="cpu" width="50" height="50" />
                             </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
+                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
                                 Cable Subscription
-                            </Typography>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} lg={3}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
-                                <FeatherIcon icon="layers" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
-                                Utility Bills Payments
                             </Typography>
                         </div>
                     </Grid>
@@ -93,34 +83,31 @@ export default function Landing() {
                 <Grid container spacing={2}>
                     {/* ------------------------- row 1 ------------------------- */}
                     <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
+                        <div className={styles.never__runout_text__2_5}>
+                            <Box textAlign="left">
                                 <FeatherIcon icon="move" width="50" height="50" />
                             </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
+                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
                                 Airtime To Cash
                             </Typography>
                         </div>
                     </Grid>
                     <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
-                                <FeatherIcon icon="user-plus" width="50" height="50" />
+                        <div className={styles.never__runout_text__2_4}>
+                            <Box textAlign="left">
+                                <FeatherIcon icon="layers" width="50" height="50" />
                             </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
-                                Loans
-                            </Typography>
-                            <Typography mt="2" variant="p" fontWeight="900" textAlign="center">
-                                Get access to quick loans for your needs 
+                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                Utility Bills Payments
                             </Typography>
                         </div>
                     </Grid>
                     <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="center">
+                        <div className={styles.never__runout_text__2_7}>
+                            <Box textAlign="left">
                                 <FeatherIcon icon="layers" width="50" height="50" />
                             </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="center">
+                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
                                 Borrow Airtime
                             </Typography>
                         </div>
@@ -164,10 +151,9 @@ export default function Landing() {
                 </Grid>
             </div>
         </div>
-        <div className={styles.row__style}>
+        {/* <div className={styles.row__style}>
             <div className={styles.container__style}>   
                 <Grid container spacing={2}>
-                    {/* ------------------------- row 1 ------------------------- */}
                     <Grid item xs={12} lg={6}>
                         <div className={styles.never__runout}></div>
                     </Grid>
@@ -185,6 +171,49 @@ export default function Landing() {
                                 </NextLink>
                             </div>
                         </div>
+                    </Grid>
+                </Grid>
+            </div>
+        </div> */}
+        <div className={styles.row__steps}>
+            <div className={styles.container__style}>   
+                <Grid container spacing={2}>
+                    {/* ------------------------- row 1 ------------------------- */}
+                    <Grid item xs={12} lg={6}>
+                        <Grid item xs={12} lg={12}>
+                            <div className={styles.step_one}>
+                                <Typography variant="h3" fontWeight="900" textAlign="left" style={{ marginTop: '4em', fontSize: '32px' }}>
+                                    Register to Get Started
+                                </Typography>
+                                <p>To use RightNet services, you need to first register as a user.</p>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} lg={12}>
+                            <div className={styles.step_two}>
+                                <Typography variant="h3" fontWeight="900" textAlign="left" style={{ marginTop: '4em', fontSize: '32px' }}>
+                                    Login to the E-Wallet Dashboard 
+                                </Typography>
+                                <p>After successfully registering, you are required to login to enable you access the wide range of services RightNet offers</p>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} lg={12}>
+                            <div className={styles.step_three}>
+                                <Typography variant="h3" fontWeight="900" textAlign="left" style={{ marginTop: '4em', fontSize: '32px' }}>
+                                    TopUp E-Wallet
+                                </Typography>
+                                <p>After successfully registering, you are required to login to enable you access the wide range of services RightNet offers</p>
+                            </div>
+                        </Grid>
+                        <Grid item xs={12} lg={12}>
+                            <div className={styles.step_four}>
+                                <Typography variant="h3" fontWeight="900" textAlign="left" style={{ marginTop: '4em', fontSize: '32px' }}>
+                                    Buy Airtime, Data 
+                                </Typography>
+                            </div>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} lg={6}>
+                        
                     </Grid>
                 </Grid>
             </div>

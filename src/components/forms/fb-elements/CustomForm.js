@@ -100,7 +100,11 @@ const CustomForm = ({ data, acctype, services }) => {
     console.log("the transaction values --->", payload);
     setPin(payload.pin);
     setPhonenumber(payload.phone_number);
-    setOpen(true);
+    
+    const validateResult =  validatePIN();
+    if(validateResult === "000"){
+      setOpen(true);
+    }
   };
 
   const setTransactionAmount = (e) => {
@@ -173,6 +177,37 @@ const CustomForm = ({ data, acctype, services }) => {
             }, 3000);
           setErrorResponse("Topup or bundle activation failed");
           setTimeout(setEmptyAlert, 5000);
+      })
+  }
+
+  const validatePIN = () => {
+
+    axios({
+        method: 'post',
+        url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/pinValidation',
+        headers,
+        data: {
+          user_id: data._id,
+          phone_number: data.phone_number,
+          pin: pin
+        }
+      }).then(function(response){
+          console.log("this is the response data -->", response.data);
+          // setIsloading(false);
+          if(response.data.statusCode === "000"){
+            setResponse(response.data.statusMessage);
+            return response.data.statusCode;
+          } else {
+            console.log("this is the response gotten", response);
+            setErrorResponse("PIN Validation failed");
+            return response.data.statusCode;
+          }
+      }).catch((error) => {
+            // setIsloading(false);
+          console.log("this is the error response gotten", error);
+          setErrorResponse("Unable to Validate PIN");
+          setTimeout(setEmptyAlert, 5000);
+          return error;
       })
   }
 
