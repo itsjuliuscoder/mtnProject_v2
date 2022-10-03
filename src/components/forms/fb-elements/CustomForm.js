@@ -205,7 +205,7 @@ const CustomForm = ({ data, acctype, services }) => {
       }).catch((error) => {
             // setIsloading(false);
           console.log("this is the error response gotten", error);
-          setErrorResponse("Unable to Validate PIN");
+          setErrorResponse("Wrong PIN entered, Enter a correct PIN");
           setTimeout(setEmptyAlert, 5000);
           return error;
       })
@@ -308,7 +308,7 @@ const CustomForm = ({ data, acctype, services }) => {
         <Formik
             initialValues={initalValues}
             validationSchema={object({
-            phone_number: string().required("Please enter phone number").min(11, "Not a valid number").max(11, "Not a valid number"),
+            phone_number: string().required("Please enter phone number").min(10, "Not a valid number").max(10, "Not a valid number"),
             pin: string().required("Please enter pin").min(4, "Name too short").max(4, "Not more than 4 digit"),
             })}
             onSubmit={(values, formikHelpers) => {

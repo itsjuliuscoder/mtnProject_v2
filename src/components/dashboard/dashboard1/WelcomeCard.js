@@ -34,7 +34,7 @@ const WelcomeCard = ({ data, time, clickAction }) => (
       <Typography
             variant="h5"            
           >
-            Welcome to <b>rightNet</b>, Buy Airtime & Data
+            Welcome to <b>RightNet</b>
           </Typography>
       { data.isPin ?     
         <Button

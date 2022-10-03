@@ -31,12 +31,16 @@ export default function Landing() {
                 <Grid container spacing={2}>
                     <Grid item xs={12}  lg={6}>
                         <Typography variant="h5" fontWeight="900" textAlign="center">
-                            <Button className={styles.create__account__4}> Login To Continue </Button> 
+                            <NextLink href="/authentication/login">
+                                <Button className={styles.create__account__4}> Login To Continue </Button> 
+                            </NextLink>
                         </Typography>
                     </Grid> 
                     <Grid item xs={12}  lg={6}>
                         <Typography variant="h5" fontWeight="900" textAlign="center">
-                            <Button className={styles.create__account__3}> Create An Account </Button> 
+                            <NextLink href="/authentication/login">
+                                <Button className={styles.create__account__3}> Create An Account </Button> 
+                            </NextLink>
                         </Typography>
                     </Grid> 
                 </Grid>
