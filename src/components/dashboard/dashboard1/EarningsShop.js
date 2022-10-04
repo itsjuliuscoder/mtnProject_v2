@@ -55,11 +55,11 @@ const EarningsShop = ({ title, color, logo, clickAction }) => (
             aria-label="dollar"
             sx={{
               color: '#fff',
-              width: '48px',
-              height: '48px',
+              width: '90px',
+              height: '90px',
             }}
           >
-            <Image src={logo} width="30" height="30" alt="logo" />
+            <Image src={logo} width="60" height="60" alt="logo" />
             {/* <FeatherIcon icon="dollar-sign" width="24" height="24" /> */}
           </Fab>
         </Box>

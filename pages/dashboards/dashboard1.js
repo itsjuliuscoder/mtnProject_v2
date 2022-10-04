@@ -5,6 +5,8 @@ import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
+import data from "../../assets/images/logos/data_sub.png"
+import airtime from "../../assets/images/logos/airtime-icon-hd.png";
 import {
   List,
   Divider,
@@ -176,7 +178,10 @@ const Dashboard1 = () => {
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop color="#C5C5C5" title="MTN" logo={mtn} clickAction={handleClickOpen} />
+          <EarningsShop color="#C5C5C5" title="AIRTIME TOPUP" logo={airtime} clickAction={handleClickOpen} />
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="DATA SUBSCRIPTION" logo={data} color="#C5C5C5"  />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
@@ -184,9 +189,6 @@ const Dashboard1 = () => {
         </Grid>
         <Grid item xs={12} lg={3}>
           <EarningsShop title="TRANSFER" logo={utility} color="#C5C5C5" />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="BORROW AIRTIME & LOAN" logo={utility} color="#C5C5C5"  />
         </Grid>
         {/* ------------------------- row 2 ------------------------- */}
         <Grid item xs={12} lg={12}>
