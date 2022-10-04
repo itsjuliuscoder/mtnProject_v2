@@ -41,6 +41,7 @@ const CustomForm = ({ data, acctype, services }) => {
   const [paymentType, setPaymentType] = React.useState("");
   const [walletOperator, setWalletOperator] = React.useState("");
   const [amountTP, setAmountTP] = React.useState(0);
+  const [balanceAmount, setBalanceAmount] = React.useState(0);
   const [userData, setUserData] = React.useState("");
   const [skipped, setSkipped] = React.useState(new Set());
   const [ response, setResponse ] = useState('');
@@ -73,8 +74,8 @@ const CustomForm = ({ data, acctype, services }) => {
       url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_UserDetails',
       headers,
       data:{
-        phone_number: userData.phone_number,
-        user_id: userData._id
+        phone_number: data.phone_number,
+        user_id: data._id
       }
     }).then(function(response){
         console.log("this is the response data -->", response.data);
@@ -82,7 +83,8 @@ const CustomForm = ({ data, acctype, services }) => {
         if(response.data.statusCode === "000"){
           // setUserResponseData(response.data.payload);
           setBalanceAmount(response.data.payload.wallet_balance);
-          setPinStatus(response.data.payload.isPin);
+          //setPinStatus(response.data.payload.isPin);
+          //console.log("this is the balance --->", response.data.payload.wallet_balance);
         } else {
           console.log("this is the response gotten", response);
         }
@@ -97,14 +99,10 @@ const CustomForm = ({ data, acctype, services }) => {
   
 
   const handleTransaction = (payload) => {
-    console.log("the transaction values --->", payload);
     setPin(payload.pin);
-    setPhonenumber(payload.phone_number);
-    
-    const validateResult =  validatePIN();
-    if(validateResult === "000"){
-      setOpen(true);
-    }
+    const number = "0" + payload.phone_number
+    setPhonenumber(number);
+    validatePIN(payload.pin);
   };
 
   const setTransactionAmount = (e) => {
@@ -180,7 +178,7 @@ const CustomForm = ({ data, acctype, services }) => {
       })
   }
 
-  const validatePIN = () => {
+  const validatePIN = (transPin) => {
 
     axios({
         method: 'post',
@@ -189,14 +187,19 @@ const CustomForm = ({ data, acctype, services }) => {
         data: {
           user_id: data._id,
           phone_number: data.phone_number,
-          pin: pin
+          pin: transPin
         }
       }).then(function(response){
           console.log("this is the response data -->", response.data);
           // setIsloading(false);
           if(response.data.statusCode === "000"){
             setResponse(response.data.statusMessage);
-            return response.data.statusCode;
+            // return response.data.statusCode;
+            if(balanceAmount >= amount){
+              setOpen(true);
+            } else {
+              setErrorResponse("Insufficient Balance, Kindly TopUp Wallet");
+            }
           } else {
             console.log("this is the response gotten", response);
             setErrorResponse("PIN Validation failed");
