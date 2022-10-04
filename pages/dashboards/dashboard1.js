@@ -134,7 +134,7 @@ const Dashboard1 = () => {
       method: 'post',
       url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_UserDetails',
       headers,
-      data:{
+      data: {
         phone_number: userData.phone_number,
         user_id: userData._id
       }
