@@ -12,24 +12,47 @@ import styles from "../styles/Component.module.css";
 import FeatherIcon from 'feather-icons-react';
 import NextLink from "next/link";
 import { constant } from "../src/constants";
+import {motion} from 'framer-motion';
+import pkg from 'react';
+const { useReducer, useRef, useLayoutEffect } = pkg;
 
 export default function Landing() {
+const fadeLeft = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0 }
+}
+const fadeRight = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0 }
+}
+const fadeUp = {
+    hidden: { opacity: 0, y: 100 },
+    visible: { opacity: 1, y: 0 }
+}
   return (
     <>  
-        <div 
-            // variants={ constant.motionVariant }
-            // initial="hidden"
-            // animate="enter"
-            className={styles.banner_bg}>
+        <div  className={styles.banner_bg}>
             <Grid container spacing={0}>
                 {/* ------------------------- row 1 ------------------------- */}
                 <Grid item xs={12}  lg={12}>
-                    <Typography variant="h1" fontWeight="900" textAlign="center" style={{ fontSize: '48px' }}>
-                        Welcome to RIGHTNET
-                    </Typography>
-                    <Typography variant="h5" fontWeight="900" textAlign="center">
-                        We offer services such as Data Bundle and Airtime TopUp, Bills Payments, Cable Subscription and lots more
-                    </Typography>
+                        <motion.h1
+                            variants={fadeUp}
+                            initial='hidden'
+                            animate='visible'
+                            transition={{ duration: 1.5 }}
+                            style={{ fontSize: '48px', fontWeight: '900', textAlign: 'center' }}
+                        >
+                            Welcome to RIGHTNET
+                        </motion.h1>
+                        <motion.p
+                            variants={fadeLeft}
+                            initial='hidden'
+                            animate='visible'
+                            transition={{ duration: 2 }}
+                            style={{ fontSize: '18px', fontWeight: '500', textAlign: 'center' }}
+                        >
+                            We offer services such as Data Bundle and Airtime TopUp, Bills Payments, Cable Subscription and lots more
+                        </motion.p>                    
                 </Grid>
             </Grid>
             <div className={styles.group__btn}>
