@@ -77,6 +77,19 @@
     min-height: 400px;
 }
 
+.body__getting__started {
+    width: 100%;
+    padding: 1em;
+    margin: 2em auto;
+    position: relative;
+    background: url("../assets/images/backgrounds/rightnet_logo.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff !important;
+    min-height: 1400px;
+}
+
 .container__style {
     width: 85%;
     margin: 2em auto;

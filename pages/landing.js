@@ -260,18 +260,8 @@ const fadeUp = {
                         </Grid>
                     </Grid>
                     <Grid item xs={12} lg={6}>
-                        <div style={{ margin: '15em auto' }}>
-                            <Typography mt="2" variant="h2" fontWeight="900">
-                                Create A RightNet Account Now
-                            </Typography>
-                            {/* <Typography mt="2" variant="p">
-                                With RightNet, you should never run out airtime and data, witsh out quick access to our borrow airtime and data service.
-                            </Typography> */}
-                            <div>
-                                <NextLink href="/authentication/register">
-                                    <Button className={styles.create__account__2}> Get Started Now! </Button>
-                                </NextLink>
-                            </div>
+                        <div className={styles.body__getting__started}>
+                            
                         </div>
                     </Grid>
                 </Grid>
