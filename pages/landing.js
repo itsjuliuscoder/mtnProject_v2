@@ -11,11 +11,16 @@ import {
 import styles from "../styles/Component.module.css";
 import FeatherIcon from 'feather-icons-react';
 import NextLink from "next/link";
+import { constant } from "../src/constants";
 
 export default function Landing() {
   return (
     <>  
-        <div className={styles.banner_bg}>
+        <div 
+            // variants={ constant.motionVariant }
+            // initial="hidden"
+            // animate="enter"
+            className={styles.banner_bg}>
             <Grid container spacing={0}>
                 {/* ------------------------- row 1 ------------------------- */}
                 <Grid item xs={12}  lg={12}>

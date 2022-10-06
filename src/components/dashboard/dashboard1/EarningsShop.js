@@ -3,6 +3,7 @@ import Image from 'next/image';
 import FeatherIcon from 'feather-icons-react';
 import { Card, CardContent, Typography, Box, Fab, Button } from '@mui/material';
 import imgsvg from '../../../../assets/images/backgrounds/welcome-bg-2x-svg.svg';
+import { motion } from "framer-motion";
 
 const EarningsShop = ({ title, color, logo, clickAction }) => (
   <Card
