@@ -416,6 +416,12 @@ ul.row__line li {
         padding: 12px;
         margin: 9px auto;
     }
+    .group__btn {
+        width: 100%;
+        margin: auto;
+        position: relative;
+    
+    }
 }
 
 @media screen and (min-width: 840px) {
@@ -441,4 +447,10 @@ ul.row__line li {
         padding: 12px;
         margin: 9px auto;
     } 
+    .group__btn {
+        width: 100%;
+        margin: auto;
+        position: relative;
+    
+    }
 }

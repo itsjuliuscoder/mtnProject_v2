@@ -7,6 +7,7 @@ import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
 import data from "../../assets/images/logos/data_sub.png"
 import airtime from "../../assets/images/logos/airtime-icon-hd.png";
+import ErrorToaster from "../../src/components/dashboard/dashboard1/ErrorToaster";
 import {
   List,
   Divider,
@@ -94,6 +95,7 @@ const Dashboard1 = () => {
     setAccessToken(token);
     setUserData(currentUser);
     retrieveUserDetails();
+    validateToken();
     // ((userData.isPin == false)) ? setPinModalCheck(true) : setPinModalCheck(false);
     currentDate();
     if(userData.isPin == false){
@@ -126,10 +128,13 @@ const Dashboard1 = () => {
 
   const retrieveUserDetails = () => {
 
+    const token = localStorage.getItem("userToken");
+
     setIsloading(true);
     const headers = {
       Accept: "application/json",
       // Authorization: accessToken ? accessToken : "No Auth"
+      Authorization: token
     }
 
     axios({
@@ -153,6 +158,51 @@ const Dashboard1 = () => {
     }).catch((error) => {
         setIsloading(false);
         console.log("this is the error response gotten", error);
+        //setErrorResponse("Invalid Login Credentials");
+        setTimeout(setEmptyAlert, 5000);
+    })
+  };
+
+  const validateToken = () => {
+
+    const currentUser = JSON.parse(localStorage.getItem("userData"));
+
+    const token = localStorage.getItem("userToken");
+
+    
+
+    const headers = {
+      Accept: "application/json",
+      Authorization: token
+      //Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjA5MDI1MDE1NTY2IiwicGFzc3dvcmQiOiJQYXNzd29yZEBjb2Rlcjk3IiwiaWF0IjoxNjY1MTI0MTk4LCJleHAiOjE2NjUxMzEzOTh9.seLAyLNeTH6bSvTmwOP8smZMtKBPGzGttfIIuW328823vvjvdav"
+    }
+
+    axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/validate_token',
+      headers,
+      data: {
+        phone_number: currentUser.phone_number,
+      }
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+          // setUserResponseData(response.data.payload);
+          console.log("")
+        } else {
+          console.log("this is the response gotten", response);
+          setErrorResponse("Token Expired, Login Again!!!");
+          setTimeout(() => {
+            Router.replace("/authentication/login");
+          }, 1000);
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten", error);
+        setTimeout(() => {
+          Router.replace("/authentication/login");
+        }, 1000);
         //setErrorResponse("Invalid Login Credentials");
         setTimeout(setEmptyAlert, 5000);
     })
@@ -294,6 +344,7 @@ const Dashboard1 = () => {
         </Modal>
       </Grid> 
     }
+    { errorResponse && <ErrorToaster title={ errorResponse } /> }
     </>
   );
 };
