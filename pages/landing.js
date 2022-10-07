@@ -17,6 +17,7 @@ import {motion} from 'framer-motion';
 import pkg from 'react';
 const { useReducer, useRef, useLayoutEffect } = pkg;
 import StartedImage from "../assets/images/backgrounds/rightnet_logo.png";
+import LogoImg from "../assets/images/logos/rightnet.jpg";
 
 export default function Landing() {
 const fadeLeft = {
@@ -263,7 +264,14 @@ const fadeUp = {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <div className={styles.body__getting__started}>
-                            <Image src={StartedImage} alt={StartedImage} />
+                            <motion.div className={styles.bg_app_shape}
+                                variants={fadeRight}
+                                initial='hidden'
+                                animate='visible'
+                                transition={{ duration: 2.5 }}
+                            >
+                                <Image src={StartedImage} alt={StartedImage} />
+                            </motion.div>
                         </div>
                     </Grid>
                 </Grid>
@@ -298,6 +306,7 @@ const fadeUp = {
                 <Grid container spacing={2}>
                     {/* ------------------------- row 1 ------------------------- */}
                     <Grid item xs={12} lg={4}>
+                        <Image src={LogoImg} alt={LogoImg} />
                         <Typography mt="2" variant="h1" fontWeight="900">
                             RightNet
                         </Typography>
@@ -311,9 +320,7 @@ const fadeUp = {
                             <li><FeatherIcon icon="facebook" width="24" height="24" /></li>
                             <li><FeatherIcon icon="twitter" width="24" height="24" /></li>
                             <li><FeatherIcon icon="instagram" width="24" height="24" /></li>
-                        </ul>
-                        
-
+                        </ul>                       
                     </Grid>
                     <Grid item xs={12} lg={8}>
                         

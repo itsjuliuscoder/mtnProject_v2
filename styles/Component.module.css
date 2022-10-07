@@ -86,6 +86,27 @@
     min-height: 500px;
 }
 
+.classic-app-image .bg_app_shape:after {
+    bottom: 3rem;
+    left: -8rem;
+    width: 55rem;
+    height: 35rem;
+    border-radius: 20rem;
+    -webkit-transform: rotate(120deg);
+            transform: rotate(120deg);
+    opacity: 0.9;
+  }
+  .classic-app-image .bg_app_shape:after {
+    content: " ";
+    position: absolute;
+    z-index: -1;
+  }
+  .classic-app-image .bg_app_shape:after {
+    -webkit-box-shadow: 0 0 40px rgba(47, 85, 212, 0.5);
+    box-shadow: 0 0 40px rgba(47, 85, 212, 0.5);
+    background-color: #2f55d4;
+  }
+
 .container__style {
     width: 85%;
     margin: 2em auto;
