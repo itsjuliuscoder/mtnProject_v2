@@ -411,6 +411,11 @@ ul.row__line li {
         position: relative;
         padding: 16px;
     }
+    .create__account__4 {
+        width: 100%;
+        padding: 12px;
+        margin: 9px auto;
+    }
 }
 
 @media screen and (min-width: 840px) {
@@ -426,4 +431,14 @@ ul.row__line li {
         padding: 16px;
         margin: auto;
     }
+    .create__account__4 {
+        width: 100%;
+        padding: 12px;
+        margin: 9px auto;
+    }
+    .create__account__3 {
+        width: 100%;
+        padding: 12px;
+        margin: 9px auto;
+    } 
 }

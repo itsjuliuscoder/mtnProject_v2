@@ -64,18 +64,6 @@ const EarningsShop = ({ title, color, logo, clickAction }) => (
           </Fab>
         </Box>
       </Box>
-      {
-        title == "MTN" ? <Button
-        sx={{
-          marginTop: '15px',
-          backgroundColor: '#000'
-        }}
-        variant="contained"
-        onClick={clickAction}
-      >
-        Click Here
-      </Button> : 
-      
       <Button
         sx={{
           marginTop: '15px',
@@ -85,7 +73,6 @@ const EarningsShop = ({ title, color, logo, clickAction }) => (
       >
         Click Here
       </Button>
-      }
     </CardContent>
   </Card>
 );
