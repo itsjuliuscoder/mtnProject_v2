@@ -11,10 +11,12 @@ import {
 import styles from "../styles/Component.module.css";
 import FeatherIcon from 'feather-icons-react';
 import NextLink from "next/link";
+import Image from "next/image";
 import { constant } from "../src/constants";
 import {motion} from 'framer-motion';
 import pkg from 'react';
 const { useReducer, useRef, useLayoutEffect } = pkg;
+import StartedImage from "../assets/images/backgrounds/rightnet_logo.png";
 
 export default function Landing() {
 const fadeLeft = {
@@ -261,7 +263,7 @@ const fadeUp = {
                     </Grid>
                     <Grid item xs={12} lg={6}>
                         <div className={styles.body__getting__started}>
-                            
+                            <Image src={StartedImage} alt={StartedImage} />
                         </div>
                     </Grid>
                 </Grid>

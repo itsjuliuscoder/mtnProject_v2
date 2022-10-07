@@ -82,12 +82,8 @@
     padding: 1em;
     margin: 2em auto;
     position: relative;
-    background: url("../assets/images/backgrounds/rightnet_logo.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
     color: #fff !important;
-    min-height: 1400px;
+    min-height: 500px;
 }
 
 .container__style {
@@ -406,7 +402,7 @@ ul.row__line li {
     padding: 3em;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 320px) {
     .modal___window {
         position: absolute;
         top: 20%;
@@ -484,7 +480,7 @@ ul.row__line li {
     }
 }
 
-@media screen and (min-width: 840px) {
+@media screen and (max-width: 840px) {
     .modal___window {
         position: absolute;
         top: 20%;
