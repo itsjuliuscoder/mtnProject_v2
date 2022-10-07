@@ -227,6 +227,15 @@
     color: #fff;
 }
 
+.icon__col {
+    background-color: #fff;
+    color: #000;
+    width: '30%'; 
+    margin: '1em auto'; 
+    border-radius: 22px;
+    padding: 9px;
+}
+
 .row__style__3 {
     width: 100%;
     padding: 6em;
@@ -435,8 +444,43 @@ ul.row__line li {
     .container__style {
         width: 100%;
         position: relative;
-        margin: auto;
+        margin: 1em auto;
         padding: 9px;
+    }
+    .row__style__2 {
+        width: 100%;
+        position: relative;
+        margin: auto;
+        padding: 9px;   
+    }
+    .icon__col {
+        width: 60%;
+        padding: 9px;
+    }
+    .row__steps {
+        width: 100%;
+        padding: 9px;
+        position: relative;
+    }
+    .step_one {
+        width: 100%;
+        position: relative;
+        padding: 12px;
+    }
+    .step_two {
+        width: 100%;
+        position: relative;
+        padding: 12px;
+    }
+    .step_three {
+        width: 100%;
+        position: relative;
+        padding: 12px;
+    }
+    .step_four {
+        width: 100%;
+        position: relative;
+        padding: 12px;
     }
 }
 
@@ -477,7 +521,42 @@ ul.row__line li {
     .container__style {
         width: 100%;
         position: relative;
-        margin: auto;
+        margin: 1em auto;
         padding: 9px;
+    }
+    .row__style__2 {
+        width: 100%;
+        position: relative;
+        margin: auto;
+        padding: 9px;   
+    }
+    .icon__col {
+        width: 60%;
+        padding: 9px;
+    }
+    .row__steps {
+        width: 100%;
+        padding: 9px;
+        position: relative;
+    }
+    .step_one {
+        width: 100%;
+        position: relative;
+        padding: 12px;
+    }
+    .step_two {
+        width: 100%;
+        position: relative;
+        padding: 12px;
+    }
+    .step_three {
+        width: 100%;
+        position: relative;
+        padding: 12px;
+    }
+    .step_four {
+        width: 100%;
+        position: relative;
+        padding: 12px;
     }
 }
