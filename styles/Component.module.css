@@ -406,6 +406,11 @@ ul.row__line li {
     .paystack__button {
         width: 100%;
     }
+    .banner_bg {
+        width: 100%;
+        position: relative;
+        padding: 16px;
+    }
 }
 
 @media screen and (min-width: 840px) {
@@ -413,5 +418,12 @@ ul.row__line li {
         position: absolute;
         top: 20%;
         left: 15% !important;
+    }
+
+    .banner_bg {
+        width: 100%;
+        position: relative;
+        padding: 16px;
+        margin: auto;
     }
 }
