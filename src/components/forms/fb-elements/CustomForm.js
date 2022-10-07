@@ -193,7 +193,7 @@ const CustomForm = ({ data, acctype, services }) => {
           console.log("this is the response data -->", response.data);
           // setIsloading(false);
           if(response.data.statusCode === "000"){
-            setResponse(response.data.statusMessage);
+            // setResponse(response.data.statusMessage);
             // return response.data.statusCode;
             if(balanceAmount >= amount){
               setOpen(true);
