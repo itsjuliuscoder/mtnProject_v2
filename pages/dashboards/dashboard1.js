@@ -178,10 +178,10 @@ const Dashboard1 = () => {
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop color="#C5C5C5" title="AIRTIME TOPUP" logo={airtime} link={airtime} />
+          <EarningsShop color="#C5C5C5" title="AIRTIME TOPUP" logo={airtime} link="airtime" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="DATA SUBSCRIPTION" logo={data} color="#C5C5C5" link={data}  />
+          <EarningsShop title="DATA SUBSCRIPTION" logo={data} color="#C5C5C5" link="data"  />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>

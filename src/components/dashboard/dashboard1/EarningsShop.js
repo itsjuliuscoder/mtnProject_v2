@@ -3,8 +3,9 @@ import Image from 'next/image';
 import FeatherIcon from 'feather-icons-react';
 import { Card, CardContent, Typography, Box, Fab, Button } from '@mui/material';
 import imgsvg from '../../../../assets/images/backgrounds/welcome-bg-2x-svg.svg';
+import NextLink from "next/link";
 
-const EarningsShop = ({ title, color, logo, clickAction }) => (
+const EarningsShop = ({ title, color, logo, link }) => (
   <Card
     elevation={0}
     sx={{
@@ -64,15 +65,31 @@ const EarningsShop = ({ title, color, logo, clickAction }) => (
           </Fab>
         </Box>
       </Box>
-      <Button
-        sx={{
-          marginTop: '15px',
-          backgroundColor: '#000'
-        }}
-        variant="contained"
-      >
+      {
+        link === "airtime" ? <NextLink href="/dashboards/purchase/airtime">
+        <Button
+          sx={{
+            marginTop: '15px',
+            backgroundColor: '#000'
+          }}
+          variant="contained"
+        >
         Click Here
       </Button>
+        </NextLink> : 
+      
+      <NextLink href="/dashboards/purchase/data">
+        <Button
+          sx={{
+            marginTop: '15px',
+            backgroundColor: '#000'
+          }}
+          variant="contained"
+        >
+        Click Here
+      </Button>
+        </NextLink>
+      }
     </CardContent>
   </Card>
 );
