@@ -13,11 +13,12 @@ import FeatherIcon from 'feather-icons-react';
 import NextLink from "next/link";
 import Image from "next/image";
 import { constant } from "../src/constants";
-import {motion} from 'framer-motion';
+import {motion, Variants} from 'framer-motion';
 import pkg from 'react';
 const { useReducer, useRef, useLayoutEffect } = pkg;
 import StartedImage from "../assets/images/backgrounds/rightnet_logo.png";
 import LogoImg from "../assets/images/logos/rightnet.jpg";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 export default function Landing() {
 const fadeLeft = {
@@ -32,137 +33,145 @@ const fadeUp = {
     hidden: { opacity: 0, y: 100 },
     visible: { opacity: 1, y: 0 }
 }
+
   return (
     <>  
         <div  className={styles.banner_bg}>
             <Grid container spacing={0}>
                 {/* ------------------------- row 1 ------------------------- */}
-                <Grid item xs={12}  lg={12}>
+                <Grid xs={12} lg={5}>
+                    <Grid item xs={12}  lg={12}>
                         <motion.h1
                             variants={fadeUp}
                             initial='hidden'
                             animate='visible'
                             transition={{ duration: 1.5 }}
-                            style={{ fontSize: '48px', fontWeight: '900', textAlign: 'center' }}
+                            style={{ fontSize: '42px', fontWeight: '900', textAlign: 'left' }}
                         >
-                            Welcome to RIGHTNET
+                            Get Airtime & Data With Ease
                         </motion.h1>
                         <motion.p
                             variants={fadeLeft}
                             initial='hidden'
                             animate='visible'
                             transition={{ duration: 2 }}
-                            style={{ fontSize: '18px', fontWeight: '500', textAlign: 'center' }}
+                            style={{ fontSize: '18px', fontWeight: '500', textAlign: 'left' }}
                         >
                             We offer services such as Data Bundle and Airtime TopUp, Bills Payments, Cable Subscription and lots more
-                        </motion.p>                    
+                        </motion.p>
+                        <div className={styles.group__btn}>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12}  lg={6}>
+                                    <Typography variant="h5" fontWeight="900" textAlign="center">
+                                        <NextLink href="/authentication/login">
+                                            <motion.div
+                                                variants={fadeLeft}
+                                                initial='hidden'
+                                                animate='visible'
+                                                transition={{ duration: 2 }}
+                                                style={{ fontSize: '18px', fontWeight: '500', textAlign: 'center' }}
+                                            ><Button className={styles.create__account__4}> Login To Continue </Button> 
+                                            </motion.div>
+                                        </NextLink>
+                                    </Typography>
+                                </Grid> 
+                                <Grid item xs={12}  lg={6}>
+                                    <Typography variant="h5" fontWeight="900" textAlign="center">
+                                        <NextLink href="/authentication/login">
+                                            <motion.div
+                                                variants={fadeRight }
+                                                initial='hidden'
+                                                animate='visible'
+                                                transition={{ duration: 2 }}
+                                                style={{ fontSize: '18px', fontWeight: '500', textAlign: 'center' }}
+                                            >
+                                                <Button className={styles.create__account__3}> Create An Account </Button> 
+                                            </motion.div>
+                                        </NextLink>
+                                    </Typography>
+                                </Grid> 
+                            </Grid>
+                        </div>                    
+                    </Grid>
                 </Grid>
+                <Grid xs={12} lg={7}></Grid>
             </Grid>
-            <div className={styles.group__btn}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}  lg={6}>
-                        <Typography variant="h5" fontWeight="900" textAlign="center">
-                            <NextLink href="/authentication/login">
-                                <motion.div
-                                    variants={fadeLeft}
-                                    initial='hidden'
-                                    animate='visible'
-                                    transition={{ duration: 2 }}
-                                    style={{ fontSize: '18px', fontWeight: '500', textAlign: 'center' }}
-                                ><Button className={styles.create__account__4}> Login To Continue </Button> 
-                                </motion.div>
-                            </NextLink>
-                        </Typography>
-                    </Grid> 
-                    <Grid item xs={12}  lg={6}>
-                        <Typography variant="h5" fontWeight="900" textAlign="center">
-                            <NextLink href="/authentication/login">
-                                <motion.div
-                                    variants={fadeRight }
-                                    initial='hidden'
-                                    animate='visible'
-                                    transition={{ duration: 2 }}
-                                    style={{ fontSize: '18px', fontWeight: '500', textAlign: 'center' }}
-                                >
-                                    <Button className={styles.create__account__3}> Create An Account </Button> 
-                                </motion.div>
-                            </NextLink>
-                        </Typography>
-                    </Grid> 
-                </Grid>
-            </div>
         </div>
         <div className={styles.row__style__3}>
             <div className={styles.container__style}>
                 <Typography variant="h1" fontWeight="900" textAlign="center" style={{ fontSize: '48px', marginBottom: '1em' }}>
                     Our Services
-                </Typography>   
-                <Grid container spacing={2}>
-                    {/* ------------------------- row 1 ------------------------- */}
-                    <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2}>
-                            <Box textAlign="left">
-                                <FeatherIcon icon="layers" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
-                                Airtime TopUp
-                            </Typography>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2_2}>
-                            <Box textAlign="left">
-                                <FeatherIcon icon="database" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
-                                Data Bundle Subscription
-                            </Typography>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2_3}>
-                            <Box textAlign="left">
-                                <FeatherIcon icon="cpu" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
-                                Cable Subscription
-                            </Typography>
-                        </div>
-                    </Grid>
-                </Grid>
-                <Grid container spacing={2}>
-                    {/* ------------------------- row 1 ------------------------- */}
-                    <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2_5}>
-                            <Box textAlign="left">
-                                <FeatherIcon icon="move" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
-                                Airtime To Cash
-                            </Typography>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2_4}>
-                            <Box textAlign="left">
-                                <FeatherIcon icon="layers" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
-                                Utility Bills Payments
-                            </Typography>
-                        </div>
-                    </Grid>
-                    <Grid item xs={12} lg={4}>
-                        <div className={styles.never__runout_text__2_7}>
-                            <Box textAlign="left">
-                                <FeatherIcon icon="layers" width="50" height="50" />
-                            </Box>
-                            <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
-                                Borrow Airtime
-                            </Typography>
-                        </div>
-                    </Grid>
-                </Grid>
+                </Typography>
+                    <AnimationOnScroll animateIn="animate__bounceIn">
+                        <Grid container spacing={2}>
+                            {/* ------------------------- row 1 ------------------------- */}
+                            <Grid item xs={12} lg={4}>
+                                <div className={styles.never__runout_text__2}>
+                                    <Box textAlign="left">
+                                        <FeatherIcon icon="layers" width="50" height="50" />
+                                    </Box>
+                                    <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                        Airtime TopUp
+                                    </Typography>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} lg={4}>
+                                <div className={styles.never__runout_text__2_2}>
+                                    <Box textAlign="left">
+                                        <FeatherIcon icon="database" width="50" height="50" />
+                                    </Box>
+                                    <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                        Data Bundle Subscription
+                                    </Typography>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} lg={4}>
+                                <div className={styles.never__runout_text__2_3}>
+                                    <Box textAlign="left">
+                                        <FeatherIcon icon="cpu" width="50" height="50" />
+                                    </Box>
+                                    <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                        Cable Subscription
+                                    </Typography>
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </AnimationOnScroll> 
+                    <AnimationOnScroll animateOnce={true} animateIn="animate__rubberBand">
+                        <Grid container spacing={2}>
+                            {/* ------------------------- row 1 ------------------------- */}
+                            <Grid item xs={12} lg={4}>
+                                <div className={styles.never__runout_text__2_5}>
+                                    <Box textAlign="left">
+                                        <FeatherIcon icon="move" width="50" height="50" />
+                                    </Box>
+                                    <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                        Airtime To Cash
+                                    </Typography>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} lg={4}>
+                                <div className={styles.never__runout_text__2_4}>
+                                    <Box textAlign="left">
+                                        <FeatherIcon icon="layers" width="50" height="50" />
+                                    </Box>
+                                    <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                        Utility Bills Payments
+                                    </Typography>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12} lg={4}>
+                                <div className={styles.never__runout_text__2_7}>
+                                    <Box textAlign="left">
+                                        <FeatherIcon icon="layers" width="50" height="50" />
+                                    </Box>
+                                    <Typography mt="2" variant="h4" fontWeight="900" textAlign="left">
+                                        Borrow Airtime
+                                    </Typography>
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </AnimationOnScroll> 
             </div>
         </div>
         <div className={styles.row__style__2}>

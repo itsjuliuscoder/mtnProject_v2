@@ -24,6 +24,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
+import img3 from "../../assets/images/backgrounds/33.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
 import axios from "axios";
 
@@ -121,7 +122,7 @@ const Login = () => {
               margin: "0 auto",
             }}
           >
-            <Image src={img1} alt="bg" maxWidth="812" />
+            <Image src={img3} alt="bg" maxWidth="812" minHeight="600" />
           </Box>
   
           <Box

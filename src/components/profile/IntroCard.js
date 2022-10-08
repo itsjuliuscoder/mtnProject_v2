@@ -16,7 +16,7 @@ const IntroCard = ({ data }) => (
           mt: '17px',
         }}
       >
-        Hello, I am {data && data.firstname && data.firstname ? data.firstname + " " + data.lastname : "No name" }. 
+        Hello, I am {data && data.firstname && data.lastname ? data.firstname + " " + data.lastname : "No name" }. 
       </Typography>
       <Box
         display="flex"

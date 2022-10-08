@@ -213,32 +213,34 @@ const Dashboard1 = () => {
     { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
-        <Grid item xs={12} lg={6}>
-          <WelcomeCard data={userData} time={currentTimeGreetings} clickAction={handleClickOpen} />
-        </Grid>
-        <Grid item xs={12} lg={6}>
+        
           <Grid container spacing={0}>
-            <Grid item xs={12} lg={6} sm={6}>
+            <Grid item xs={12} lg={6} sm={3}>
+              <WelcomeCard data={userData} time={currentTimeGreetings} clickAction={handleClickOpen} />
+            </Grid>
+            <Grid item xs={12} lg={6} sm={3}>
               <Earnings data={userData} />
             </Grid>
-            <Grid item xs={12} lg={6} sm={6}>
+            <Grid item xs={12} lg={6} sm={3}>
+              <MonthlySales data={userData} />
+            </Grid>
+            <Grid item xs={12} lg={6} sm={3}>
               <MonthlySales data={userData} />
             </Grid>
           </Grid>
+        {/* ------------------------- row 3 ------------------------- */}
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="AIRTIME TOPUP" logo={airtime} link="airtime" />
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="DATA SUBSCRIPTION" logo={data} link="data"  />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop color="#C5C5C5" title="AIRTIME TOPUP" logo={airtime} link="airtime" />
+          <EarningsShop title="UTILITY BILLS" logo={utility} color="#fff" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="DATA SUBSCRIPTION" logo={data} color="#C5C5C5" link="data"  />
-        </Grid>
-        {/* ------------------------- row 3 ------------------------- */}
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="UTILITY BILLS" logo={utility} color="#C5C5C5" />
-        </Grid>
-        <Grid item xs={12} lg={3}>
-          <EarningsShop title="TRANSFER" logo={utility} color="#C5C5C5" />
+          <EarningsShop title="TRANSFER" logo={utility} color="#fff" />
         </Grid>
         {/* ------------------------- row 2 ------------------------- */}
         <Grid item xs={12} lg={12}>

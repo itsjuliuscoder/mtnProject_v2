@@ -241,7 +241,7 @@ const CoverCard = ({ data, balAmount }) => (
                     textAlign: "center",
                   }}
                 >
-                  {data && data.firstname && data.firstname ? data.lastname + " " + data.lastname : "No name" }
+                  {data && data.firstname && data.firstname ? data.firstname + " " + data.lastname : "No name" }
                 </Typography>
                 <Typography
                   color="textSecondary"

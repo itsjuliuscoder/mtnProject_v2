@@ -13,10 +13,6 @@ const WelcomeCard = ({ data, time, clickAction }) => (
       position: "relative",
     }}
   >
-    <Box className="bg-img-1">
-      <Image src={imgsvg} alt="welcome-img" />
-    </Box>
-
     <CardContent>
       <Typography
         sx={{
@@ -31,11 +27,7 @@ const WelcomeCard = ({ data, time, clickAction }) => (
       >
         {time ? time : 'Hey'} {data && data.firstname ? data.firstname : 'User'}, <br />
       </Typography>
-      <Typography
-            variant="h5"            
-          >
-            Welcome to <b>RightNet</b>
-          </Typography>
+
       { data.isPin ?     
         <Button
             sx={{

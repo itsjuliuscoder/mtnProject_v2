@@ -79,7 +79,7 @@ const MonthlySales = ({ data }) => {
               }}
               gutterBottom
             >
-              Bonus
+              Cashback Bonus
             </Typography>
             <Typography
               variant="h2"
@@ -98,7 +98,7 @@ const MonthlySales = ({ data }) => {
                   mb: "0px",
                 }}
             >
-            <b>REFERRAL CODE:</b> {data && data.referral_code ? data.referral_code : ""}
+            <b>Referral Code:</b> {data && data.referral_code ? data.referral_code : ""}
             </Typography>
           </Box>
 
