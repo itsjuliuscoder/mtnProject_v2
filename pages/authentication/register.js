@@ -347,7 +347,7 @@ const Register = () => {
                     }}
                     onClick={() => setIsloading(!isloading)}
                   >
-                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} />: 'Sign Up' }
+                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={50} />: 'Sign Up' }
                   </Button>
                 {/* </NextLink> */}
               </form>

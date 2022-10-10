@@ -5,8 +5,9 @@ import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
-import data from "../../assets/images/logos/data_sub.png"
-import airtime from "../../assets/images/logos/airtime-icon-hd.png";
+import data from "../../assets/images/logos/data_sub.png";
+import transfer from "../../assets/images/logos/transfer.png";
+import airtime from "../../assets/images/logos/airtime_topup.png";
 import {
   List,
   Divider,
@@ -111,7 +112,7 @@ const Services = () => {
           <EarningsShop title="UTILITY BILLS" logo={utility} color="#fff" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="TRANSFER" logo={utility} color="#fff" />
+          <EarningsShop title="TRANSFER" logo={transfer} color="#fff" />
         </Grid>      
       </Grid> 
     }

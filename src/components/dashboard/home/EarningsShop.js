@@ -10,41 +10,25 @@ const EarningsShop = ({ title, color, logo, link }) => (
     elevation={0}
   >
     <CardContent>
-      <Box display="flex" alignItems="center">
-        <Box>
-          <Typography
-            fontWeight="700"
-            variant="h4" 
-            color="textSecondary"            
-          >
-            
-          </Typography>
-          <Typography
-            variant="h3"            
-          >
-            {title}
-          </Typography>
-        </Box>
-        {/* <Box
-          sx={{
-            ml: 'auto',
-          }}
-        > */}
-          {/* <Fab
-            elevation="0"
-            aria-label="dollar"
-            sx={{
-              color: '#fff',
-              width: '90px',
-              height: '90px',
-            }}
-          > */}
-            <Image src={logo} width="60" height="60" alt="logo" />
-            {/* <FeatherIcon icon="dollar-sign" width="24" height="24" /> */}
-          {/* </Fab> */}
-        {/* </Box> */}
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Image src={logo} width="60" height="60" alt="logo" />
       </Box>
-      {
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Box>
+        {link === "airtime" ? 
+        <NextLink href="/dashboards/purchase/airtime">
+            {title}          
+        </NextLink> 
+        : link === "data" ? <NextLink href="/dashboards/purchase/data">
+            {title}          
+        </NextLink>
+        : <NextLink href="/dashboards/purchase/">
+              {title}          
+          </NextLink>
+        }
+        </Box>
+      </Box>
+      {/* {
         link === "airtime" ? <NextLink href="/dashboards/purchase/airtime">
         <Button
           sx={{
@@ -68,7 +52,7 @@ const EarningsShop = ({ title, color, logo, link }) => (
         Click Here
       </Button>
         </NextLink>
-      }
+      } */}
     </CardContent>
   </Card>
 );

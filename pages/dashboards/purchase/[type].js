@@ -106,7 +106,7 @@ const Purchase = () => {
 
   return (
     <>
-      { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> : <CustomForm data={userData} acctype={subType} services={dataServices} /> }
+      { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={50} /> : <CustomForm data={userData} acctype={subType} services={dataServices} /> }
     </>
   );
 };

@@ -256,7 +256,7 @@ const FbDefaultForm = ({ data }) => {
                     }}
                     onClick={() => setIsloading(!isloading)}
                   >
-                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} /> : 'Top Up' }
+                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={50} /> : 'Top Up' }
                   </Button> */}
                   <Grid xs={12} md={4} lg={4}>
                       <PaystackButton className={styles.paystack__button} {...componentProps} />

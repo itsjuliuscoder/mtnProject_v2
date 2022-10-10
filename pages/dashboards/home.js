@@ -1,12 +1,13 @@
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from "react";
+import airtime from "../../assets/images/logos/airtime_topup.png";
 import mtn from "../../assets/images/logos/mtn.png"
 import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
-import data from "../../assets/images/logos/data_sub.png"
-import airtime from "../../assets/images/logos/airtime-icon-hd.png";
+import transfer from "../../assets/images/logos/transfer.png"
+import data from "../../assets/images/logos/data_sub.png";
 import ErrorToaster from "../../src/components/dashboard/home/ErrorToaster";
 import {
   List,
@@ -43,7 +44,6 @@ import axios from "axios";
 import styles from "../../styles/Component.module.css";
 import NextLink from "next/link";
 import Router from "next/router";
-
 
 
 const Home = () => {
@@ -211,7 +211,7 @@ const Home = () => {
 
   return (
     <>
-    { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
+    { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={50} /> :
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
         
@@ -241,7 +241,7 @@ const Home = () => {
           <EarningsShop title="UTILITY BILLS" logo={utility} color="#fff" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="TRANSFER" logo={utility} color="#fff" />
+          <EarningsShop title="TRANSFER" logo={transfer} color="#fff" />
         </Grid>
         {/* ------------------------- row 2 ------------------------- */}
         <Grid item xs={12} lg={12}>

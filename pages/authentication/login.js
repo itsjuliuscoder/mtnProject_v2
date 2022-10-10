@@ -250,7 +250,7 @@ const Login = () => {
                     }}
                     onClick={() => setIsloading(!isloading)}
                   >
-                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={30} /> : 'Sign In' }
+                    {isloading ? <MoonLoader color="#fff" loading={isloading} size={50} /> : 'Sign In' }
                   </Button>
                 {/* </NextLink> */}
               </form>
