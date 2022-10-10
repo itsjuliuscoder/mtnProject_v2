@@ -46,7 +46,7 @@ import Router from "next/router";
 
 
 
-const home = () => {
+const Home = () => {
   const [open, setOpen] = useState(false);
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
@@ -352,4 +352,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;
