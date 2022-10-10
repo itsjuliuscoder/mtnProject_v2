@@ -8,7 +8,7 @@ const Menuitems = [
   {
     title: "Dashboard",
     icon: "pie-chart",
-    href: "/dashboards/dashboard1",
+    href: "/dashboards/home",
   },
   {
     navlabel: true, 

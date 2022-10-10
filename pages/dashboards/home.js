@@ -7,7 +7,7 @@ import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
 import data from "../../assets/images/logos/data_sub.png"
 import airtime from "../../assets/images/logos/airtime-icon-hd.png";
-import ErrorToaster from "../../src/components/dashboard/dashboard1/ErrorToaster";
+import ErrorToaster from "../../src/components/dashboard/home/ErrorToaster";
 import {
   List,
   Divider,
@@ -34,10 +34,11 @@ import {
     WeeklyStats,
     DailyActivities,
     EarningsShop, 
-    Pricing
-  } from '../../src/components/dashboard/dashboard1';
+    Pricing,
+    Monthly
+  } from '../../src/components/dashboard/home';
 
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 import axios from "axios";
 import styles from "../../styles/Component.module.css";
 import NextLink from "next/link";
@@ -45,7 +46,7 @@ import Router from "next/router";
 
 
 
-const Dashboard1 = () => {
+const home = () => {
   const [open, setOpen] = useState(false);
   const [openPinModal, setPinModal] = useState(false);
   const [ isloading, setIsloading ] = useState(true);
@@ -210,7 +211,7 @@ const Dashboard1 = () => {
 
   return (
     <>
-    { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
+    { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
         
@@ -225,7 +226,7 @@ const Dashboard1 = () => {
               <MonthlySales data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={3}>
-              <MonthlySales data={userData} />
+              <Monthly data={userData} />
             </Grid>
           </Grid>
         {/* ------------------------- row 3 ------------------------- */}
@@ -351,4 +352,4 @@ const Dashboard1 = () => {
   );
 };
 
-export default Dashboard1;
+export default home;

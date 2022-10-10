@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 import CustomForm from "../../../src/components/forms/fb-elements/CustomForm";
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 import Router from "next/router";
 import axios from "axios";
 
@@ -106,7 +106,7 @@ const Purchase = () => {
 
   return (
     <>
-      { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> : <CustomForm data={userData} acctype={subType} services={dataServices} /> }
+      { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> : <CustomForm data={userData} acctype={subType} services={dataServices} /> }
     </>
   );
 };

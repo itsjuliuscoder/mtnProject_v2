@@ -5,6 +5,8 @@ import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
+import data from "../../assets/images/logos/data_sub.png"
+import airtime from "../../assets/images/logos/airtime-icon-hd.png";
 import {
   List,
   Divider,
@@ -30,9 +32,9 @@ import {
     DailyActivities,
     EarningsShop, 
     Pricing
-  } from '../../src/components/dashboard/dashboard1';
+  } from '../../src/components/dashboard/home';
 
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 import axios from "axios";
 import FbBasicHeaderForm from '../../src/components/forms/fb-elements/FbBasicHeaderForm';
 
@@ -63,7 +65,7 @@ const Services = () => {
   };
 
   React.useEffect(() =>{
-    setTimeout(() => setIsloading(false), 3000);
+    setTimeout(() => setIsloading(false), 5000);
   });
 
   useEffect(() => {
@@ -94,14 +96,22 @@ const Services = () => {
 
   return (
     <>
-    { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
+    { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '20%', display: 'block' }} size={50} /> :
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
-        <Grid item xs={12} lg={6}>
-            <MonthlySales data={userData} />
+        {/* ------------------------- row 3 ------------------------- */}
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="AIRTIME TOPUP" logo={airtime} link="airtime" />
         </Grid>
-        <Grid item xs={12} lg={12}>
-            <ProductPerformance data={userData} />
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="DATA SUBSCRIPTION" logo={data} link="data"  />
+        </Grid>
+        {/* ------------------------- row 3 ------------------------- */}
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="UTILITY BILLS" logo={utility} color="#fff" />
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="TRANSFER" logo={utility} color="#fff" />
         </Grid>      
       </Grid> 
     }

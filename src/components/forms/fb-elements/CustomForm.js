@@ -22,8 +22,8 @@ import CustomTextField from "../custom-elements/CustomTextField";
 import styles from "../../../../styles/Component.module.css";
 import axios from "axios";
 import NextLink from "next/link";
-import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
-import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster";
+import ErrorToaster from "../../dashboard/home/ErrorToaster"
+import SuccessToaster from "../../dashboard/home/SuccessToaster";
 import { useRouter } from "next/router";
 
 const initalValues = {
@@ -161,7 +161,7 @@ const CustomForm = ({ data, acctype, services }) => {
           if(response.data.statusCode === "0000"){
             setResponse(response.data.statusMessage);
             setTimeout(() => {
-              Router.replace("/dashboards/dashboard1");
+              Router.replace("/dashboards/home");
             }, 2000)
           } else {
             console.log("this is the response gotten", response);
@@ -171,7 +171,7 @@ const CustomForm = ({ data, acctype, services }) => {
             // setIsloading(false);
             console.log("this is the error response gotten", error);
             setTimeout(() => {
-                Router.replace("/dashboards/dashboard1");
+                Router.replace("/dashboards/home");
             }, 3000);
           setErrorResponse("Topup or bundle activation failed");
           setTimeout(setEmptyAlert, 5000);
@@ -237,7 +237,7 @@ const CustomForm = ({ data, acctype, services }) => {
           if(response.data.statusCode === "0000"){
             setResponse(response.data.statusMessage);
             setTimeout(() => {
-              Router.replace("/dashboards/dashboard1");
+              Router.replace("/dashboards/home");
             }, 2000)
           } else {
             console.log("this is the response gotten", response);
@@ -247,7 +247,7 @@ const CustomForm = ({ data, acctype, services }) => {
             // setIsloading(false);
             console.log("this is the error response gotten", error);
             setTimeout(() => {
-                Router.replace("/dashboards/dashboard1");
+                Router.replace("/dashboards/home");
             }, 3000);
           setErrorResponse("Data Top Up Failed");
           setTimeout(setEmptyAlert, 5000);

@@ -18,7 +18,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
 import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
-import ErrorToaster from "../../src/components/dashboard/dashboard1/ErrorToaster";
+import ErrorToaster from "../../src/components/dashboard/home/ErrorToaster";
 import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 import MoonLoader from "react-spinners/MoonLoader";
 
@@ -67,7 +67,7 @@ const Login = () => {
         console.log("this is the response data -->", response.data);
         setIsloading(false);
         if(response.data.statusCode === "000"){
-          router.push('/dashboards/dashboard1');
+          router.push('/dashboards/home');
           setResponse(response.data.statusMessage);
           const token = response.data.accessToken;
           const data = response.data;

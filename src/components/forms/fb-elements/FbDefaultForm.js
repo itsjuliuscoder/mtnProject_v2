@@ -21,8 +21,8 @@ import { PaystackButton } from 'react-paystack';
 import styles from "../../../../styles/Component.module.css";
 import MoonLoader from "react-spinners/MoonLoader";
 import axios from "axios";
-import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
-import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster";
+import ErrorToaster from "../../dashboard/home/ErrorToaster"
+import SuccessToaster from "../../dashboard/home/SuccessToaster";
 import { useRouter } from "next/router";
 
 const FbDefaultForm = ({ data }) => {
@@ -95,7 +95,7 @@ const FbDefaultForm = ({ data }) => {
         if(response.data.statusCode === "000"){
           setResponse(response.data.statusMessage);
           setTimeout(() => {
-            Router.replace("/dashboards/dashboard1");
+            Router.replace("/dashboards/home");
           }, 3000)
         } else {
           console.log("this is the response gotten", response);

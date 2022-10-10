@@ -9,7 +9,7 @@ import NewPost from '../../src/components/profile/NewPost';
 import ImgPost from '../../src/components/profile/ImgPost';
 import TypographyPost from '../../src/components/profile/TypographyPost';
 import axios from "axios";
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 
 const UserProfile = () => {
   const [ isloading, setIsloading ] = useState(true);

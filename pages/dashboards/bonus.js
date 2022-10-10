@@ -30,9 +30,9 @@ import {
     DailyActivities,
     EarningsShop, 
     Pricing
-  } from '../../src/components/dashboard/dashboard1';
+  } from '../../src/components/dashboard/home';
 
-import BeatLoader from "react-spinners/BeatLoader";
+import BounceLoader from "react-spinners/BounceLoader";
 import axios from "axios";
 import FbBasicHeaderForm from '../../src/components/forms/fb-elements/FbBasicHeaderForm';
 
@@ -94,7 +94,7 @@ const Bonus = () => {
 
   return (
     <>
-    { isloading ? <BeatLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
+    { isloading ? <BounceLoader color="#000" loading={isloading} cssOverride={{ margin: '22em auto', width: '10%', display: 'block' }} size={30} /> :
       <Grid container spacing={0}>
         {/* ------------------------- row 1 ------------------------- */}
         <Grid item xs={12} lg={6}>

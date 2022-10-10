@@ -17,8 +17,8 @@ import CustomSelect from '../custom-elements/CustomSelect';
 import CustomRadio from '../custom-elements/CustomRadio';
 import CustomFormLabel from '../custom-elements/CustomFormLabel';
 import MoonLoader from "react-spinners/MoonLoader";
-import ErrorToaster from "../../dashboard/dashboard1/ErrorToaster"
-import SuccessToaster from "../../dashboard/dashboard1/SuccessToaster";
+import ErrorToaster from "../../dashboard/home/ErrorToaster"
+import SuccessToaster from "../../dashboard/home/SuccessToaster";
 import axios from "axios";
 import { useRouter } from "next/router";
 
