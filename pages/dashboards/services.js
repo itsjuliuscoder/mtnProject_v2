@@ -1,13 +1,16 @@
 import { Grid } from '@mui/material';
 import React, { useState, useEffect } from "react";
+import airtime from "../../assets/images/logos/airtime_topup.png";
 import mtn from "../../assets/images/logos/mtn.png"
 import mobile from "../../assets/images/logos/9mobile.png"
 import airtel from "../../assets/images/logos/airtel.png"
 import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
+import transfer from "../../assets/images/logos/transfer.png"
 import data from "../../assets/images/logos/data_sub.png";
-import transfer from "../../assets/images/logos/transfer.png";
-import airtime from "../../assets/images/logos/airtime_topup.png";
+import cable from "../../assets/images/logos/cable_tv_sub.png";
+import loan from "../../assets/images/logos/loans.png";
+
 import {
   List,
   Divider,
@@ -102,18 +105,27 @@ const Services = () => {
         {/* ------------------------- row 1 ------------------------- */}
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="AIRTIME TOPUP" logo={airtime} link="airtime" />
+          <EarningsShop title="Airtime Topup" logo={airtime} link="airtime" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="DATA SUBSCRIPTION" logo={data} link="data"  />
+          <EarningsShop title="Data Subscription" logo={data} link="data"  />
         </Grid>
         {/* ------------------------- row 3 ------------------------- */}
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="UTILITY BILLS" logo={utility} color="#fff" />
+          <EarningsShop title="Utility Bills" logo={utility} color="#fff" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="TRANSFER" logo={transfer} color="#fff" />
-        </Grid>      
+          <EarningsShop title="Transfer" logo={transfer} color="#fff" />
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="Cable Subscription" logo={cable} color="#fff" />
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="Cash Back" logo={cable} color="#fff" />
+        </Grid>
+        <Grid item xs={12} lg={3}>
+          <EarningsShop title="Loan" logo={loan} color="#fff" />
+        </Grid>
       </Grid> 
     }
     </>
