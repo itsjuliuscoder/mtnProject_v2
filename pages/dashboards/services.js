@@ -123,9 +123,9 @@ const Services = () => {
         <Grid item xs={12} lg={3}>
           <EarningsShop title="Cash Back" logo={cable} color="#fff" />
         </Grid>
-        <Grid item xs={12} lg={3}>
+        {/* <Grid item xs={12} lg={3}>
           <EarningsShop title="Loan" logo={loan} color="#fff" />
-        </Grid>
+        </Grid> */}
       </Grid> 
     }
     </>
