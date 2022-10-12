@@ -9,6 +9,7 @@ import utility from "../../assets/images/logos/utility.png"
 import transfer from "../../assets/images/logos/transfer.png"
 import data from "../../assets/images/logos/data_sub.png";
 import cable from "../../assets/images/logos/cable_tv_sub.png";
+import cashback from "../../assets/images/logos/cash_back.png";
 // import loan from "../../assets/images/logos/Loans.png";
 import ErrorToaster from "../../src/components/dashboard/home/ErrorToaster";
 import {
@@ -249,7 +250,7 @@ const Home = () => {
           <EarningsShop title="Cable Subscription" logo={cable} color="#fff" />
         </Grid>
         <Grid item xs={12} lg={3}>
-          <EarningsShop title="Cash Back" logo={cable} color="#fff" />
+          <EarningsShop title="Cash Back" logo={cashback} color="#fff" />
         </Grid>
         {/* <Grid item xs={12} lg={3}>
           <EarningsShop title="Loan" logo={loan} color="#fff" />
