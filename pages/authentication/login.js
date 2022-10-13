@@ -25,7 +25,9 @@ import MoonLoader from "react-spinners/MoonLoader";
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
 import img3 from "../../assets/images/backgrounds/33.png";
+import img4 from "../../assets/images/backgrounds/login-bg2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
+import BGImage from "../../assets/images/backgrounds/background-bg.png";
 import axios from "axios";
 
 // const validationSchema = yup.object({
@@ -122,7 +124,7 @@ const Login = () => {
               margin: "0 auto",
             }}
           >
-            <Image src={img3} alt="bg" maxWidth="812" minHeight="600" />
+            <Image src={BGImage} alt="bg" maxWidth="1112" minHeight="1600" />
           </Box>
   
           <Box
