@@ -203,13 +203,13 @@ const CustomForm = ({ data, acctype, services }) => {
           if(response.data.statusCode === "000"){
             // setResponse(response.data.statusMessage);
             // return response.data.statusCode;
-            if(paymentType == "wallet"){
+            if(paymentType == "Wallet"){
               if(balanceAmount >= amount){
                 setOpen(true);
               } else {
                 setErrorResponse("Insufficient Balance, Kindly TopUp Wallet");
               }
-            } else if(paymentType == "bonus"){
+            } else {
               if((bonusAmount >= "1000") && (bonusAmount >= amount)){
                 setOpen(true);
               } else {
