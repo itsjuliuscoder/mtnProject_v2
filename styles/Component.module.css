@@ -585,4 +585,12 @@ ul.row__line li {
         position: relative;
         padding: 12px;
     }
+    .loginImg {
+        width: 100%;
+        padding: 2em;
+        background: url("../assets/images/backgrounds/logInPage.gif");
+        background-size: cover;
+        background-position: left center;
+        min-height: 250px;
+    }
 }
