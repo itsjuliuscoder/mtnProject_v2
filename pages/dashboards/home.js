@@ -192,7 +192,7 @@ const Home = () => {
         setIsloading(false);
         if(response.data.statusCode === "000"){
           // setUserResponseData(response.data.payload);
-          setReferralCount()
+          setReferralCount(response.data.totalReferrals);
         } else {
           console.log("this is the response gotten", response);
         }
