@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Image from "next/image";
+import { DataGrid } from '@mui/x-data-grid';
 import {
   Typography,
   Box,
@@ -9,6 +10,8 @@ import {
   TableHead,
   TableRow,
   Avatar,
+  Card,
+  CardContent,
   Chip,
 } from '@mui/material';
 import ThemeSelect from './ThemeSelect';
@@ -125,69 +128,66 @@ const ProductPerformance = ({ data }) => {
     })
   };
 
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 150 },
+    // { field: 'reference_id', headerName: 'Reference ID', width: 130 },
+    { 
+      field: 'createdAt',
+      headerName: 'Transaction Date',
+      width: 250,
+      // valueGetter: (transactionData) =>
+      //   `${moment(transactionData.createdAt).format("yyyy-M-D") || ''}`,
+    },
+    {
+      field: 'amount',
+      headerName: 'Amount',
+      type: 'number',
+      width: 130,
+    },
+    {
+      field: 'description',
+      headerName: 'Description',
+      width: 600,
+    },
+    // {
+    //   field: 'fullName',
+    //   headerName: 'Full name',
+    //   description: 'This column has a value getter and is not sortable.',
+    //   sortable: false,
+    //   width: 160,
+    //   valueGetter: (transactionData) =>
+    //     `${moment(transactionData.createdAt).format("yyyy-M-D") || ''}`,
+    // },
+  ];
+  
+  const transactionD = transactionData.map(({ reference_id: id, createdAt, amount, description, }) => ({ id, createdAt, amount, description }));
+
+  console.log("this is the formatted transaction data --->", transactionD);
+
+  const rows = [
+    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  ];
+
   return (
-    <DashboardCard
-      title="Transaction History"
-      subtitle="Ample Admin Vs Pixel Admin"
-      customdisplay="block"
-      custommargin="10px"
-      action={<ThemeSelect />}
-    >
-      <Box
-        sx={{
-          overflow: 'auto',
-          mt: -3,
-        }}
-      >
-        <Table
-          aria-label="simple table"
-          sx={{
-            whiteSpace: 'nowrap',
-          }}
-        >
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                <Typography variant="h5">Reference ID</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h5">Transaction Date</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h5">Amount</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography variant="h5">Description</Typography>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {transactionData ? transactionData.map((transaction) => (
-              <TableRow key={transaction.id}>
-                <TableCell>
-                  <Typography color="textSecondary" variant="h6">
-                    {transaction.reference_id}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography color="textSecondary" variant="h6">
-                    {moment(transaction.createdAt).format("MMMM, DD YYYY HH:mm:ss")}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography color="textSecondary" variant="h6">
-                  ₦{transaction.amount}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="h6">{transaction.description}</Typography>
-                </TableCell>
-              </TableRow>
-            )) : "No Transaction Data" }
-          </TableBody>
-        </Table>
-      </Box>
-    </DashboardCard>
+    <Card>
+        <div style={{ height: 400, width: '100%' }}>
+          <DataGrid
+            rows={transactionD}
+            columns={columns}
+            pageSize={5}
+            rowsPerPageOptions={[5]}
+            checkboxSelection
+          />
+        </div>
+    </Card>
   );  
 }
 export default ProductPerformance;

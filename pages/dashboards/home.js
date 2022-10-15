@@ -351,7 +351,7 @@ const Home = () => {
             {/* <Button onClick={handleClose} color="primary" variant="contained">
               Send
             </Button> */}
-            <Button onClick={open} color="secondary">
+            <Button onClick={handleClose} color="secondary">
               Cancel
             </Button>
           </DialogActions>

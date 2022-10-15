@@ -13,6 +13,12 @@ import {
     MenuItem,
     FormControl,
     TextField,
+    Dialog,
+    DialogTitle,
+    Slide,
+    DialogContent,
+    DialogActions,
+    DialogContentText,
     Modal
 } from '@mui/material';
 
@@ -267,26 +273,36 @@ const CustomForm = ({ data, acctype, services }) => {
   return (
       <>
         <div>
-          <Modal
+          <Dialog
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
           >
-            <Box className={styles.modal___window__3}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                <h2>Transaction Details</h2>
-                <p><b>Amount: </b>{amount}</p>
-                <p><b>Amount To Pay: </b>{amountTP}</p>
-                <p><b>Payment Description: </b>{paymentDesc}</p>
-              </Typography>
+            <DialogTitle id="alert-dialog-slide-title" variant="h4" textAlign="center" style={{ marginTop: '2em' }}>
+              Transaction Details
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                <Typography id="modal-modal-title" variant="h6" component="h2" textAlign="center">
+                <p><b style={{ fontWeight: '900', fontSize: '16px', color: "#000" }}>Beneficiary Phone number: </b><br/> {phone} </p>
+                <p><b style={{ fontWeight: '900', fontSize: '16px', color: "#000" }}>Value Amount: </b><br/>₦{amount} </p>
+                <p><b style={{ fontWeight: '900', fontSize: '16px', color: "#000" }}>Amount To Pay: </b><br/>₦{amountTP}  </p>
+                <p><b style={{ fontWeight: '900', fontSize: '16px', color: "#000" }}>Payment Description: </b><br/>{paymentDesc}  {phone} </p>
+                </Typography>
+              </DialogContentText>
+            </DialogContent>  
+            <DialogActions>
               {acctype && acctype=="airtime" ? <Button onClick={completeAirtime} sx={{ mt: 2 }} variant="contained" color="success">
-                  Buy Airtime
+                Buy Airtime
               </Button> : <Button onClick={completeData} sx={{ mt: 2 }} variant="contained" color="success">
-                  Buy Data
+                Buy Data
               </Button> }
-            </Box>
-          </Modal>
+              <Button onClick={handleClose} variant="contained" color="danger" sx={{ mt: 2 }}>
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       <Card
         sx={{

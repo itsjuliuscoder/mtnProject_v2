@@ -6,8 +6,8 @@ const Footer = () => {
     <Box sx={{ p: 3, textAlign: "center" }}>
       <Typography>
         © 2022 All rights reserved by{" "}
-        <Link href="#">
-          <a>rightNet</a>
+        <Link href="https://techcapacitybuilder.com/">
+          <a>Tech Capcitiy Builders</a>
         </Link>{" "}
       </Typography>
     </Box>

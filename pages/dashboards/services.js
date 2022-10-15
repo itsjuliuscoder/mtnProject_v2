@@ -8,6 +8,7 @@ import glo from "../../assets/images/logos/glo.png"
 import utility from "../../assets/images/logos/utility.png"
 import transfer from "../../assets/images/logos/transfer.png"
 import data from "../../assets/images/logos/data_sub.png";
+import cashback from "../../assets/images/logos/cash_back.png";
 import cable from "../../assets/images/logos/cable_tv_sub.png";
 // import loan from "../../assets/images/logos/loans.png";
 
