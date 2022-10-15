@@ -157,6 +157,7 @@ const CustomForm = ({ data, acctype, services }) => {
           phone_number: data.phone_number,
           msisdn: phone,
           amount: parseInt(amount),
+          paymentType: paymentType,
           amount_charged: amountTP,
           pin: pin
           // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
@@ -242,6 +243,7 @@ const CustomForm = ({ data, acctype, services }) => {
           msisdn: phone,
           amount: parseInt(amount),
           amount_charged: amountTP,
+          paymentType: paymentType,
           pin: pin
           // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
           // description: "Wallet Top up with amount " + amount + " was successful"
