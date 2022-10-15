@@ -27,7 +27,6 @@ import img1 from "../../assets/images/backgrounds/login2.png";
 import img3 from "../../assets/images/backgrounds/33.png";
 import img4 from "../../assets/images/backgrounds/login-bg2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
-import BGImage from "../../assets/images/backgrounds/loginPage.gif";
 import axios from "axios";
 import styles from "../../styles/Component.module.css";
 
