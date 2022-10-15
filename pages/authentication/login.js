@@ -27,8 +27,9 @@ import img1 from "../../assets/images/backgrounds/login2.png";
 import img3 from "../../assets/images/backgrounds/33.png";
 import img4 from "../../assets/images/backgrounds/login-bg2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
-import BGImage from "../../assets/images/backgrounds/background-bg.png";
+import BGImage from "../../assets/images/backgrounds/loginPage.gif";
 import axios from "axios";
+import styles from "../../styles/Component.module.css";
 
 // const validationSchema = yup.object({
 //   email: yup
@@ -99,11 +100,8 @@ const Login = () => {
         item
         xs={12}
         sm={12}
-        lg={6}
-        sx={{
-          background: (theme) =>
-            `${theme.palette.mode === "dark" ? "#1c1f25" : "#ffffff"}`,
-        }}
+        lg={7}
+        className={styles.loginImg}
       >
         <Box
           sx={{
@@ -124,28 +122,13 @@ const Login = () => {
               margin: "0 auto",
             }}
           >
-            <Image src={BGImage} alt="bg" maxWidth="1112" minHeight="1600" />
-          </Box>
-  
-          <Box
-            sx={{
-              p: 4,
-              position: "absolute",
-              top: "0",
-            }}
-          >
-            <LogoIcon />
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={8} lg={6} display="flex" alignItems="center">
+      <Grid item xs={12} sm={8} lg={5} display="flex" alignItems="center">
         <Grid container spacing={0} display="flex" justifyContent="center">
           <Grid item xs={12} lg={9} xl={6}>
-            <Box
-              sx={{
-                p: 4,
-              }}
-            >
+            <Box>
               <Typography fontWeight="700" variant="h2">
                 Welcome to RightNet
               </Typography>

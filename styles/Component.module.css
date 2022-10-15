@@ -175,6 +175,15 @@
     min-height: 250px;
 }
 
+.loginImg {
+    width: 100%;
+    padding: 2em;
+    background: url("../assets/images/backgrounds/logInPage.gif");
+    background-size: cover;
+    background-position: center center;
+    min-height: 250px;
+}
+
 .never__runout_text__2_5 {
     margin: 1em auto;
     width: 100%;
