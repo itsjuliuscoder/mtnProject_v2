@@ -1,13 +1,13 @@
 .banner_bg {
     width: 100%;
-    padding: 13em;
+    padding: 9em;
     position: relative;
     background: url("../assets/images/backgrounds/11.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     color: #000 !important;
-    min-height: 680px;
+    min-height: 600px;
 }
 
 .row__steps {
@@ -177,10 +177,10 @@
 
 .loginImg {
     width: 100%;
-    padding: 2em;
+    padding: 2px;
     background: url("../assets/images/backgrounds/logInPage.gif");
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     min-height: 250px;
 }
 

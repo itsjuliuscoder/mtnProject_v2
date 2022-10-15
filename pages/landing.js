@@ -17,7 +17,7 @@ import {motion, Variants} from 'framer-motion';
 import pkg from 'react';
 const { useReducer, useRef, useLayoutEffect } = pkg;
 import StartedImage from "../assets/images/backgrounds/rightnet_logo.png";
-import LogoImg from "../assets/images/logos/rightnet.jpg";
+import LogoImg from "../assets/images/logos/rightnet.png";
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 export default function Landing() {

@@ -99,7 +99,7 @@ const Login = () => {
         item
         xs={12}
         sm={12}
-        lg={7}
+        lg={8}
         className={styles.loginImg}
       >
         <Box
@@ -124,9 +124,9 @@ const Login = () => {
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={8} lg={5} display="flex" alignItems="center">
+      <Grid item xs={12} sm={8} lg={4} display="flex" alignItems="center">
         <Grid container spacing={0} display="flex" justifyContent="center">
-          <Grid item xs={12} lg={9} xl={6}>
+          <Grid item xs={12} lg={12} xl={6}>
             <Box>
               <Typography fontWeight="700" variant="h2">
                 Welcome to RightNet
@@ -153,7 +153,7 @@ const Login = () => {
                       cursor: "pointer",
                     }}
                   >
-                    Create an account
+                    Sign Up
                   </Typography>
                 </NextLink>
               </Box>
