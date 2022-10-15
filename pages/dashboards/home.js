@@ -61,6 +61,7 @@ const Home = () => {
   const [ accessToken, setAccessToken ] = useState('');
   const [ pinModalCheck, setPinModalCheck ] = useState(false);  
   const [currentTimeGreetings, setTimeGreeting] = useState("");
+  const [referralCount, setReferralCount] = useState("");
 
   const Transition = React.forwardRef((props, ref) => (
     <Slide direction="up" ref={ref} {...props} />
@@ -100,6 +101,7 @@ const Home = () => {
     setUserData(currentUser);
     retrieveUserDetails();
     validateToken();
+    getReferrals();
     // ((userData.isPin == false)) ? setPinModalCheck(true) : setPinModalCheck(false);
     currentDate();
     if(userData.isPin == false){
@@ -156,6 +158,41 @@ const Home = () => {
           // setUserResponseData(response.data.payload);
           setBalanceAmount(response.data.payload.wallet_balance);
           setPinStatus(response.data.payload.isPin);
+        } else {
+          console.log("this is the response gotten", response);
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten", error);
+        //setErrorResponse("Invalid Login Credentials");
+        setTimeout(setEmptyAlert, 5000);
+    })
+  };
+
+  const getReferrals = () => {
+
+    const token = localStorage.getItem("userToken");
+
+    setIsloading(true);
+    const headers = {
+      Accept: "application/json",
+      // Authorization: accessToken ? accessToken : "No Auth"
+      // Authorization: token
+    }
+
+    axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_referrals',
+      headers,
+      data: {
+        phone_number: userData.phone_number
+      }
+    }).then(function(response){
+        console.log("this is the referral response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+          // setUserResponseData(response.data.payload);
+          setReferralCount()
         } else {
           console.log("this is the response gotten", response);
         }
@@ -229,7 +266,7 @@ const Home = () => {
               <MonthlySales data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={3}>
-              <Monthly data={userData} />
+              <Monthly data={userData} referral={referralCount} />
             </Grid>
           </Grid>
         {/* ------------------------- row 3 ------------------------- */}
