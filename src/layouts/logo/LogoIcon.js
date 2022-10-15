@@ -12,9 +12,9 @@ const LogoIcon = () => {
   return (
     <Link href="/">
       {customizer.activeMode === "dark" ? (
-        <Image src={LogoImg} alt={LogoLight} width="90" height="90" />
+        <Image src={LogoImg} alt={LogoLight} width="200" height="60" />
       ) : (
-        <Image src={LogoImg} alt={LogoDark} width="90" height="90" />
+        <Image src={LogoImg} alt={LogoDark} width="200" height="60" />
       )}
     </Link>
   );
