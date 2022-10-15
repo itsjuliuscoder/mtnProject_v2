@@ -5,7 +5,9 @@ import FeatherIcon from "feather-icons-react";
 import { Card, CardContent, Typography, Box, Fab } from "@mui/material";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-const Monthly = ({ data, referral }) => {
+const Monthly = ({ referral }) => {
+
+  // console.log("this is the referral count -->", referral);
   const theme = useTheme();
   const primary = theme.palette.primary.main;
 
@@ -89,7 +91,7 @@ const Monthly = ({ data, referral }) => {
               }}
               gutterBottom
             >
-              {data && referral ? referral : "No Referral" }
+              {referral}
             </Typography>
             <Typography
                 variant="h4"

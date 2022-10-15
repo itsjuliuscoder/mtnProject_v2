@@ -172,6 +172,7 @@ const Home = () => {
   const getReferrals = () => {
 
     const token = localStorage.getItem("userToken");
+    const gottenData = JSON.parse(localStorage.getItem("userData"))
 
     setIsloading(true);
     const headers = {
@@ -185,7 +186,7 @@ const Home = () => {
       url: 'https://mtn-backend-api-service.herokuapp.com/v1/auth/get_referrals',
       headers,
       data: {
-        phone_number: userData.phone_number
+        phone_number: gottenData.phone_number
       }
     }).then(function(response){
         console.log("this is the referral response data -->", response.data);
@@ -266,7 +267,7 @@ const Home = () => {
               <MonthlySales data={userData} />
             </Grid>
             <Grid item xs={12} lg={6} sm={3}>
-              <Monthly data={userData} referral={referralCount} />
+              <Monthly referral={referralCount} />
             </Grid>
           </Grid>
         {/* ------------------------- row 3 ------------------------- */}
