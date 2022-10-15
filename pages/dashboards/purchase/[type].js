@@ -61,7 +61,7 @@ const Purchase = () => {
   };
 
   React.useEffect(() =>{
-    setTimeout(() => setIsloading(false), 7000);
+    setTimeout(() => setIsloading(false), 2000);
   });
 
   const getAllServices = () => {

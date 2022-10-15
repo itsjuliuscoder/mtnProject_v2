@@ -70,7 +70,7 @@ const Services = () => {
   };
 
   React.useEffect(() =>{
-    setTimeout(() => setIsloading(false), 5000);
+    setTimeout(() => setIsloading(false), 2000);
   });
 
   useEffect(() => {

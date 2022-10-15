@@ -48,6 +48,7 @@ const CustomForm = ({ data, acctype, services }) => {
   const [walletOperator, setWalletOperator] = React.useState("");
   const [amountTP, setAmountTP] = React.useState(0);
   const [balanceAmount, setBalanceAmount] = React.useState(0);
+  const [bonusAmount, setBonusAmount] = React.useState(0);
   const [userData, setUserData] = React.useState("");
   const [skipped, setSkipped] = React.useState(new Set());
   const [ response, setResponse ] = useState('');
@@ -60,6 +61,7 @@ const CustomForm = ({ data, acctype, services }) => {
   useEffect(() => {
     retrieveUserDetails();
     // getAllServices();
+    console.log("this is what I got", acctype);
   }, []);
 
   const headers = {
@@ -89,6 +91,7 @@ const CustomForm = ({ data, acctype, services }) => {
         if(response.data.statusCode === "000"){
           // setUserResponseData(response.data.payload);
           setBalanceAmount(response.data.payload.wallet_balance);
+          setBonusAmount(response.data.payload.bonus_amount);
           //setPinStatus(response.data.payload.isPin);
           //console.log("this is the balance --->", response.data.payload.wallet_balance);
         } else {
@@ -101,8 +104,6 @@ const CustomForm = ({ data, acctype, services }) => {
         setTimeout(setEmptyAlert, 5000);
     })
   };
-
-  
 
   const handleTransaction = (payload) => {
     setPin(payload.pin);
@@ -201,10 +202,18 @@ const CustomForm = ({ data, acctype, services }) => {
           if(response.data.statusCode === "000"){
             // setResponse(response.data.statusMessage);
             // return response.data.statusCode;
-            if(balanceAmount >= amount){
-              setOpen(true);
-            } else {
-              setErrorResponse("Insufficient Balance, Kindly TopUp Wallet");
+            if(paymentType == "wallet"){
+              if(balanceAmount >= amount){
+                setOpen(true);
+              } else {
+                setErrorResponse("Insufficient Balance, Kindly TopUp Wallet");
+              }
+            } else if(paymentType == "bonus"){
+              if((bonusAmount >= "1000") && (bonusAmount >= amount)){
+                setOpen(true);
+              } else {
+                setErrorResponse("Insufficient Bonus Balance");
+              }
             }
           } else {
             console.log("this is the response gotten", response);
@@ -350,7 +359,10 @@ const CustomForm = ({ data, acctype, services }) => {
                   size="small"
                   onChange={e => setType(e.target.value)}
                   >
-                  <MenuItem value="VTU">VTU(Airtime & Data)</MenuItem>
+                  {acctype && acctype=="airtime" ?
+                      <MenuItem value="Airtime">Airtime</MenuItem> : 
+                    <MenuItem value="Data">Data</MenuItem>  
+                  }
                   <MenuItem value="EPIN">EPIN</MenuItem>
               </CustomSelect>
               </Grid>
