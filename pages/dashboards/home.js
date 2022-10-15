@@ -51,7 +51,7 @@ import Router from "next/router";
 
 const Home = () => {
   const [open, setOpen] = useState(false);
-  const [openPinModal, setPinModal] = useState(false);
+  const [openPinModal, setPinModal] = useState(true);
   const [ isloading, setIsloading ] = useState(true);
   const [userData, setUserData] = useState("");
   const [userResponseData, setUserResponseData] = useState("");
@@ -321,22 +321,22 @@ const Home = () => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
+            <Button>
               Send
-            </Button> */}
-            {/* <Button onClick={handleClose} color="secondary">
+            </Button>
+            <Button onClick={handleClose} color="secondary">
               Cancel
-            </Button> */}
-          {/* </DialogActions>
+            </Button>
+          </DialogActions>
         </Dialog> */}
 
         <Dialog
-          open={openPinModal}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={handlePinClose}
-          fullWidth
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
         >
-          <DialogTitle id="alert-dialog-slide-title" variant="h4">
+          <DialogTitle id="alert-dialog-slide-title" variant="h4" style={{ marginTop: '2em' }}>
             <Pricing />
           </DialogTitle>
           <DialogContent>
@@ -346,17 +346,18 @@ const Home = () => {
             >
               
             </DialogContentText>
-          </DialogContent>
+          </DialogContent>  
           <DialogActions>
             {/* <Button onClick={handleClose} color="primary" variant="contained">
               Send
             </Button> */}
-            <Button onClick={handleClose} color="secondary">
+            <Button onClick={open} color="secondary">
               Cancel
             </Button>
           </DialogActions>
         </Dialog>
 
+        
         <Modal
           open={pinModalCheck}
           onClose={handleModalClose}
@@ -383,7 +384,7 @@ const Home = () => {
           </Box>
         </Modal>
 
-        <Modal
+        {/* <Modal
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
@@ -394,7 +395,7 @@ const Home = () => {
               <Pricing />
             </Typography>
           </Box>
-        </Modal>
+        </Modal> */}
       </Grid> 
     }
     { errorResponse && <ErrorToaster title={ errorResponse } /> }

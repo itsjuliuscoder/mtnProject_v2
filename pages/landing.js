@@ -77,7 +77,7 @@ const fadeUp = {
                                 </Grid> 
                                 <Grid item xs={12}  lg={6}>
                                     <Typography variant="h5" fontWeight="900" textAlign="center">
-                                        <NextLink href="/authentication/login">
+                                        <NextLink href="/authentication/register">
                                             <motion.div
                                                 variants={fadeRight }
                                                 initial='hidden'
