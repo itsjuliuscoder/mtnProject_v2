@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import NextLink from "next/link";
 import Image from "next/image";
+import Alert from "@mui/material/Alert";
 
 import GoogleIcon from "@mui/icons-material/Google";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -17,23 +18,22 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Autocomplete from '@mui/material/Autocomplete';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 
-import Alert from "@mui/material/Alert";
-
 import CustomCheckbox from "../../src/components/forms/custom-elements/CustomCheckbox";
-import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
-import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
-import ErrorToaster from "../../src/components/dashboard/home/ErrorToaster";
 import CustomSelect from "../../src/components/forms/custom-elements/CustomSelect";
-import SizesAutocomplete from "../../src/components/forms/autoComplete/SizesAutocomplete";
-import { Select, MenuItem } from '@mui/material';
-import { LocalizationProvider, TimePicker, DatePicker } from '@mui/lab';
+import CustomTextField from "../../src/components/forms/custom-elements/CustomTextField";
+import ErrorToaster from "../../src/components/dashboard/home/ErrorToaster";
+import CustomFormLabel from "../../src/components/forms/custom-elements/CustomFormLabel";
 import MoonLoader from "react-spinners/MoonLoader";
+import { Select, MenuItem } from '@mui/material';
 
 import img2 from "../../assets/images/backgrounds/login-bg.svg";
 import img1 from "../../assets/images/backgrounds/login2.png";
+import img3 from "../../assets/images/backgrounds/33.png";
+import img4 from "../../assets/images/backgrounds/login-bg2.png";
 import LogoIcon from "../../src/layouts/logo/LogoIcon";
 import axios from "axios";
-import moment from "moment";
+import styles from "../../styles/Component.module.css";
+import { LocalizationProvider, TimePicker, DatePicker } from '@mui/lab';
 
 const Register = () => {
 
@@ -114,11 +114,8 @@ const Register = () => {
         item
         xs={12}
         sm={12}
-        lg={6}
-        sx={{
-          background: (theme) =>
-            `${theme.palette.mode === "dark" ? "#1c1f25" : "#ffffff"}`,
-        }}
+        lg={7}
+        className={styles.loginImg}
       >
         <Box
           sx={{
@@ -139,27 +136,17 @@ const Register = () => {
               margin: "0 auto",
             }}
           >
-            <Image src={img1} alt="bg" maxWidth="812" />
-          </Box>
-  
-          <Box
-            sx={{
-              p: 4,
-              position: "absolute",
-              top: "0",
-            }}
-          >
-            <LogoIcon />
+            {/* <Image src={img1} alt="bg" maxWidth="812" /> */}
           </Box>
         </Box>
       </Grid>
-      <Grid item xs={12} sm={8} lg={6} display="flex" alignItems="center">
+      <Grid item xs={12} sm={8} lg={5} display="flex" alignItems="center">
         <Grid container spacing={0} display="flex" justifyContent="center">
           <Grid item xs={12} lg={9} xl={6}>
             <Box
               sx={{
-                p: 4,
-              }}
+                p: 2
+              }}            
             >
               <Typography fontWeight="700" variant="h2">
                 Welcome to RightNet
