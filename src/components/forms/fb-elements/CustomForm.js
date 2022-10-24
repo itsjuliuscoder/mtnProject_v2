@@ -113,15 +113,10 @@ const CustomForm = ({ data, acctype, services }) => {
     validatePIN(payload.pin);
   };
 
-  const componentProps = {
-    amount: amount ? (amount * 100) : "100", 
-    reference: (new Date()).getTime().toString(),
-    email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
-    publicKey: 'pk_test_cdbf19c426a4d163dd3e939e53edde7f831fd6b6',
-    text: 'Purchase ' + acctype + ' with Card',
-    onSuccess: (reference) => handlePaystackSuccessAction(reference),
-    onClose: handlePaystackCloseAction,
-  };
+  const handlePaystackCloseAction = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed')
+  }
 
   const handlePaystackSuccessAction = (reference) => {  
     // Implementation for whatever you want to do with reference and after success call.
@@ -174,10 +169,15 @@ const CustomForm = ({ data, acctype, services }) => {
     console.log(reference);
   };
 
-  const handlePaystackCloseAction = () => {
-    // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log('closed')
-  }
+  const componentProps = {
+    amount: amount ? (amount * 100) : "100", 
+    reference: (new Date()).getTime().toString(),
+    email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
+    publicKey: 'pk_test_cdbf19c426a4d163dd3e939e53edde7f831fd6b6',
+    text: 'Purchase ' + acctype + ' with Card',
+    onSuccess: (reference) => handlePaystackSuccessAction(reference),
+    onClose: handlePaystackCloseAction,
+  };
 
   const setTransactionAmount = (e) => {
     // console.log("this is the transaction amount", e);
