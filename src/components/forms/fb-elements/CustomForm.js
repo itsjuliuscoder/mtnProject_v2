@@ -126,16 +126,16 @@ const CustomForm = ({ data, acctype, services }) => {
   const handlePaystackSuccessAction = (reference) => {  
     // Implementation for whatever you want to do with reference and after success call.
 
-    const headers = {
-      Accept: "application/json",
-      Authorization: accessToken ? accessToken : "No Auth"
-    }
+    // const headers = {
+    //   Accept: "application/json",
+    //   Authorization: accessToken ? accessToken : "No Auth"
+    // }
 
 
     setResponse("TopUp Successful");
     setTimeout(() => {
       Router.replace("/dashboards/home");
-    }, 3000)
+    }, 3000);
 
     
     /*axios({
