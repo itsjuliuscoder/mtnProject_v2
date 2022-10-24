@@ -31,6 +31,7 @@ import NextLink from "next/link";
 import ErrorToaster from "../../dashboard/home/ErrorToaster"
 import SuccessToaster from "../../dashboard/home/SuccessToaster";
 import { useRouter } from "next/router";
+import { PaystackButton } from 'react-paystack';
 
 const initalValues = {
   phone_number: "",
@@ -111,6 +112,72 @@ const CustomForm = ({ data, acctype, services }) => {
     setPhonenumber(number);
     validatePIN(payload.pin);
   };
+
+  const componentProps = {
+    amount: amount ? (amount * 100) : "100", 
+    reference: (new Date()).getTime().toString(),
+    email: data && data.email ? data.email : "techcapacitybuilder@gmail.com",
+    publicKey: 'pk_test_cdbf19c426a4d163dd3e939e53edde7f831fd6b6',
+    text: 'Purchase ' + acctype + ' with Card',
+    onSuccess: (reference) => handlePaystackSuccessAction(reference),
+    onClose: handlePaystackCloseAction,
+  };
+
+  const handlePaystackSuccessAction = (reference) => {  
+    // Implementation for whatever you want to do with reference and after success call.
+
+    const headers = {
+      Accept: "application/json",
+      Authorization: accessToken ? accessToken : "No Auth"
+    }
+
+
+    setResponse("TopUp Successful");
+    setTimeout(() => {
+      Router.replace("/dashboards/home");
+    }, 3000)
+
+    
+    /*axios({
+      method: 'post',
+      url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/purchase',
+      headers,
+      data: {
+        reference_id: reference.trxref,
+        user_id: data._id,
+        fullname: data.firstname + " " + data.lastname,
+        phone_number: data.phone_number,
+        amount: amount,
+
+        // previous_balance: data && data.wallet_balance ? data.wallet_balance : " ",
+        description: " Purchase" + amount + " was successful"
+      }
+    }).then(function(response){
+        console.log("this is the response data -->", response.data);
+        setIsloading(false);
+        if(response.data.statusCode === "000"){
+          setResponse(response.data.statusMessage);
+          setTimeout(() => {
+            Router.replace("/dashboards/home");
+          }, 3000)
+        } else {
+          console.log("this is the response gotten", response);
+          setErrorResponse("Unable to create PIN");
+        }
+    }).catch((error) => {
+        setIsloading(false);
+        console.log("this is the error response gotten");
+        setErrorResponse("Wallet Top Up failed");
+        setTimeout(setEmptyAlert, 5000);
+    })*/
+
+    console.log(reference);
+  };
+
+  const handlePaystackCloseAction = () => {
+    // implementation for  whatever you want to do when the Paystack dialog closed.
+    console.log('closed')
+  }
 
   const setTransactionAmount = (e) => {
     // console.log("this is the transaction amount", e);
@@ -455,7 +522,7 @@ const CustomForm = ({ data, acctype, services }) => {
               {/* <Box height={14} /> */}
               <Grid item xs={12} lg={6}>
               <>
-              { data.isPin == true ? <div><CustomFormLabel htmlFor="Email">Enter Transaction PIN</CustomFormLabel>
+              {  paymentType && amount && (paymentType == "Card") ? " "  :  data.isPin == true ? <div><CustomFormLabel htmlFor="Email">Enter Transaction PIN</CustomFormLabel>
                 {/* <Box height={14} /> */}
                 <Field
                   name="pin"
@@ -467,20 +534,22 @@ const CustomForm = ({ data, acctype, services }) => {
                   fullWidth
                   error={Boolean(errors.pin) && Boolean(touched.pin)}
                   helperText={Boolean(touched.pin) && errors.pin}
-                /></div> : <Box sx={{ mt: 6}}> Kindly Create Your Transaction PIN to complete this transaction by <NextLink href="/dashboards/set-pin">Clicking Me</NextLink>  </Box> }
+                /></div>  : <Box sx={{ mt: 6}}> Kindly Create Your Transaction PIN to complete this transaction by <NextLink href="/dashboards/set-pin">Clicking Me</NextLink>  </Box>  }
               </>                
               </Grid>
               {/* <Box height={14} /> */}
               <Grid item xs={12} lg={6}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  disabled={!isValid || !dirty}
-                >
+                {paymentType && amount && (paymentType == "Card") ? 
+                  <PaystackButton className={styles.paystack__button} {...componentProps} /> : 
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    disabled={!isValid || !dirty}
+                  >
                   Purchase
-                </Button>
+                </Button>}
               </Grid>
               </Grid>
             </Form>
