@@ -32,7 +32,7 @@ function MyApp(props) {
     return (
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>rightNet - Easily Get Airtime and Data</title>
+          <title>ReflexPay - Easily Get Airtime and Data</title>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
         </Head>
         <ThemeProvider theme={Gettheme}>

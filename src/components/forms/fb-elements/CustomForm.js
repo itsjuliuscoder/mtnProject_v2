@@ -197,7 +197,7 @@ const CustomForm = ({ data, acctype, services }) => {
 
   const setDataAmount = (e) => {
     console.log("this is the transaction amount", e);
-    const amounttp = e * 0.03;
+    const amounttp = e * 0.05;
     const amounttpValue = (e - amounttp);
     let phone_number = phone ? phone : "";
     console.log("this is the type value -->", type);
@@ -213,7 +213,7 @@ const CustomForm = ({ data, acctype, services }) => {
   }
 
   const completeAirtime = () => {
-
+    
     axios({
         method: 'post',
         url: 'https://mtn-backend-api-service.herokuapp.com/v1/wallet/buyAirtime',
